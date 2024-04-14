@@ -1,0 +1,23 @@
+Penetration testing (pen testing) tools are software applications or scripts used by cybersecurity professionals to assess the security of computer systems, networks, and applications. These tools are designed to identify vulnerabilities, weaknesses, and potential entry points that malicious attackers could exploit. Here are some commonly used penetration testing tools:
+
+1. **Nmap (Network Mapper)**: A powerful open-source tool for network discovery and security auditing. It can be used to discover devices, services, and open ports on a network.
+
+2. **Metasploit**: An exploitation framework that helps security professionals identify, validate, and manage security vulnerabilities. It provides a wide range of modules for scanning, exploiting, and post-exploitation tasks.
+
+3. **Wireshark**: A popular network protocol analyzer that allows users to capture and inspect the data traveling back and forth on a network. It helps in understanding network traffic and identifying potential security issues.
+
+4. **Burp Suite**: A suite of tools for web application security testing. It includes tools for scanning web applications, finding vulnerabilities, and manipulating requests and responses.
+
+5. **Nessus**: A vulnerability scanner that identifies vulnerabilities, misconfigurations, and security issues in systems and networks. It provides detailed reports about the discovered vulnerabilities.
+
+6. **Aircrack-ng**: A set of tools for assessing WiFi network security. It includes tools for capturing packets, analyzing WiFi traffic, and performing various attacks on wireless networks.
+
+7. **John the Ripper**: A password cracking tool that uses various techniques (like dictionary attacks and brute force) to crack password hashes.
+
+8. **Hydra**: A fast and flexible password-cracking tool that supports various protocols and services. It can perform brute force, dictionary, and hybrid attacks.
+
+9. **Sqlmap**: A tool for detecting and exploiting SQL injection vulnerabilities in web applications. It automates the process of finding and exploiting these vulnerabilities.
+
+10. **OWASP Zap**: An open-source web application security scanner. It helps in finding security vulnerabilities in web applications and APIs.
+
+These are just a few examples of the many penetration testing tools available. Keep in mind that using these tools ethically and responsibly is crucial, as they can have serious consequences if misused. It's recommended to use pen testing tools only on systems you have permission to test.

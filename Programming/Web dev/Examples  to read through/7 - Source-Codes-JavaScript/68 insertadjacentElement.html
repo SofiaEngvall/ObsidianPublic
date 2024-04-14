@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        background-color: brown;
+        width: 80%;
+        text-align: center;
+        margin: auto;
+        padding-top: 200px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quod
+        exercitationem similique, voluptatum iure tenetur, corporis ab, esse
+        sapiente nulla cum quibusdam quia nihil modi sunt placeat voluptatem
+        velit illo!
+      </p>
+    </div>
+    <script>
+      var element = document.createElement("h1");
+      var text = document.createTextNode("Meta Brains");
+      element.appendChild(text);
+      var target = document.getElementById("div");
+      var firstele = "This is Meta Brains";
+      target.insertAdjacentText("afterbegin", firstele);
+    </script>
+  </body>
+</html>

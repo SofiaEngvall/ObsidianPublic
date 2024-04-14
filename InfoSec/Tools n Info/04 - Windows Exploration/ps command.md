@@ -1,0 +1,1 @@
+powershell -Command "Get-Process -Name 'ControlServer' -ErrorAction SilentlyContinue | ForEach-Object { (Get-NetTCPConnection -OwningProcess $_.Id -State Listen) | ForEach-Object { $_.LocalPort } }"

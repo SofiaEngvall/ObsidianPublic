@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" id="main">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer {
+        width: 550px;
+        height: 300px;
+        padding: 10px 10px;
+        margin: 0 auto;
+        background: rgb(70, 49, 40);
+      }
+      #inner {
+        width: 500px;
+        height: 200px;
+        padding: 10px 10px;
+        margin: 0 auto;
+        background: rgb(104, 23, 124);
+      }
+      #inner div {
+        display: inline-block;
+        background: rgb(241, 16, 16);
+        width: 95px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <h2>outer</h2>
+      <div id="inner">
+        <h2 id="innerside">innerside</h2>
+        <div>one</div>
+        <div>two</div>
+        <div id="child-c">three</div>
+        <div>four</div>
+        <div>five</div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("innerside").parentElement.style.background =
+        "pink";
+      var one = document.getElementById("main").parentNode;
+
+      //   var one = document.body.parentElement;
+      console.log(one);
+    </script>
+  </body>
+</html>

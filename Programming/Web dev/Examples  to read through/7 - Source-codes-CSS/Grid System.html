@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .main {
+        display: grid;
+        grid-template-rows: 200px 200px 200px;
+        grid-template-columns: 200px 200px 200px;
+        grid-gap: 20px 20px;
+        /* margin-left: 200px; */
+        /* justify-content: start; */
+        justify-content: center;
+        align-items: center;
+      }
+      .a {
+        background-color: green;
+        width: 200px;
+        height: 200px;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      .b {
+        background-color: rgb(152, 255, 152);
+        width: 200px;
+        height: 200px;
+      }
+      .c {
+        background-color: rgb(23, 149, 207);
+        width: 200px;
+        height: 200px;
+      }
+      .d {
+        background-color: rgb(23, 69, 100);
+        width: 200px;
+        height: 200px;
+        align-self: center;
+        justify-self: end;
+      }
+      .e {
+        background-color: rgb(146, 50, 33);
+        /* width: 200px;
+        height: 200px; */
+        /* grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3; */
+        grid-row: 1/2;
+        grid-column: 1/4;
+      }
+      .f {
+        background-color: rgb(33, 34, 105);
+        width: 200px;
+        height: 200px;
+        grid-row: 3/5;
+        grid-column: 1/4;
+      }
+      .g {
+        background-color: rgb(128, 0, 38);
+        width: 200px;
+        height: 200px;
+        grid-row: 3/5;
+        grid-column: 3/4;
+        align-self: start;
+        justify-self: center;
+      }
+      .h {
+        background-color: rgb(209, 31, 31);
+        width: 200px;
+        height: 200px;
+      }
+      .i {
+        background-color: rgb(37, 187, 224);
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="a">one</div>
+      <div class="b">two</div>
+      <div class="c">three</div>
+      <div class="d">four</div>
+      <div class="e">five</div>
+      <div class="f">six</div>
+      <div class="g">seven</div>
+      <div class="h">eight</div>
+      <div class="i">nine</div>
+    </div>
+  </body>
+</html>

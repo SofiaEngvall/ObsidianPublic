@@ -1,0 +1,3 @@
+
+dirsearch example commands
+

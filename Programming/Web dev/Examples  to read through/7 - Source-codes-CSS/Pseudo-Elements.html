@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      h1::selection {
+        color: hotpink;
+        background-color: indigo;
+        font-size: 30px;
+      }
+      h1 {
+        margin: 30px 0 0 30px;
+      }
+      h1::before {
+        content: "hello";
+        color: greenyellow;
+        font-size: 20px;
+      }
+      h1::after {
+        content: "end";
+        color: greenyellow;
+        font-size: 20px;
+      }
+      ::marker {
+        color: lawngreen;
+      }
+      input::placeholder {
+        color: lightcoral;
+        /* font-size: 30px; */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>helloo world</h1>
+    <ul>
+      <li>A</li>
+      <li>B</li>
+      <li>c</li>
+      <li>D</li>
+      <li>E</li>
+      <li>f</li>
+    </ul>
+    <input type="text" placeholder="username" />
+  </body>
+</html>

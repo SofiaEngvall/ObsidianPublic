@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+*{
+    margin: 0px;
+    padding: 0px;
+
+}
+form {
+    margin-left: 50px;
+}
+input:focus{
+    background-color: hotpink;
+    color: indigo;
+}
+input[ type="checkbox"]:checked{
+    box-shadow: 0 0 10px 10px red;
+}
+input:disabled{
+    background: rgb(146, 141, 141);
+}
+</style>
+<body>
+    <form action="">
+        <label for="">username   </label><br>
+            <input type="text" disabled><br>
+            <label for="">password   </label><br>
+            <input type="text"><br>
+            <label for="">email   </label><br>
+            <input type="text"><br>
+            <label for="">hobbbies   </label>
+            <input type="checkbox">
+            <label for="">cricket   </label>
+            <input type="checkbox">
+            <label for="">football   </label>
+            <input type="checkbox">
+            <label for="">hobby   </label>
+            <input type="checkbox">
+            <label for="">number   </label><br>
+            <input type="submit"><br>
+    </form>
+</body>
+</html>

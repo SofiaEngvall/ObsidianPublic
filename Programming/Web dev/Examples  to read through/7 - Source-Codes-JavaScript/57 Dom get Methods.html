@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic Layout</title>
+
+    <style>
+      @import "color.css";
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font: 18px/24px arial;
+      }
+      #wrapper {
+        border: 1px solid black;
+        width: 1000px;
+        background: white;
+        margin: 0 auto;
+      }
+
+      #top-bar {
+        background: MEDIUMPURPLE;
+      }
+      #top-bar ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      #top-bar ul li {
+        display: inline-block;
+        margin: 5px;
+      }
+      #top-bar a {
+        color: #fff;
+        font-size: 20px;
+      }
+      #top-bar a:hover {
+        color: crimson;
+      }
+      #header {
+        min-height: 100px;
+        font-family: arial;
+        border-bottom: 1px solid black;
+      }
+
+      #header h1 {
+        padding: 30px 0 0 20px;
+        margin: 0;
+      }
+      #menu {
+        border-bottom: 1px solid black;
+      }
+      #menu ul {
+        margin: 0;
+        padding: 0;
+      }
+      #menu li {
+        display: inline-block;
+      }
+      #menu li a {
+        display: block;
+        padding: 10px 13px;
+        text-decoration: none;
+      }
+      #menu li a:hover {
+      }
+      #content {
+        width: 795px;
+        min-height: 500px;
+        padding: 15px;
+        float: left;
+        box-sizing: border-box;
+        position: relative;
+      }
+      #content h2 {
+        font-family: arial;
+      }
+      .content-image {
+        float: left;
+        margin: 0 15px 10px 0;
+      }
+      #sidebar {
+        width: 200px;
+        min-height: 500px;
+        float: right;
+        border-left: 1px solid black;
+      }
+      #sidebar a {
+        text-decoration: none;
+        color: black;
+      }
+      #footer {
+        padding: 5px 10px;
+        text-align: right;
+        font-size: 14px;
+        clear: both;
+        border-top: 1px solid black;
+      }
+      @import "mediatest.css" screen and (max-width: 1020px);
+
+      @media screen and (max-width: 810px) {
+        #wrapper {
+          width: 500px;
+        }
+        #content {
+          width: 65%;
+        }
+        #sidebar {
+          width: 34%;
+        }
+      }
+      @media screen and (max-width: 510px) {
+        #wrapper {
+          width: auto;
+        }
+
+        #content {
+          width: 100%;
+          float: none;
+        }
+        #sidebar {
+          width: 100%;
+          float: none;
+        }
+        #header h1 {
+          padding: 30px 0 0 0;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header" class="noclass" style="background-color: gold">
+        <h1>Meta Brains</h1>
+      </div>
+      <div id="menu">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">About Us</a></li>
+          <li><a href="">Gallery</a></li>
+          <li><a href="">Contact Us</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        <h2>Sub Heading</h2>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt,
+          veniam eius architecto ullam cupiditate quam aspernatur quis facilis
+          tempora vel! Aspernatur, consequatur, laborum, explicabo consequuntur
+          minima beatae perferendis impedit accusantium ex animi odit quisquam
+          sint pariatur minus amet ullam reprehenderit rerum inventore sed
+          officiis voluptas? Dolore, perferendis, minus eum debitis vero ipsam
+          tempora voluptate nam ut autem itaque provident consequatur nobis quia
+          libero! Magni, molestiae, laborum architecto natus inventore facere
+          quis pariatur quia quos quasi quo dicta dolores. Deleniti, facere,
+          fugit sed minus ducimus ut modi voluptatum eaque praesentium saepe
+          aperiam nam quidem laboriosam assumenda voluptate vitae inventore et
+          quibusdam!
+        </p>
+        <ul class="list">
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Modi nihil in animi necessitatibus.</li>
+          <li>Consectetur adipisicing elit.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Modi nihil in animi dolore natus.</li>
+        </ul>
+        <p class="list">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, quam.
+        </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">About Us</a></li>
+          <li><a href="">Gallery</a></li>
+          <li><a href="">Contact Us</a></li>
+        </ul>
+      </div>
+      <div id="footer">Meta Brains</div>
+    </div>
+    <script>
+      var name;
+      //   name = document.getElementById("header").innerText;
+      //   name = document.getElementById("header").innerHTML;
+      //   name = document.getElementById("footer").innerText;
+      //   name = document.getElementById("sidebar").innerText;
+      //   name = document.getElementById("sidebar").innerHTML;
+      //   name = document.getElementById("header").getAttribute("class");
+      //   name = document.getElementById("header").getAttribute("class");
+      //   name = document.getElementById("header").getAttribute("style");
+      //   name = document.getElementById("header").getAttributeNode("style");
+      name = document.getElementById("header").attributes;
+
+      console.log(name);
+    </script>
+  </body>
+</html>

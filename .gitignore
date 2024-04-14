@@ -1,0 +1,10 @@
+workspace.json
+.git/
+__pycache__/
+token.json
+creds.json
+token.json.zooe
+OPENAI_API_KEY
+OPENAI_API_KEY.OLD
+python-yr-1.4.7.post2
+OSINT

@@ -1,0 +1,1 @@
+EDR/SIEM/SOAR tools available, as there are numerous options such as Splunk, Aurora, Corelight, Zeek, MS Sentinel, Snort, Wireshark, Datadog, Graylog, Security Onion, ELK, LogRhythm, and Google Chronicle.

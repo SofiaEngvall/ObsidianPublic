@@ -1,0 +1,8 @@
+{
+  "mySetting": "txt,nfo,json,py",
+  "mySettingArray": [
+    "txt",
+    "nfo",
+    "json"
+  ]
+}
