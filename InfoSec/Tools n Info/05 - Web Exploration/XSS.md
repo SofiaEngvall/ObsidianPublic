@@ -1,4 +1,8 @@
 
+`<script>alert("Succ3ssful XSS")</script>`
+
+---
+
 cross site scripting
 
 insert javascript code into a website
