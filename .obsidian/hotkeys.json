@@ -6,5 +6,29 @@
       ],
       "key": "["
     }
+  ],
+  "window:zoom-in": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "+"
+    }
+  ],
+  "window:zoom-out": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "-"
+    }
+  ],
+  "editor:toggle-code": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "="
+    }
   ]
 }

@@ -1,5 +1,6 @@
 
 locate abc
+	updatedb (if locate doesn’t work or not updated)
 
 find binary
 find / -type f -name thisname 2> /dev/null

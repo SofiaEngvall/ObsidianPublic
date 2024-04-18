@@ -15,7 +15,7 @@ Google
 
 What's the file structure
 	Directory busting
-	[[Public/InfoSec/Tools n Info/02 - Web Exploration/Fuzzing/gobuster|gobuster]]
+	[[InfoSec/Tools n Info/02 - Web Exploration/Fuzzing/gobuster|gobuster]]
 	[[feroxbuster|feroxbuster]]
 
 virtual hosts

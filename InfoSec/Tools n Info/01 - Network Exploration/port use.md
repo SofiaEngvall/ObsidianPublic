@@ -8,7 +8,7 @@ TCP - Three way handshake “Syn” > “Syn Ack” > “Ack” - Can be used to
 
 20 ftp data
 21 ftp                ftp     if ftp port open, try ftp 10.10.10.10 and login with anonymous
-22 ssh               [[Public/InfoSec/Tools n Info/01.5 - Connection/ssh|ssh]]
+22 ssh               [[InfoSec/Tools n Info/01.5 - Connection/ssh|ssh]]
 23 telnet
 25 SMTP
 53 dns

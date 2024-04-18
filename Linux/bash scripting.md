@@ -11,3 +11,12 @@ ping -c 1 $1.$ip | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &
 done
 fi
 
+
+if this is in a script, or just typed in terminal, it makes a file
+```sh
+cat > /tmp/test.txt << EOF
+some text
+EOF
+```
+
+`<<EOF` can in other words be used to start multiline input to something. You end it with `EOF` on a line alone

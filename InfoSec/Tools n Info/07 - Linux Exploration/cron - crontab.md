@@ -44,3 +44,9 @@ files mentioning cron
 grep -r "cron" /path/to/search
 ```
 
+Script to replace sh scripts with in [[bash]]
+
+### Exploiting the path
+
+Do you have write access to a dir earlier in the path?
+

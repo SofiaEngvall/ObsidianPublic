@@ -1,6 +1,6 @@
 
 ## Network exploration
-[[Public/InfoSec/Tools n Info/01 - Network Exploration/nmap|nmap]]
+[[InfoSec/Tools n Info/01 - Network Exploration/nmap|nmap]]
 
 Google the port numbers, any hits?  [[port use]]
 

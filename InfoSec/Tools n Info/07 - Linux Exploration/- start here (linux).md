@@ -4,7 +4,7 @@ Stabilize shell and make it interactive
 	Ctrl+z
 	`stty raw -echo; fg` (ctrl+c and other special chars sent + turning of echo)
 	`export TERM=xterm`
-who
+
 User info
 	`id`
 	`whoami`
@@ -20,24 +20,35 @@ File system
 	check /opt
 	check logs in /var/logs
 	are there email? how to find?
+	is `/etc/shadow` readable/writeable
+	is `/etc/passwd` writeable
 
 Permission info
 	`sudo -l`
-	Find write exec perm directories
-		`find / ` <- find the actual command to put here
 	Find SUID binaries
 		`find / -perm -u=s -type f 2>/dev/null`
 	Find SGID binaries
 		`find / -perm -g=s -type f 2>/dev/null`
+	Both - test this one more
+		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null`
 	Find sticky-bit binaries
 		`find / -perm -1000 -type d 2>/dev/null`
 	Find writable files
 	`find /etc -writable -ls 2>/dev/null`
+	Find write exec perm directories
+		`find / ` <- find the actual command to put here
+
 
 find users on machine
 	~/ `ls -la ..`
 	check permissions on other users directories
 	`cat /etc/passwd`
+
+check for ssh keys
+	`/home/<user>/.ssh`
+	Can we add a user
+		[Dirty C0w](https://dirtycow.ninja/) 
+		writeable /etc/shadow or /etc/passwd
 
 what processes are running
 	`ps aux`
@@ -45,7 +56,7 @@ what processes are running
 	[[pspy]]
 
 What's scheduled
-	[[cron]]
+	[[cron - crontab]]
 	...
 
 Open ports
