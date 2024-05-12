@@ -1,11 +1,14 @@
 
-
-
+Compile normal program
+```sh
+g++ ncp.cpp -o ncp
+```
 
 ### Compiling libraries
 
 Examples:
 
+`gcc -o service /home/user/tools/suid/service.c`
 gcc -g -c raptor_udf2.c -fPIC
 gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
 gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c

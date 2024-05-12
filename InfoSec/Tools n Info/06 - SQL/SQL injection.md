@@ -10,16 +10,18 @@ PostgreSQL   `SELECT version()`
 MySQL          `SELECT @@version`
 SQLite           `SELECT sqlite_version()`
 
-# Basics
+### Basics
 
 `' OR 1=1 --` obs, not safe as all rows are returned/possibly updated
 
 `something we know works' AND 1=1 --` safer alternative
 
-# Union
+### In-Band SQLi
+
+### Union
 
 
-# Stacked Queries
+### Stacked Queries
 
 not available in all  systems
 

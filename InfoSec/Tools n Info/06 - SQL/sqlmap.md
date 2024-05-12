@@ -1,4 +1,10 @@
 
+`--dbs` - Returns databases
+`-D databaseName --tables` - returns tables from the specified database
+`-D databaseName -T tableName --dump` - dumps that table
+`--technique=B`
+`--dbms=mysql`
+
 ###### sqlmap -h
 
 ```sh

@@ -1,7 +1,118 @@
 
 Uses ARP to discover and fingerprint IP hosts on the local network
+http://www.royhills.co.uk/wiki/index.php/Main_Page
+### Useful commands
 
-## _--help_
+`arp-scan --localnet`
+
+`sudo arp-scan --interface wlan0 --localnet`
+`sudo arp-scan -I wlan0 -l`
+
+
+```sh
+┌──(kali㉿kali)-[~]
+└─$ sudo arp-scan --interface wlan0 -l
+Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
+WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
+WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+192.168.0.1     f4:92:bf:ad:0d:61       (Unknown)
+192.168.0.2     f6:f9:36:d0:62:80       (Unknown: locally administered)
+192.168.0.3     78:54:2e:b0:76:70       (Unknown)
+192.168.0.4     00:1f:29:2f:48:8d       (Unknown)
+192.168.0.5     00:08:9b:c2:f1:f3       (Unknown)
+192.168.0.8     8c:89:a5:90:be:a1       (Unknown)
+192.168.0.2     f6:f9:36:d0:62:80       (Unknown: locally administered) (DUP: 2)
+192.168.0.61    2c:4d:54:d4:2b:88       (Unknown)
+192.168.0.63    34:64:a9:22:92:59       (Unknown)
+192.168.0.72    00:23:c1:12:57:6a       (Unknown)
+192.168.0.54    94:58:cb:fb:dd:14       (Unknown)
+192.168.0.67    da:30:f7:6d:a2:17       (Unknown: locally administered)
+192.168.0.87    e8:b1:fc:09:1f:b9       (Unknown)
+192.168.0.53    40:4e:36:1a:bd:1c       (Unknown)
+192.168.0.69    2c:fd:ab:e6:85:b9       (Unknown)
+
+15 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.10.0: 256 hosts scanned in 1.836 seconds (139.43 hosts/sec). 14 responded
+```
+
+```sh
+┌──(kali㉿kali)-[~]
+└─$ sudo arp-scan --interface=wlan0 --localnet --ouifile=/usr/share/arp-scan/ieee-oui.txt --macfile=/etc/arp-scan/mac-vendor.txt
+Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+192.168.0.1     f4:92:bf:ad:0d:61       Ubiquiti Networks Inc.
+192.168.0.3     78:54:2e:b0:76:70       D-Link International
+192.168.0.2     f6:f9:36:d0:62:80       (Unknown: locally administered)
+192.168.0.4     00:1f:29:2f:48:8d       Hewlett Packard
+192.168.0.5     00:08:9b:c2:f1:f3       ICP Electronics Inc.
+192.168.0.8     8c:89:a5:90:be:a1       Micro-Star INT´L CO., LTD
+192.168.0.2     f6:f9:36:d0:62:80       (Unknown: locally administered) (DUP: 2)
+192.168.0.61    2c:4d:54:d4:2b:88       ASUSTek COMPUTER INC.
+192.168.0.63    34:64:a9:22:92:59       Hewlett Packard
+192.168.0.54    94:58:cb:fb:dd:14       Nintendo Co.,Ltd
+192.168.0.72    00:23:c1:12:57:6a       Securitas Direct AB
+192.168.0.67    da:30:f7:6d:a2:17       (Unknown: locally administered)
+192.168.0.87    e8:b1:fc:09:1f:b9       Intel Corporate
+192.168.0.53    40:4e:36:1a:bd:1c       HTC Corporation
+192.168.0.109   3e:f5:3b:fc:d1:b0       (Unknown: locally administered)
+192.168.0.69    2c:fd:ab:e6:85:b9       Motorola (Wuhan) Mobility Technologies Communication Co., Ltd.
+
+16 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.10.0: 256 hosts scanned in 2.043 seconds (125.31 hosts/sec). 15 responded
+```
+
+
+```
+https://bugs.archlinux.org/task/79790
+```
+
+```sh
+┌──(kali㉿kali)-[~]
+└─$ sudo arp-scan --interface wlan0 -l
+Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
+WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
+WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+...
+192.168.0.63    34:64:a9:22:92:59       (Unknown)
+192.168.0.61    2c:4d:54:d4:2b:88       (Unknown)
+...
+
+15 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.10.0: 256 hosts scanned in 1.828 seconds (140.04 hosts/sec). 15 responded
+                                                                                                                                                                                            
+┌──(kali㉿kali)-[~]
+└─$ sudo arp-scan --interface=wlan0 --localnet --ouifile=/usr/share/arp-scan/ieee-oui.txt --macfile=/etc/arp-scan/mac-vendor.txt
+Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+...
+192.168.0.61    2c:4d:54:d4:2b:88       ASUSTek COMPUTER INC.
+192.168.0.63    34:64:a9:22:92:59       Hewlett Packard
+...
+
+17 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.10.0: 256 hosts scanned in 1.974 seconds (129.69 hosts/sec). 16 responded
+                                                                                                                                                                                            
+┌──(kali㉿kali)-[~]
+└─$ cd ..
+                                                                                                                                                                                            
+┌──(kali㉿kali)-[/home]
+└─$ sudo arp-scan --interface wlan0 -l                                                                                          
+Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+...
+192.168.0.61    2c:4d:54:d4:2b:88       ASUSTek COMPUTER INC.
+192.168.0.63    34:64:a9:22:92:59       Hewlett Packard
+...
+
+15 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.10.0: 256 hosts scanned in 1.999 seconds (128.06 hosts/sec). 15 responded
+
+```
+
+### Help
+
 ```sh
 ┌──(kali㉿kali)-[~]
 └─$ arp-scan --help
@@ -89,7 +200,7 @@ Output Format Control:
                         Only display the responding host details. Useful if
                         the output will be parsed by a script.
 
---ignoredups or -g      Don't display duplicate packets.
+--ignoredups or -g      Don´t display duplicate packets.
                         By default duplicate packets are flagged with
                         "(DUP: n)" where n is the number of times this
                         host has responded.
@@ -124,7 +235,7 @@ Output Format Control:
                         --quiet option is specified.
 
                         Any characters that are not fields are output
-                        verbatim. "\" introduces escapes:
+                        verbatim. "\"" introduces escapes:
 
                         \n newline
                         \r carriage return
@@ -279,111 +390,5 @@ Misc Options:
 
 Report bugs or send suggestions at https://github.com/royhills/arp-scan
 See the arp-scan homepage at https://github.com/royhills/arp-scan
-
-```
-
-# Useful commands
-
-`sudo arp-scan --interface wlan0 -l`
-
-```sh
-┌──(kali㉿kali)-[~]
-└─$ sudo arp-scan --interface wlan0 -l
-Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
-WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
-WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
-Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-192.168.0.1     f4:92:bf:ad:0d:61       (Unknown)
-192.168.0.2     f6:f9:36:d0:62:80       (Unknown: locally administered)
-192.168.0.3     78:54:2e:b0:76:70       (Unknown)
-192.168.0.4     00:1f:29:2f:48:8d       (Unknown)
-192.168.0.5     00:08:9b:c2:f1:f3       (Unknown)
-192.168.0.8     8c:89:a5:90:be:a1       (Unknown)
-192.168.0.2     f6:f9:36:d0:62:80       (Unknown: locally administered) (DUP: 2)
-192.168.0.61    2c:4d:54:d4:2b:88       (Unknown)
-192.168.0.63    34:64:a9:22:92:59       (Unknown)
-192.168.0.72    00:23:c1:12:57:6a       (Unknown)
-192.168.0.54    94:58:cb:fb:dd:14       (Unknown)
-192.168.0.67    da:30:f7:6d:a2:17       (Unknown: locally administered)
-192.168.0.87    e8:b1:fc:09:1f:b9       (Unknown)
-192.168.0.53    40:4e:36:1a:bd:1c       (Unknown)
-192.168.0.69    2c:fd:ab:e6:85:b9       (Unknown)
-
-15 packets received by filter, 0 packets dropped by kernel
-Ending arp-scan 1.10.0: 256 hosts scanned in 1.836 seconds (139.43 hosts/sec). 14 responded
-```
-
-```sh
-┌──(kali㉿kali)-[~]
-└─$ sudo arp-scan --interface=wlan0 --localnet --ouifile=/usr/share/arp-scan/ieee-oui.txt --macfile=/etc/arp-scan/mac-vendor.txt
-Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
-Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-192.168.0.1     f4:92:bf:ad:0d:61       Ubiquiti Networks Inc.
-192.168.0.3     78:54:2e:b0:76:70       D-Link International
-192.168.0.2     f6:f9:36:d0:62:80       (Unknown: locally administered)
-192.168.0.4     00:1f:29:2f:48:8d       Hewlett Packard
-192.168.0.5     00:08:9b:c2:f1:f3       ICP Electronics Inc.
-192.168.0.8     8c:89:a5:90:be:a1       Micro-Star INT´L CO., LTD
-192.168.0.2     f6:f9:36:d0:62:80       (Unknown: locally administered) (DUP: 2)
-192.168.0.61    2c:4d:54:d4:2b:88       ASUSTek COMPUTER INC.
-192.168.0.63    34:64:a9:22:92:59       Hewlett Packard
-192.168.0.54    94:58:cb:fb:dd:14       Nintendo Co.,Ltd
-192.168.0.72    00:23:c1:12:57:6a       Securitas Direct AB
-192.168.0.67    da:30:f7:6d:a2:17       (Unknown: locally administered)
-192.168.0.87    e8:b1:fc:09:1f:b9       Intel Corporate
-192.168.0.53    40:4e:36:1a:bd:1c       HTC Corporation
-192.168.0.109   3e:f5:3b:fc:d1:b0       (Unknown: locally administered)
-192.168.0.69    2c:fd:ab:e6:85:b9       Motorola (Wuhan) Mobility Technologies Communication Co., Ltd.
-
-16 packets received by filter, 0 packets dropped by kernel
-Ending arp-scan 1.10.0: 256 hosts scanned in 2.043 seconds (125.31 hosts/sec). 15 responded
-```
-
-
-```
-https://bugs.archlinux.org/task/79790
-```
-
-```sh
-┌──(kali㉿kali)-[~]
-└─$ sudo arp-scan --interface wlan0 -l
-Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
-WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
-WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
-Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-...
-192.168.0.63    34:64:a9:22:92:59       (Unknown)
-192.168.0.61    2c:4d:54:d4:2b:88       (Unknown)
-...
-
-15 packets received by filter, 0 packets dropped by kernel
-Ending arp-scan 1.10.0: 256 hosts scanned in 1.828 seconds (140.04 hosts/sec). 15 responded
-                                                                                                                                                                                            
-┌──(kali㉿kali)-[~]
-└─$ sudo arp-scan --interface=wlan0 --localnet --ouifile=/usr/share/arp-scan/ieee-oui.txt --macfile=/etc/arp-scan/mac-vendor.txt
-Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
-Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-...
-192.168.0.61    2c:4d:54:d4:2b:88       ASUSTek COMPUTER INC.
-192.168.0.63    34:64:a9:22:92:59       Hewlett Packard
-...
-
-17 packets received by filter, 0 packets dropped by kernel
-Ending arp-scan 1.10.0: 256 hosts scanned in 1.974 seconds (129.69 hosts/sec). 16 responded
-                                                                                                                                                                                            
-┌──(kali㉿kali)-[~]
-└─$ cd ..
-                                                                                                                                                                                            
-┌──(kali㉿kali)-[/home]
-└─$ sudo arp-scan --interface wlan0 -l                                                                                          
-Interface: wlan0, type: EN10MB, MAC: c0:1c:30:2f:f7:5c, IPv4: 192.168.0.130
-Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-...
-192.168.0.61    2c:4d:54:d4:2b:88       ASUSTek COMPUTER INC.
-192.168.0.63    34:64:a9:22:92:59       Hewlett Packard
-...
-
-15 packets received by filter, 0 packets dropped by kernel
-Ending arp-scan 1.10.0: 256 hosts scanned in 1.999 seconds (128.06 hosts/sec). 15 responded
 
 ```

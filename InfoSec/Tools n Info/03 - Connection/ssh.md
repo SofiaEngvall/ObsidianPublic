@@ -1,4 +1,15 @@
 
+
+`ssh user@10.10.147.146`
+`ssh -oHostKeyAlgorithms=+ssh-rsa user@10.10.147.146`
+`ssh -i key-filename root@10.10.221.227`
+
+If we find a ssh key on a box, after saving it locally, do:
+`chmod 600 filename`
+
+if the key is old you might need options:
+`ssh -i key-filename -oPubkeyAcceptedKeyTypes=+ssh-rsa -oHostKeyAlgorithms=+ssh-rsa root@10.10.221.227`
+
 ###### ssh usage
 
 ```sh

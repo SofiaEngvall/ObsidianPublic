@@ -12,7 +12,7 @@ Crunch will now generate the following number of lines: 4096
 crunch: 100% completed generating output
 ```
 
-`crunch 3 3 0123456789ABCDEF -o 3digits.txt`
+`crunch 3 3 abcdefghijklmnopqrstuvwxyz -o 3letters.txt`
 
 The command above specifies the following:
 

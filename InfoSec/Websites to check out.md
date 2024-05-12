@@ -1,3 +1,7 @@
+add to notes
+https://gist.github.com/A1vinSmith/78786df7899a840ec43c5ddecb6a4740
+
+
 https://zeta-two.com/
 https://adamdoupe.com/
 https://themayor.notion.site/9c46a29fdead4d1880c70bfafa8d453a?v=accccf47ecb44ca2ad6e2a07b06f67bf
