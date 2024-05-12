@@ -1,25 +1,20 @@
+#include <cstring>
 #include <iostream>
-#include <filesystem>
 #include <regex>
 
 #include "NetworkFileCopy.h"
 
-NetworkFileCopy::NetworkFileCopy()
+NetworkFileCopy::NetworkFileCopy() : tcpTalk()
 {
     isSendMode = false;
     ip = INADDR_NONE;
     port = -1;
     path = "";
-    tcpTalk = nullptr;
+    destPath = "";
 }
 
 NetworkFileCopy::~NetworkFileCopy()
 {
-    if (tcpTalk != nullptr)
-    {
-        delete tcpTalk;
-        tcpTalk = nullptr;
-    }
 }
 
 void NetworkFileCopy::isSending()
@@ -72,33 +67,43 @@ bool NetworkFileCopy::setPort(const std::string &port)
     }
 }
 
-bool NetworkFileCopy::setPath()
+bool NetworkFileCopy::setPath(std::filesystem::path &path)
 {
     if (std::filesystem::is_directory(std::filesystem::current_path()))
     {
-        this->path = std::filesystem::current_path();
-        std::cout << "No file/path input provided, using current directory: " << this->path << std::endl;
+        path = std::filesystem::current_path();
+        std::cout << "No file/path input provided, using current directory: " << path << std::endl;
         return true;
     }
     return false;
 }
-bool NetworkFileCopy::setPath(const std::string &path)
+bool NetworkFileCopy::setPath(std::filesystem::path &path, const std::filesystem::path &inPath)
 {
-    // File
-    if (std::filesystem::is_regular_file(path))
+    if (std::filesystem::is_regular_file(inPath) || std::filesystem::is_directory(inPath))
     {
-        this->path = path;
-        std::cout << "File name supplied: " << this->path << std::endl;
-        return true;
-    }
-    // Directory
-    else if (std::filesystem::is_directory(path))
-    {
-        this->path = path;
-        std::cout << "Directory name supplied: " << this->path << std::endl;
+        path = inPath;
+        std::cout << "Path supplied: " << path << std::endl;
         return true;
     }
     return false;
+}
+
+bool NetworkFileCopy::setOriginPath()
+{
+    return setPath(this->path);
+}
+bool NetworkFileCopy::setOriginPath(const std::filesystem::path &path)
+{
+    return setPath(this->path, path);
+}
+
+bool NetworkFileCopy::setDestinationPath()
+{
+    return setPath(this->destPath);
+}
+bool NetworkFileCopy::setDestinationPath(const std::filesystem::path &path)
+{
+    return setPath(this->destPath, path);
 }
 
 void NetworkFileCopy::enumFiles()
@@ -142,38 +147,87 @@ void NetworkFileCopy::enumFiles()
 bool NetworkFileCopy::initConnection()
 {
     if (isSendMode)
-    {
-        if (tcpTalk == nullptr)
-        {
-            tcpTalk = new TCPTalk(ip, port);
-        }
-    }
-    else
-    { // Receiving Listening on all ports
-        if (tcpTalk == nullptr)
-        {
-            tcpTalk = new TCPTalk(port);
-        }
-    }
-    if (!tcpTalk->initTCPSocket())
-    {
+        tcpTalk.initSender(ip, port);
+    else // Receiving = Listening on all ports
+        tcpTalk.initReceiver(port);
+
+    if (!tcpTalk.initTCPSocket())
         return false;
-    }
+
+    if (isSendMode)
+        tcpTalk.makeConnection();
+    else // Receiving
+        tcpTalk.listenForConnection();
+
     return true;
 }
 
-void NetworkFileCopy::sendFileList()
+bool NetworkFileCopy::sendFileList()
 {
+    // Calculate data size
+    std::vector<FileItem>::size_type dataSize = 0;
+    for (const FileItem &file : fileList)
+    {
+        dataSize += file.filename.string().size() + 1; // +1 for null terminator
+        dataSize += file.filepath.string().size() + 1; // +1 for null terminator
+        dataSize += sizeof(uint64_t);                  // Size of the filesize field
+    }
+
+    // Allocate memory
+    char *serializedFileList = new char[dataSize];
+    char *currentPos = serializedFileList;
+
+    // Serialize each file item
+    for (const FileItem &file : fileList)
+    {
+        std::strcpy(currentPos, file.filename.c_str());
+        currentPos += file.filename.string().size() + 1;
+
+        std::strcpy(currentPos, file.filepath.c_str());
+        currentPos += file.filepath.string().size() + 1;
+
+        std::memcpy(currentPos, &file.filesize, sizeof(uint64_t));
+        currentPos += sizeof(uint64_t);
+    }
+
+    // Send data
+    if (!tcpTalk.sendData(serializedFileList))
+    {
+        delete[] serializedFileList;
+        return false;
+    }
+
+    delete[] serializedFileList;
+    return true;
 }
 
+/*
+        //serializedFileList = fileList somehow;
+        for(FileItem &file: fileList){
+            std::cout << file.filename << std::endl;
+            std::cout << file.filepath << std::endl;
+            std::cout << file.filesize << std::endl;
+        }
+
+        //if(!tcpTalk.sendData(serializedFileList))
+        if(!tcpTalk.sendData("test"))
+            return false;
+
+
+        return true;
+    }
+*/
 void NetworkFileCopy::receiveFileList()
 {
+    std::cout << "Reveived data: " << tcpTalk.receiveData() << std::endl;
 }
 
 void NetworkFileCopy::sendFiles()
 {
+    // add checksum
 }
 
 void NetworkFileCopy::receiveFiles()
 {
+    // check checksum
 }

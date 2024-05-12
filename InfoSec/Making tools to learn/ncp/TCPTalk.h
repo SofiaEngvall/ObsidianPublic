@@ -1,6 +1,7 @@
 #ifndef TCPTALK_H
 #define TCPTALK_H
 
+#include <string>
 #include <arpa/inet.h>
 
 class TCPTalk
@@ -13,17 +14,17 @@ private:
     sockaddr_in socketAddress; // Struct for connection data for binding the main socket
 
 public:
-    TCPTalk(const uint16_t &port);
-    TCPTalk(const in_addr_t &ip, const uint16_t &port);
+    TCPTalk();
     ~TCPTalk();
 
+    void initReceiver(const uint16_t &port);
+    void initSender(const in_addr_t &ip, const uint16_t &port);
     bool initTCPSocket();
-    bool listenForConnaction();
-    bool waitForAndAcceptConnection();
-    void receiveData();
-    void closeSocket();
-    void makeConnection();
-    void sendData(const char *message);
+    bool makeConnection();
+    bool listenForConnection();
+    bool sendData(const char *message);
+    std::string receiveData();
+    void closeSockets();
 };
 
 #endif

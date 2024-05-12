@@ -3,17 +3,19 @@
 
 #include "TCPTalk.h"
 #include <string>
+#include <filesystem>
 #include <vector>
 #include <arpa/inet.h>
+#include <cstdint>
 
 class NetworkFileCopy
 {
 private:
     struct FileItem
     {
-        std::string filename;
-        std::string filepath;
-        long filesize;
+        std::filesystem::path filename;
+        std::filesystem::path filepath;
+        uint64_t filesize;
     };
 
     std::vector<FileItem> fileList;
@@ -21,9 +23,10 @@ private:
     bool isSendMode;
     in_addr_t ip;
     uint16_t port;
-    std::string path;
+    std::filesystem::path path;
+    std::filesystem::path destPath;
 
-    TCPTalk *tcpTalk;
+    TCPTalk tcpTalk;
 
 public:
     NetworkFileCopy();
@@ -33,11 +36,15 @@ public:
     void isReceiving();
     bool setIP(const char *ip);
     bool setPort(const std::string &port);
-    bool setPath();
-    bool setPath(const std::string &path);
+    bool setPath(std::filesystem::path &path);
+    bool setPath(std::filesystem::path &path, const std::filesystem::path &inPath);
+    bool setOriginPath();
+    bool setOriginPath(const std::filesystem::path &path);
+    bool setDestinationPath();
+    bool setDestinationPath(const std::filesystem::path &path);
     void enumFiles();
     bool initConnection();
-    void sendFileList();
+    bool sendFileList();
     void receiveFileList();
     void sendFiles();
     void receiveFiles();

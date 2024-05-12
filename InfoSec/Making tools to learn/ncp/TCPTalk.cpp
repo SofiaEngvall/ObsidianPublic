@@ -1,37 +1,36 @@
 #include <cstring>
 #include <iostream>
-#include <string>
 
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 #include "TCPTalk.h"
 
-// TCPTalk::~TCPTalk(){
-//     this->ip = INADDR_ANY; // Listen on all IPs, value is zero
-//     this->port = -1;
-//     int tcpSocket = -1;
-//     int connectedSocket = -1;
-// }
-
-TCPTalk::TCPTalk(const uint16_t &port)
+TCPTalk::TCPTalk()
 {
     this->ip = INADDR_ANY; // Listen on all IPs, value is zero
-    this->port = port;
-    int tcpSocket = -1;
-    int connectedSocket = -1;
-}
-TCPTalk::TCPTalk(const in_addr_t &ip, const uint16_t &port)
-{
-    this->ip = ip;
-    this->port = port;
-    int tcpSocket = -1;
-    int connectedSocket = -1;
+    this->port = -1;
+    tcpSocket = -1;
+    connectedSocket = -1;
 }
 
 TCPTalk::~TCPTalk()
 {
+    closeSockets();
+}
+
+void TCPTalk::initSender(const in_addr_t &ip, const uint16_t &port)
+{
+    this->ip = ip;
+    this->port = port;
+}
+
+void TCPTalk::initReceiver(const uint16_t &port)
+{
+    this->ip = INADDR_ANY; // Listen on all IPs, value is zero
+    this->port = port;
 }
 
 bool TCPTalk::initTCPSocket()
@@ -46,29 +45,36 @@ bool TCPTalk::initTCPSocket()
     socketAddress.sin_port = htons(port); // Converts to network byte order
     socketAddress.sin_addr.s_addr = ip;
 
+    return true;
+}
+
+bool TCPTalk::makeConnection()
+{ // Sender
+    if ((connect(tcpSocket, (struct sockaddr *)&socketAddress, sizeof(socketAddress))) < 0)
+    {
+        std::cerr << "Connection failed. Is " << inet_ntoa(*(struct in_addr *)&ip) << " is listening on port " << port << "." << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool TCPTalk::listenForConnection()
+{ // Receiver
     // Bind the socket to the ip and port specified in socketAdress
     if (bind(tcpSocket, (struct sockaddr *)&socketAddress, sizeof(socketAddress)) < 0)
     {
         std::cerr << "Error connecting socket to IP and port." << std::endl;
         return false;
     }
-    return true;
-}
 
-bool TCPTalk::listenForConnaction()
-{
     if (listen(tcpSocket, 1) < 0)
     { // Max 1 connection in queue, only one connection expected
         std::cerr << "Failed to listen on socket." << std::endl;
         return false;
     }
-    return true;
-}
 
-bool TCPTalk::waitForAndAcceptConnection()
-{
-    // Blocks program until connection is received
-    if ((connectedSocket = accept(tcpSocket, nullptr, nullptr)))
+    // Blocks program until connection is received!
+    if ((connectedSocket = accept(tcpSocket, nullptr, nullptr)) < 0)
     { // connect after listening
         std::cerr << "Failed to connect to sender." << std::endl;
         return false;
@@ -76,40 +82,45 @@ bool TCPTalk::waitForAndAcceptConnection()
     return true;
 }
 
-void TCPTalk::receiveData()
+bool TCPTalk::sendData(const char *message)
+{
+    if (send(tcpSocket, message, strlen(message), 0) < 0)
+        return false;
+    return true;
+}
+
+std::string TCPTalk::receiveData()
 {
     char buffer[1024];
     int recvBytes = 0;
+    std::string received = "";
     while (true)
     {
         memset(buffer, 0, 1024); // clear buffer
-    }
-    if (((recvBytes = recv(connectedSocket, buffer, sizeof(buffer), 0)) < 0))
-    {
-        std::cerr << "Connection issues." << std::endl;
-    }
-    if (recvBytes == 0)
-    {
-        std::cerr << "Sender disconnected/File done." << std::endl;
+
+        if (((recvBytes = recv(connectedSocket, buffer, sizeof(buffer), 0)) < 0))
+        {
+            std::cerr << "Connection issues." << std::endl;
+            return "";
+        }
+
+        if (recvBytes == 0)
+        {
+            std::cerr << "Sender disconnected/File done." << std::endl;
+            break;
+        }
+
+        received += std::string(buffer, 0, recvBytes);
     }
 
-    std::cout << "Reveived data: " << std::string(buffer, 0, recvBytes) << std::endl;
+    std::cout << "Full data: " << received << std::endl;
+    return received;
 }
 
-void TCPTalk::closeSocket()
+void TCPTalk::closeSockets()
 {
-    close(tcpSocket);
-}
-
-void TCPTalk::makeConnection()
-{
-    if ((connect(tcpSocket, (struct sockaddr *)&socketAddress, sizeof(socketAddress))) < 0)
-    {
-        std::cerr << "Error making connection." << std::endl;
-    }
-}
-
-void TCPTalk::sendData(const char *message)
-{
-    send(tcpSocket, message, strlen(message), 0);
+    if (tcpSocket != -1)
+        close(tcpSocket);
+    if (connectedSocket != -1)
+        close(connectedSocket);
 }
