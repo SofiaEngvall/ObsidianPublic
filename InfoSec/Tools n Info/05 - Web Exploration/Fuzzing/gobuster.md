@@ -1,4 +1,16 @@
 
+#### common commands
+
+`gobuster dir -u http://10.10.183.107/webmasters/backups -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 64 -x txt,jpg,zip`
+
+`gobuster dir -u http://10.10.183.107/webmasters/backups -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 64 -x php,htm,html,asp,shtm,shtml`
+
+`gobuster dir -u http://shell.uploadvulns.thm -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 64 -x txt,zip`
+`-c "PHPSESSIONID=12123123"`
+
+garr:
+`gobuster dir -k -w ../../htb/iclean/raft-medium-directories-lowercase.txt -t 20 -u http://10.10.10.10`
+
 |                     |                                           |
 | ------------------- | ----------------------------------------- |
 | **Gobuster flag**   | **Description**                           |
@@ -99,13 +111,4 @@ Global Flags:
       --wordlist-offset int   Resume from a given position in the wordlist (defaults to 0)
 
 ```
-
-#### common commands
-
-`gobuster dir -u http://10.10.183.107/webmasters/backups -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 64 -x txt,jpg,zip`
-
-`gobuster dir -u http://10.10.183.107/webmasters/backups -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 64 -x php,htm,html,asp,shtm,shtml`
-
-`gobuster dir -u http://shell.uploadvulns.thm -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 64 -x txt,zip`
-`-c "PHPSESSIONID=12123123"`
 

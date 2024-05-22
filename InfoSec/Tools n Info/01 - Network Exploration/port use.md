@@ -15,9 +15,13 @@ TCP - Three way handshake “Syn” > “Syn Ack” > “Ack” - Can be used to
 80 http
 110 pop3
 143 imap
-443 https
-smb 139+445
-imap 143
+443 https, DoH dns over https
+139+445 smb
+465 smtps
+853 DoT dns over tls
+990 ftps
+993 imaps
+995 pop3s
 50051     gRPC            [[grpcui]]
 
 ### UDP 

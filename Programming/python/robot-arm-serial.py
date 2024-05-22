@@ -1,6 +1,38 @@
 import serial
+import time
 
-ser = serial.Serial("COM6", 9600)
+try:
+    ser = serial.Serial("COM6", 9600)
+except Exception:
+    print("COM6 not found")
+    exit()
 
-# Raise the robot arm a tiny bit
-ser.write(bytearray('%4#', 'ascii'))
+for x in range(6):
+    ser.write(bytearray('%4#', 'ascii'))
+    time.sleep(1)
+for x in range(6):
+    ser.write(bytearray('%7#', 'ascii'))
+    time.sleep(1)
+
+for x in range(6):
+    ser.write(bytearray('%5#', 'ascii'))
+    time.sleep(1)
+for x in range(6):
+    ser.write(bytearray('%6#', 'ascii'))
+    time.sleep(1)
+
+for x in range(6):
+    ser.write(bytearray('%A#', 'ascii'))
+    time.sleep(1)
+for x in range(6):
+    ser.write(bytearray('%D#', 'ascii'))
+    time.sleep(1)
+
+for x in range(6):
+    ser.write(bytearray('%B#', 'ascii'))
+    time.sleep(1)
+for x in range(6):
+    ser.write(bytearray('%C#', 'ascii'))
+    time.sleep(1)
+
+# input("Press any key")

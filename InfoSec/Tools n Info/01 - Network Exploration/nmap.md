@@ -119,7 +119,7 @@
 -sN   Null scan, no flags set. Will get no reply from an open port, but a RST/ACK from a closed one. No reply = open/filtered.
 `sudo nmap -sN 10.10.217.174`
 
--sN   FIN scan, FIN flag set. Will get no reply from an open port, but a RST/ACK from a closed one. No reply = open/filtered.
+-sF   FIN scan, FIN flag set. Will get no reply from an open port, but a RST/ACK from a closed one. No reply = open/filtered.
 `sudo nmap -sF 10.10.217.174`
 
 -sX   Xmas scan, FIN, PSH and URG falgs set.  Will get no reply from an open port, but a RST/ACK from a closed one. No reply = open/filtered.
@@ -187,6 +187,11 @@ sudo nmap -sU -p- 10.10.10.10
 
 slow scan network
 nmap -A -p- 10.10.10.0/24 -v
+
+garr:
+export target="10.10.10.10"
+nmap $target --min-rate=5000 -oA init
+sudo nmap $target -p- -oA service -Pn --open -v
 
 "I always start with this scan for open port and then proceed to -sCV"
 `nmap -p- --open -sS -min-rate 5000 -n -vvv -Pn <ip>`

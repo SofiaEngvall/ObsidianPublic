@@ -1,3 +1,6 @@
+ftp can be secured by used tls = ftps, default port 990
+and by using ssh = sftp
+
 
 ### Basic FTP commands
 
