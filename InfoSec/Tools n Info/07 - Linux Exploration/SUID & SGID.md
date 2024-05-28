@@ -11,7 +11,8 @@ SGID = Set Group ID
 	Find SGID binaries
 		`find / -perm -g=s -type f 2>/dev/null`
 	Both - test this one more
-		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null`
+		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null` shorter
+		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} + 2> /dev/null` columns
 
 find suids, from thm room - test 
 `find / -user root -perm -4000 -exec ls -ldb {} \; 2> /dev/null`

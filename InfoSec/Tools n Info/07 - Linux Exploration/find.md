@@ -1,5 +1,47 @@
 
 
+- `find /home -name flag1.txt`: find the file names “flag1.txt” in the /home directory
+- `find / -type d -name config`: find the directory named config under “/”
+- `find / -type f -perm 0777`: find files with the 777 permissions (files readable, writable, and executable by all users)
+- `find / -perm a=x`: find executable files
+- `find /home -user frank`: find all files for user “frank” under “/home”
+- `find / -mtime 10`: find files that were modified in the last 10 days
+- `find / -atime 10`: find files that were accessed in the last 10 day
+- `find / -cmin -60`: find files changed within the last hour (60 minutes)
+- `find / -amin -60`: find files accesses within the last hour (60 minutes)
+- `find / -size 50M`: find files with a size of less than 50 MB size
+- `find / +size 100M`: find files with a  size of more than 100 MB size
+
+Folders and files that can be written to or executed from:
+
+- `find / -writable -type d 2>/dev/null` : Find world-writeable folders
+- `find / -perm -222 -type d 2>/dev/null`: Find world-writeable folders
+- `find / -perm -o w -type d 2>/dev/null`: Find world-writeable folders
+
+- `find / -perm -o x -type d 2>/dev/null` : Find world-executable folders
+
+Find development tools and supported languages:
+
+- `find / -name perl* 2>/dev/null`
+- `find / -name python* 2>/dev/null`
+- `find / -name gcc* 2>/dev/null`
+
+
+	Find SUID binaries
+		`find / -perm -u=s -type f 2>/dev/null`
+	Find SGID binaries
+		`find / -perm -g=s -type f 2>/dev/null`
+	Find SUID and SGID binaries
+		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null`
+
+	Find sticky-bit directories, missing on tmp? (restricted deletion flag - other users can't overwrite/delete files in the dir)
+		`find / -perm -1000 -type d 2>/dev/null`
+	Find writable files
+		`find /etc -writable -ls 2>/dev/null`
+	Find files with permissions for your group (if user has extra groups)
+		`find / -type f -group `mygroup` 2>/dev/null`
+	Find write exec perm directories
+		`find / -perm -o x -type d 2>/dev/null`
 
 ### Help
 

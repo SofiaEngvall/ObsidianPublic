@@ -1,7 +1,13 @@
 
+NFS (Network File Sharing)
+
+[[nfs - no_root_squash]]
+Configuration file `/etc/exports`
+
 `nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.212.230`
 
 
+enum by nmap
 ```sh
 ┌──(kali㉿kali)-[~]
 └─$ nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.212.230
@@ -16,3 +22,15 @@ PORT    STATE SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 0.83 seconds
 ```
+
+enum by showmount
+```sh
+┌──(kali㉿kali)-[~]
+└─$ showmount -e 10.10.103.212
+Export list for 10.10.103.212:
+/home/ubuntu/sharedfolder *
+/tmp                      *
+/home/backup              *
+  
+```
+

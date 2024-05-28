@@ -10,3 +10,6 @@ tactics, techniques, and procedures (TTPs)
 AJAX = asynchronous javascript and xml
 
 IDS - intrusion detection system
+
+CVE **C**ommon **V**ulnerabilities and **E**xposures
+

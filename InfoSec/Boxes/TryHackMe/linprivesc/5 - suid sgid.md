@@ -1,0 +1,55 @@
+
+```sh
+[leonard@ip-10-10-217-143 home]$ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} + 2> /dev/null|cat
+-rwsr-xr-x. 1 root root     2447304 Apr  1  2020 /usr/bin/Xorg
+-rwsr-xr-x. 1 root root       53048 Oct 30  2018 /usr/bin/at
+-rwsr-xr-x. 1 root root       37360 Aug 20  2019 /usr/bin/base64
+-rwxr-sr-x. 1 root cgred      15632 Aug  9  2019 /usr/bin/cgclassify
+-rwxr-sr-x. 1 root cgred      15608 Aug  9  2019 /usr/bin/cgexec
+-rwsr-xr-x. 1 root root       73888 Aug  9  2019 /usr/bin/chage
+-rws--x--x. 1 root root       23968 Sep 30  2020 /usr/bin/chfn
+-rws--x--x. 1 root root       23880 Sep 30  2020 /usr/bin/chsh
+-rwsr-xr-x. 1 root root       57656 Aug  9  2019 /usr/bin/crontab
+-rwsr-xr-x. 1 root root       32096 Oct 30  2018 /usr/bin/fusermount
+-rwsr-xr-x. 1 root root       78408 Aug  9  2019 /usr/bin/gpasswd
+-rwsr-xr-x. 1 root root       61320 Sep 30  2020 /usr/bin/ksu
+-rwx--s--x. 1 root slocate    40520 Apr 11  2018 /usr/bin/locate
+-rwxr-sr-x. 1 root mail       19824 Nov 28  2017 /usr/bin/lockfile
+-rwsr-xr-x. 1 root root       44264 Sep 30  2020 /usr/bin/mount
+-rwsr-xr-x. 1 root root       41936 Aug  9  2019 /usr/bin/newgrp
+-rwsr-xr-x. 1 root root       27856 Apr  1  2020 /usr/bin/passwd
+-rwsr-xr-x. 1 root root       23576 Apr  1  2020 /usr/bin/pkexec
+---x--s--x. 1 root nobody    382216 Aug  9  2019 /usr/bin/ssh-agent
+---s--x---. 1 root stapusr   212080 Oct 13  2020 /usr/bin/staprun
+-rwsr-xr-x. 1 root root       32128 Sep 30  2020 /usr/bin/su
+---s--x--x. 1 root root      147336 Sep 30  2020 /usr/bin/sudo
+-rwsr-xr-x. 1 root root       31984 Sep 30  2020 /usr/bin/umount
+-r-xr-sr-x. 1 root tty        15344 Jun 10  2014 /usr/bin/wall
+-rwxr-sr-x. 1 root tty        19544 Sep 30  2020 /usr/bin/write
+-rwsr-xr-x. 1 root root       15432 Apr  1  2020 /usr/lib/polkit-1/polkit-agent-helper-1
+-rwx--s--x. 1 root utmp       15568 Sep 30  2020 /usr/lib64/vte-2.91/gnome-pty-helper
+-rwsr-sr-x. 1 abrt abrt       15344 Oct  1  2020 /usr/libexec/abrt-action-install-debuginfo-to-abrt-cache
+-rwsr-x---. 1 root dbus       57936 Sep 30  2020 /usr/libexec/dbus-1/dbus-daemon-launch-helper
+-rwsr-xr-x. 1 root root       53776 Mar 18  2020 /usr/libexec/flatpak-bwrap
+-rwxr-sr-x. 1 root nobody     53064 Apr 20  2018 /usr/libexec/kde4/kdesud
+-rwsr-xr-x. 1 root root       11128 Oct 13  2020 /usr/libexec/kde4/kpac_dhcp_helper
+---x--s--x. 1 root ssh_keys  465760 Aug  9  2019 /usr/libexec/openssh/ssh-keysign
+-rwsr-xr-x. 1 root root       15360 Oct  1  2020 /usr/libexec/qemu-bridge-helper
+-rwsr-xr-x. 1 root root       15448 Apr  1  2020 /usr/libexec/spice-gtk-x86_64/spice-client-glib-usb-acl-helper
+-rwsr-x---. 1 root sssd      157872 Oct 15  2020 /usr/libexec/sssd/krb5_child
+-rwsr-x---. 1 root sssd       82448 Oct 15  2020 /usr/libexec/sssd/ldap_child
+-rwsr-x---. 1 root sssd       27792 Oct 15  2020 /usr/libexec/sssd/proxy_child
+-rwsr-x---. 1 root sssd       49592 Oct 15  2020 /usr/libexec/sssd/selinux_child
+-rwx--s--x. 1 root utmp       11192 Jun 10  2014 /usr/libexec/utempter/utempter
+-rwx--s--x. 1 root lock       11208 Jun 10  2014 /usr/sbin/lockdev
+-rwsr-xr-x. 1 root root      117432 Sep 30  2020 /usr/sbin/mount.nfs
+-rwxr-sr-x. 1 root root       11224 Oct 13  2020 /usr/sbin/netreport
+-rwsr-xr-x. 1 root root       11232 Apr  1  2020 /usr/sbin/pam_timestamp_check
+-rwxr-sr-x. 1 root postdrop  218560 Apr  1  2020 /usr/sbin/postdrop
+-rwxr-sr-x. 1 root postdrop  264128 Apr  1  2020 /usr/sbin/postqueue
+-rwxr-sr-x. 1 root smmsp     836920 Apr  1  2020 /usr/sbin/sendmail.sendmail
+-rwsr-xr-x. 1 root root       36272 Apr  1  2020 /usr/sbin/unix_chkpwd
+-rws--x--x. 1 root root       40328 Aug  9  2019 /usr/sbin/userhelper
+-rwsr-xr-x. 1 root root       11296 Oct 13  2020 /usr/sbin/usernetctl
+
+```
