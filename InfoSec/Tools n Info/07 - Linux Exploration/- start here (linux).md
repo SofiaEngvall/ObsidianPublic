@@ -39,13 +39,13 @@ find users on machine
 	check permissions on other users directories
 
 File system - interesting files?
-
 	`ls -la /opt`
 	`ls -la /var/backup`
 	check logs in `/var/log`
 	are there email? how to find? `/var/mail` `/var/spool/mail`
 	is `/etc/shadow` readable/writeable
 	is `/etc/passwd` writeable
+
 
 Check config files
 	`cat /etc/exports` nfs config file
@@ -112,7 +112,6 @@ if we found a git repo or web dir on the machine
  `grep -ri user`
  `grep -ri pass`
  one level?
-gre
 
 ---
 

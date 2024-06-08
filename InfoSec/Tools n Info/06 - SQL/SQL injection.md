@@ -1,6 +1,7 @@
 
 https://portswigger.net/web-security/sql-injection/cheat-sheet
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
+https://github.com/danielmiessler/SecLists/tree/master/Fuzzing/SQLi
 
 Finding the SQL version:
 

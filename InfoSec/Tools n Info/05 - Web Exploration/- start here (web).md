@@ -1,3 +1,8 @@
+Quick check:
+	is there a login?
+		try admin, administrator..
+		try sqli
+
 
 What's running
 	check nmap
@@ -8,12 +13,34 @@ What's running
 
 robots.txt
 
+check source for
+	links to "hidden" pages like admin-panels
+	passwords
+	hints
+	mail addresses of users and admins/support/privileged users
+
+list possible users and usernames
+	validate?
+		login form
+		registation form
+
+login
+	second step of mfa can sometimes be bypassed by just going to a page requiring the access
+	
+
+check for IDOR
+	numbers
+	random ids
+	...
+
 Google
 	"technology/framework" exploit
 	poc
 	cve
 
 What's the file structure
+	check common ones
+		admin, 
 	Directory busting
 	[[InfoSec/Tools n Info/02 - Web Exploration/Fuzzing/gobuster|gobuster]]
 	[[feroxbuster|feroxbuster]]
@@ -49,4 +76,8 @@ PHP filter
 
 webshell or revshell upload
 	use what the system is built on; php, python django, vbscript node.js... perl might also work
+
+
+
+https://owasp.org/www-project-web-security-testing-guide/latest/
 

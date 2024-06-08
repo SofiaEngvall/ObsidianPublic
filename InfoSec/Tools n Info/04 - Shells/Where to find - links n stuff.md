@@ -9,9 +9,6 @@ https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20an
 On kali:
 /usr/share/webshells
 
-jenkins: wp script console, google for script
-
-
 ssh file put on machine
 https://github.com/Fahrj/reverse-ssh
 
