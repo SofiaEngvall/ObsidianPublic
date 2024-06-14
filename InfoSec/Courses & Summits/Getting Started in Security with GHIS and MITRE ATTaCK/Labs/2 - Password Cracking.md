@@ -1,0 +1,87 @@
+
+
+# Password Cracking
+
+In this lab we will be getting started with the fundamentals of password cracking.  We will be using Hashcat to do this.
+
+First, let’s disable Defender. Simply run the following from an Administrator PowerShell prompt:
+
+`Set-MpPreference -DisableRealtimeMonitoring $true`
+
+This will disable Defender for this session.
+
+If you get angry red errors, that is Ok, it means Defender is not running.
+
+
+To start, we will be working with the Command Prompt in Windows Terminal.   This is on your desktop and can be opened by right-clicking it and selecting Run as administrator:
+
+![](attachments/Clipboard_2020-06-12-10-36-44.png)
+
+When you get the pop up select Yes.
+
+Next, to open a Command Prompt Window, select the Down Carrot and then select Command Prompt.
+
+![](attachments/Clipboard_2020-06-12-10-38-52.png)
+
+####NOTE##### 
+
+If you are having trouble with Windows Terminal, you can simply start each of the three shells, we use by starting them directly from the Windows Start button. 
+
+ 
+
+Simply click the Windows Start button in the lower left of your screen and type: 
+
+ 
+
+`Powershell` 
+
+or 
+
+`Ubuntu`
+
+or 
+
+`Command Prompt` 
+
+ 
+
+For PowerShell and Command Prompt, please right click on them and select Run As Administrator 
+
+###END NOTE###
+
+Next, we need to navigate to the hashcat directory.
+
+C:\Users\adhd>`cd \tools\hashcat-4.1.0\`
+
+Now remove old passwords that ar cracked
+
+C:\Users\adhd>`del hashcat.potfile`
+
+![](attachments/Clipboard_2020-06-12-10-41-51.png)
+
+Now, lets crack some NT hashes.  These are the hashes that almost all modern Windows systems store these days.  Older systems may store LANMAN, but that is very rare.
+
+C:\Tools\hascat-4.1.0>`hashcat64.exe -a 0 -m 1000 -r rules\Incisive-leetspeak.rule sam.txt password.lst`
+
+When done it should look like this:
+
+![](attachments/Clipboard_2020-07-09-14-57-40.png)
+
+Finally, let’s try and crack some MD5 hashes
+
+C:\Tools\hascat-4.1.0>`hashcat64.exe -a 0 -m 0 -r rules\Incisive-leetspeak.rule md5.txt password.lst`
+
+When done, it should look like this:
+
+![](attachments/Clipboard_2020-07-09-14-58-51.png)
+
+
+
+
+
+
+
+
+
+
+

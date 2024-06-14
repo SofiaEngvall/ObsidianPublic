@@ -13,7 +13,7 @@ SQLite           `SELECT sqlite_version()`
 
 ### Basics
 
-`' OR 1=1 --` obs, not safe as all rows are returned/possibly updated
+`' OR 1=1 -- -` obs, not safe as all rows are returned/possibly updated
 
 `something we know works' AND 1=1 --` safer alternative
 

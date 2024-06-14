@@ -10,6 +10,26 @@ If we find a ssh key on a box, after saving it locally, do:
 if the key is old you might need options:
 `ssh -i key-filename -oPubkeyAcceptedKeyTypes=+ssh-rsa -oHostKeyAlgorithms=+ssh-rsa root@10.10.221.227`
 
+### ssh tunneling
+
+`ssh -L 9000:imgur.com:80 user@example.com`
+
+-L is a local tunnel (YOU <-- CLIENT)
+-R is a remote tunnel (YOU --> CLIENT)
+
+if a port (10000) is blocked (in firewall..) we can access it through a ssh tunnel
+`ssh -L 10000:localhost:10000 <username>@<ip>`
+
+
+![[images/ssh-tunneling.png]]
+then web go to localhost:8080
+
+
+
+ssh sau@10.10.11.214 -L 8000:127.0.0.1:8000
+
+ssh sau@10.10.11.214 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+
 ###### ssh usage
 
 ```sh
@@ -25,18 +45,3 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 
 ```
 
-###### useful commands
-
-```sh
-ssh ubnt@192.168.0.1
-```
-
-ssh tunneling
-![[ssh-tunneling.png]]
-then web go to localhost:8080
-
-
-
-ssh sau@10.10.11.214 -L 8000:127.0.0.1:8000
-
-ssh sau@10.10.11.214 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null

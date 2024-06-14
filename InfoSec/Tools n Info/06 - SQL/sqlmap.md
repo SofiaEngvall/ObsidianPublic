@@ -1,11 +1,24 @@
 
+preinstalled on kali
+https://github.com/sqlmapproject/sqlmap
+
+
+
 `--dbs` - Returns databases
 `-D databaseName --tables` - returns tables from the specified database
 `-D databaseName -T tableName --dump` - dumps that table
 `--technique=B`
 `--dbms=mysql`
 
-###### sqlmap -h
+### Examples
+
+`sqlmap -r request --dbs` list all dbs, auto find db type
+
+
+
+`sqlmap -r request.txt --technique=B --level=5 --risk=3 --dbms=mysql --dbs`
+
+### Help
 
 ```sh
 ┌──(kali㉿kali)-[~]

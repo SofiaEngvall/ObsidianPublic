@@ -19,3 +19,9 @@ IDOR insecure direct object reference
 
 SSRF Server-side request forgery
 
+SQL structured query language
+
+PIM Privileged Identity Management
+
+UEBA User Entity Behavior Analytics
+

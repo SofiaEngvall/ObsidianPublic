@@ -9,7 +9,7 @@ cat /etc/crontab
 Start
 	`pwd`
 	`ls -la`
-	ls -la for files in `~`
+	`ls -la *` for files in `~`
 	check history files `cat ~/.*history`
 
 Stabilize shell and make it interactive

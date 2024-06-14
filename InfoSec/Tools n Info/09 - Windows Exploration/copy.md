@@ -1,7 +1,7 @@
 
 ## copy files from win
 
-[[Public/InfoSec/Tools n Info/09 - Windows Exploration/smb|smb]]
+[[../08 - SMB/smb - server|smb - server]]
 [[impacket]]
 
 create share for upload to our machine
