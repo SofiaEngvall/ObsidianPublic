@@ -1,6 +1,13 @@
 
 `sudo apt install feroxbuster`
 
+
+feroxbuster -u http://jewel.uploadvulns.thm/ -E
+
+-E    auto discover extensions
+
+*don't use -r, it seems to bug out*
+
 #### Help
 
 ```sh
@@ -250,11 +257,4 @@ EXAMPLES:
 ```
 
 
-#### Common Commands
-
-feroxbuster -u http://jewel.uploadvulns.thm/ -E
-
--E    auto discover extensions
-
-*don't use -r, it seems yo bug out*
 

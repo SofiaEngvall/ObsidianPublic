@@ -11,6 +11,8 @@ line
 **bold**
 ~~striked out~~
 <u>html underline</u>
+<font color="red">Colored text using the html font tag</font>
+<font color="green">Colored text using the html font tag</font>
 
 *markdown can be **nested***
 

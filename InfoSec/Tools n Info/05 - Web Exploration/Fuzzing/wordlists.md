@@ -1,4 +1,9 @@
 
+garr for gobuster: ../iclean/raft-medium-directories-lowercase.txt
+
+assetnote wordlists https://wordlists.assetnote.io/
+
+
 ```sh
 ┌──(kali㉿kali)-[/usr/share/wordlists]
 └─$ ls -la     

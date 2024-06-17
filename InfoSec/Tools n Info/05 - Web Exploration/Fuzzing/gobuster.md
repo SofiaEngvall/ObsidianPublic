@@ -45,11 +45,11 @@ Flags:
       --delay duration        Time each thread waits between requests (e.g. 1500ms)
   -h, --help                  help for gobuster
       --no-color              Disable color output
-      --no-error              Don't display errors
-  -z, --no-progress           Don't display progress
+      --no-error              Don´t display errors
+  -z, --no-progress           Don´t display progress
   -o, --output string         Output file to write results to (defaults to stdout)
   -p, --pattern string        File containing replacement patterns
-  -q, --quiet                 Don't print the banner and other noise
+  -q, --quiet                 Don´t print the banner and other noise
   -t, --threads int           Number of concurrent threads (default 10)
   -v, --verbose               Verbose output (errors)
   -w, --wordlist string       Path to the wordlist. Set to - to use STDIN.
@@ -82,7 +82,7 @@ Flags:
       --hide-length                       Hide the length of the body in the output
   -m, --method string                     Use the following HTTP method (default "GET")
       --no-canonicalize-headers           Do not canonicalize HTTP header names. If set header names are sent as is.
-  -n, --no-status                         Don't print status codes
+  -n, --no-status                         Don´t print status codes
   -k, --no-tls-validation                 Skip TLS certificate verification
   -P, --password string                   Password for Basic Auth
       --proxy string                      Proxy to use for requests [http(s)://host:port] or [socks5://host:port]
@@ -100,11 +100,11 @@ Global Flags:
       --debug                 Enable debug output
       --delay duration        Time each thread waits between requests (e.g. 1500ms)
       --no-color              Disable color output
-      --no-error              Don't display errors
-  -z, --no-progress           Don't display progress
+      --no-error              Don´t display errors
+  -z, --no-progress           Don´t display progress
   -o, --output string         Output file to write results to (defaults to stdout)
   -p, --pattern string        File containing replacement patterns
-  -q, --quiet                 Don't print the banner and other noise
+  -q, --quiet                 Don´t print the banner and other noise
   -t, --threads int           Number of concurrent threads (default 10)
   -v, --verbose               Verbose output (errors)
   -w, --wordlist string       Path to the wordlist. Set to - to use STDIN.

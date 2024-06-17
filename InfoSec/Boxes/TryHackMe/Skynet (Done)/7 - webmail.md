@@ -21,6 +21,9 @@ From:   	serenakogan@skynet
 00100000 01101101 01100101 00100000 01110100 01101111 00100000 01101101 01100101
 00100000 01110100 01101111
 
+cyberchef: balls have zero to me to me to me to me to me to me to me to me to
+
+
 ![[Images/Pasted image 20240614155547.png]]
 
 From:   	serenakogan@skynet

@@ -51,20 +51,6 @@ From:   	skynet@skynet
 We have changed your smb password after system malfunction.
 Password: )s{A&2Z=F^n_E.B
 
-mail2
-From:   	serenakogan@skynet
-
-01100010 01100001 01101100 01101100 01110011 00100000 01101000 01100001 01110110
-01100101 00100000 01111010 01100101 01110010 01101111 00100000 01110100 01101111
-00100000 01101101 01100101 00100000 01110100 01101111 00100000 01101101 01100101
-00100000 01110100 01101111 00100000 01101101 01100101 00100000 01110100 01101111
-00100000 01101101 01100101 00100000 01110100 01101111 00100000 01101101 01100101
-00100000 01110100 01101111 00100000 01101101 01100101 00100000 01110100 01101111
-00100000 01101101 01100101 00100000 01110100 01101111 00100000 01101101 01100101
-00100000 01110100 01101111
-
-mail3
-
 ---
 
 ```sh
@@ -75,3 +61,31 @@ mail3
 2. Work on T-800 Model 101 blueprints
 3. Spend more time with my wife
 ```
+
+---
+
+```sh
+cat ./backups/backup.sh
+#!/bin/bash
+cd /var/www/html
+tar cf /home/milesdyson/backups/backup.tgz *
+www-data@skynet:/home/milesdyson$ cat /etc/crontab
+cat /etc/crontab
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+*/1 *   * * *   root    /home/milesdyson/backups/backup.sh
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+```
+
