@@ -4,7 +4,7 @@ Quick check:
 		try sqli
 
 
-What's running
+What's running:
 	check nmap
 	look at web page
 	view source code
@@ -78,6 +78,10 @@ webshell or revshell upload
 	use what the system is built on; php, python django, vbscript node.js... perl might also work
 
 
+Run scanners:
+	`nikto -h http://whatever.thm`
+	`whatweb -a 4 http://dailybugle.thm`
+	``
 
 https://owasp.org/www-project-web-security-testing-guide/latest/
 

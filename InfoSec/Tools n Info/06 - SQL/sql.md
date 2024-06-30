@@ -4,7 +4,8 @@
 `select * from users;`
 `select username,password from users;`
 
-`select * from users LIMIT 1;`
+`select * from users limit 1;`
+`select * from users limit 3,1;`   skips 3 and then returns 1
 
 `select * from users where username='admin';`
 `select * from users where username != 'admin';`

