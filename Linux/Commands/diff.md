@@ -109,4 +109,4 @@ General help using GNU software: <https://www.gnu.org/gethelp/>
 
 diff file1 file2 -u
 
-![[diff.png]]
+![[images/diff.png]]

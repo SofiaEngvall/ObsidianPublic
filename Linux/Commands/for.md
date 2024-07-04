@@ -1,2 +1,2 @@
 
-![[for.png]]
+![[images/for.png]]

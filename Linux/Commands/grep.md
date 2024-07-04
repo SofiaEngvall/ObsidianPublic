@@ -4,4 +4,4 @@
 
 
 
-![[grep.png]]
+![[images/grep.png]]

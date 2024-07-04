@@ -19,6 +19,9 @@ check source for
 	hints
 	mail addresses of users and admins/support/privileged users
 
+go to the url for folders used on the site to check for file listings and other files
+	especially if they are called files
+
 list possible users and usernames
 	validate?
 		login form
@@ -73,6 +76,8 @@ Where ^
 PHP filter
 	PHP://filter/convert.base64-encode/resource=
 	example: `GET /test.php?view=PHP://filter/convert.base64-encode/resource=/var/www/html/development_testing/test.php HTTP/1.1`
+
+
 
 webshell or revshell upload
 	use what the system is built on; php, python django, vbscript node.js... perl might also work
