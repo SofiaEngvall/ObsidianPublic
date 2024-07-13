@@ -11,5 +11,13 @@ exploit 2017-8917
 
 
 
-john:
-spiderman123     (jonah) 
+from john
+user: jonah
+pass: spiderman123
+
+
+
+login found in /var/www/html/configuration.php:  public $password = 'nv5uz9r3ZEDzVjNu'; 
+works with
+user: jjameson
+pass: nv5uz9r3ZEDzVjNu

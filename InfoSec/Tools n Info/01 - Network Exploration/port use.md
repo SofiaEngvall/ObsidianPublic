@@ -1,6 +1,5 @@
 
-
-http://www.vmaxx.net/techinfo/ports.htm
+https://www.speedguide.net/ports.php
 https://wiki.wireshark.org/PortReference
 ### TCP
 TCP - high reliability, website, SSH, FTP

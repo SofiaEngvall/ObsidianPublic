@@ -25,6 +25,7 @@ passw file
 ![[Pasted image 20230829233959.png]]
 enum usernames
 
+documentation:
 script script.txt
 less -r script.txt
 

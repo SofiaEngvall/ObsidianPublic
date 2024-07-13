@@ -1,7 +1,7 @@
 
 ## copy files from win
 
-[[../08 - SMB/smb - server|smb - server]]
+[[../08 - SMB/smb - run a server|smb - run a server]]
 [[impacket]]
 
 create share for upload to our machine

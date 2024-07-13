@@ -17,6 +17,7 @@ check source for
 	links to "hidden" pages like admin-panels
 	passwords
 	hints
+	parameters
 	mail addresses of users and admins/support/privileged users
 
 go to the url for folders used on the site to check for file listings and other files
@@ -60,6 +61,9 @@ checking for REST Endpoints or GET/POST parameters to exploit
 Checking for REST Endpoints in the information we collected (source code or directory busting)
 
 Parameters & Injections
+	try making parameters arrays by adding `[]` before = like `username[]=whatever`
+		also try adding more than one value, for example for e-mail addresses
+			`'user[email][]': [self.target, self.evil]`
 	try changing id= 1 to 2 ... '
 	"/item/13" <- change the 13 to 1 or 0
 	html injections
