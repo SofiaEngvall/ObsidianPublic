@@ -1,3 +1,3 @@
 
-[[Public/InfoSec/Tools n Info/05 - Web Exploration/Frameworks/jenkins|jenkins]]
+[[../05 - Web Exploration/jenkins|jenkins]]
 

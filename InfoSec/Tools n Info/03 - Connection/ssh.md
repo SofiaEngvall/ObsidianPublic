@@ -17,6 +17,8 @@ if the key is old you might need options:
 -L is a local tunnel (YOU <-- CLIENT)
 -R is a remote tunnel (YOU --> CLIENT)
 
+<font color=red>Don't use 8080 if you have burp there ;)</font>
+
 if a port (10000) is blocked (in firewall..) we can access it through a ssh tunnel
 `ssh -L 10000:localhost:10000 <username>@<ip>`
 

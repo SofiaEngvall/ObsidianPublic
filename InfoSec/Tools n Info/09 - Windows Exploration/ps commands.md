@@ -11,6 +11,9 @@ https://ss64.com/ps/ad.html
 
 `gc  =cat/type`
 
+[Invoke-WebRequest](https://ss64.com/ps/invoke-webrequest.html) iwr Get content from a web page.
 
+To base64: `[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes('Motörhead'))`
+From base64: `[Text.Encoding]::Utf8.GetString([Convert]::FromBase64String('TW90w7ZyaGVhZA=='))`
 
 

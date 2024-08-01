@@ -2,9 +2,9 @@ import serial
 import time
 
 try:
-    ser = serial.Serial("COM6", 9600)
+    ser = serial.Serial("COM16", 9600)
 except Exception:
-    print("COM6 not found")
+    print("COM16 not found")
     exit()
 
 for x in range(6):

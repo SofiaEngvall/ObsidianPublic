@@ -13,13 +13,13 @@
 <div id="content">
 <?php
 
-function debug($msg) { /* {{{ */
+function debug($msg) { 
     if(array_key_exists("debug", $_GET)) {
         print "DEBUG: $msg<br>";
     }
 }
-/* }}} */
-function print_credentials() { /* {{{ */
+
+function print_credentials() { 
     if($_SESSION and array_key_exists("admin", $_SESSION) and $_SESSION["admin"] == 1) {
     print "You are an admin. The credentials for the next level are:<br>";
     print "<pre>Username: natas21\n";
@@ -28,7 +28,7 @@ function print_credentials() { /* {{{ */
     print "You are logged in as a regular user. Login as an admin to retrieve credentials for natas21.";
     }
 }
-/* }}} */
+
 
 /* we don't need this */
 function myopen($path, $name) {
@@ -104,6 +104,7 @@ session_set_save_handler(
     "mywrite",
     "mydestroy",
     "mygarbage");
+
 session_start();
 
 if(array_key_exists("name", $_REQUEST)) {
