@@ -1,5 +1,3 @@
 
-GNU Debugger
-
-https://www.sourceware.org/gdb/
+[[../27 - asm, Buffer Overflow, debug/gdb|gdb]]
 

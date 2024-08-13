@@ -1,4 +1,5 @@
 
+https://www.plesk.com/blog/various/find-files-in-linux-via-command-line/
 
 - `find /home -name flag1.txt`: find the file names “flag1.txt” in the /home directory
 - `find / -type d -name config`: find the directory named config under “/”

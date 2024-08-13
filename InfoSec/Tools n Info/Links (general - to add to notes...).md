@@ -1,6 +1,8 @@
 
 Crazy cool links - go through it!
 
+https://primer.picoctf.org
+
 https://zer1t0.gitlab.io/posts/attacking_ad/
 
 https://www.thehacker.recipes/

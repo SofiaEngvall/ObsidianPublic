@@ -1,5 +1,7 @@
 
-ctrl+R search in command history
+;  To run several commands after each other
+&&  To only run the second when the first one succeeds
+||  To only run the second one if the first one fails
 
 history | grep whatever
 
