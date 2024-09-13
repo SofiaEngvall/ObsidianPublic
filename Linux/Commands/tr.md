@@ -1,3 +1,8 @@
+
+```sh
+file myfile | tr "," "\n"
+```
+
 [_tr_](https://man7.org/linux/man-pages/man1/tr.1p.html) is used for translating characters and can be leveraged for string manipulation. **We can also apply _tr_ when replacing or removing characters**.
 
 Let’s use it for removing spaces:

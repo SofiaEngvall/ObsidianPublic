@@ -49,12 +49,12 @@ Delete one or more rows.
 
 ### Comments
 
--- This is a comment
-
+`--` This is a comment (mysql req space after)
+`#` (Mysql only)
 
 ### Statement end
 
-;
+`;`
 
 
 

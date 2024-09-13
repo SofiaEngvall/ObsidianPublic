@@ -2,7 +2,12 @@
 GNU Debugger
 https://www.sourceware.org/gdb/
 
+settings in `~/.gdbinit`
+
+
 `gdb ./myexecutable`
+
+-q for quiet - skips the licence.. info
 
 gdb commands
 
@@ -11,26 +16,27 @@ gdb commands
 `start`  Starts the program but stopps at the start of main
 `quit` or q  Quit gdb
 
-`break [function name]` or b  Add breakpoint
+`break [function name]` or `b`  Add breakpoint
 `b test.c:10`  Example of setting breakpoint on C files line number!!  (probably requires compilation with debug info)
-`next` or n Step one line
-`nexti` or ni Step exactly one instruction
-`continue` or c  Continue normal execution
+`next` or `n` Step one line
+`nexti` or `ni` Step exactly one instruction
+`continue` or `c`  Continue normal execution
 `jump [address]` or `j`  Jump to address
 
-`info frame`  Get register info
+`info frame` or `i f`  Get register info
 `info functions`  Get function info
 `info registers` or `i r` Get register info
 
-`disassemble [function name]`  disassemble a function
+`set disassembly-flavor intel` set to intel syntax
+`disassemble [function name]` or `disas` disassemble a function
 
 `print &[var name]` or `p` print adress of variable  (might require compilation with debug info)
-`p [var name]`
+`p &[var name]` print contents
 `p/x` print in hex format, s for string... https://ftp.gnu.org/old-gnu/Manuals/gdb/html_node/gdb_54.html
 
 `&sp`  Stack pointer ESP
 
-`x/200 $rsp-200`
+`x/200 $rsp-200` print the contents of a memory address, 200 long
 
 cool reverse commands!
 

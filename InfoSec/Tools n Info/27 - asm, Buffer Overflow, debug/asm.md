@@ -1,33 +1,15 @@
 
+https://c9x.me/x86/
+https://www.felixcloutier.com/x86/
+
 `gcc hello.c -o hello.asm -S` compile to asm!
 
+Stack
+Heap
+Code (in memory)
 
-### Registers
 
-General purpose
-RAX
-RBX
-RCX
-RDX
-
-Index registers
-RSI
-RDI
-RBP
-RSP
-
-Integer registers
-R8 - R15
-
-32 bit versions
-EAX.. ESI..
-R8D-R15D
-
-16 bit versions
-ax = ah + al
-...
-
-### Lenghts (for AT&T)
+### Lenghts (for AT&T syntax)
 
 | Intel Data Type  | Suffix | Size(bytes) |
 | ---------------- | ------ | ----------- |
@@ -87,6 +69,37 @@ Jump instructions are used to transfer control to different instructions, and th
 | ja        | Above(unsigned)    |
 | jb        | Below(unsigned)    |
 
+|Arithmetic|Logic|Jumps|Stack|
+|---|---|---|---|
+|add ⟨dest⟩ ⟨src⟩  <br>sub ⟨dest⟩ ⟨src⟩  <br>inc ⟨dest⟩  <br>dec ⟨dest⟩  <br>imul ⟨dest⟩ ⟨src⟩  <br>div ⟨dest⟩|and ⟨dest⟩ ⟨src⟩  <br>or ⟨dest⟩ ⟨src⟩  <br>not ⟨dest⟩  <br>shr ⟨dest⟩, ⟨imm⟩  <br>shr ⟨dest⟩, cl  <br>shl ⟨dest⟩, ⟨imm⟩  <br>shl ⟨dest⟩, cl  <br>sar ⟨dest⟩, ⟨imm⟩  <br>sar ⟨dest⟩, cl|jmp ⟨label⟩  <br>cmp ⟨dest⟩ ⟨src⟩  <br>je ⟨label⟩  <br>jne ⟨label⟩  <br>jg ⟨label⟩  <br>jge ⟨label⟩  <br>jl ⟨label⟩  <br>jle ⟨label⟩|call ⟨label⟩  <br>ret  <br>push ⟨src⟩  <br>pop ⟨dest⟩|
+<font size=2>⟨dest⟩ is register or memory, ⟨src⟩ is register or memory or immediate, ⟨imm⟩ is immediate (byte only)</font>
+
+### Program structure in asm
+
+#### Call of function
+
+Call does:
+push eip            Saves the old instruction pointer to the stack
+jmp function     Hops to the functions address
+
+#### Function Prologue
+
+A function starts with:
+push ebp           Save the old base pointer to the stack
+mov ebp, esp    Copies the old stack pointer as a new base pointer
+push ebx           Push possible regs that will be used in the function
+sub esp, 0x404  Make space for the functions variables.. on the stack (in this case a char buffer of 1024 characters)
+
+#### Function Epilogue
+
+A function end with:
+leave      = mov esp, ebp   Save the old base pointer as a new stack pointer
+         pop ebp            Get the old base pointer from the stack
+ret          = pop eip            Get the old instruction pointer from the stack
+
+Meaning leave and ret are really shorthand for these.
+
+
 
 ### Syscalls list
 
@@ -97,3 +110,23 @@ https://www.chromium.org/chromium-os/developer-library/reference/linux-constants
 
 ![[Images/Pasted image 20230829162650.png|1000]]
 ![[Images/Pasted image 20230829162741.png]]
+
+#### Assembly
+
+`push var`
+- decrement stack pointer `rsp` by 8
+- write var to where `rsp` points
+
+`pop var`
+- reads the value pointed to by `rsp`
+- increment stack pointer `rsp` by 8
+
+Each function has its own stack frame, where each new stack frame is allocated when a function is called, and deallocated when the function is complete (where)
+
+rsp  stack pointer
+rbp  frame pointer
+
+Up to 6 arguments can be saved in registers; rdi, rsi, rdx
+rcx, r8 and r9.Move can be stored in the stack frame.
+
+Return values will be stored in rax.

@@ -54,7 +54,7 @@ numbered
 
 in text use `backticks` to format as code
 
-``a backtick ` in code``
+``a backtick ` in a code oneliner``
 
 ```
 a code block

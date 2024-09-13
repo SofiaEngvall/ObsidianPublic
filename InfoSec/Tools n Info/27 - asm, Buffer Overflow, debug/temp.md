@@ -1,4 +1,5 @@
 
+
 #### Where to test buffer overflow
 
 THM rooms and other exercises:
@@ -43,49 +44,42 @@ int main(int argc, char **argv)
 
 ### Low level program execution - Assembler
 
+#### Memory layout
+
+When a program is executed two main areas of the computers memory are used, the stack and the heap.
+##### The stack
+
+A thing you need to remember about the stack is that it grows downwards - This means that for example when space for a new variable is declared the adress of this will be lower than the last one declared.
+
+The assembler instructions push and pop can be used to quickly add/remove something to/from the stack, like a plate on a stack of plates (the reason for the name stack).
+
+Wh
+- contains
+	- Program counter
+	- Saved registers
+	- Other info
+- stack frames
+##### The heap
+- grows upwards
+- contains
+	- dynamically assigned memory
+
 #### Registers
 
-There are a number of registers, tiny bits of memory inside the processor, with special purposes.
+A simplified description of the x86 processor
+There are a number of registers, tiny bits of memory, with special purposes
 
 The most important ones are:
 - The Instruction pointer, ip, that keeps track of where in memory we are currently reading and executing instructions.
 - The Stack pointer, sp, that keeps track of the memory address of the top of the stack.
 - The Base pointer, bp, that keeps track of the memory address of current stack frame's start (aka Stack base pointer or Frame pointer)
 
-There are also other registers, for example ax and bx, that have different specific functions in the execution of a program. Also the names of the registers are added to depending on the number of bits the program can handle.
-
-More about registers here: [[Registers x86]]
-
-#### Memory layout
-
-When a program is executed two main areas of the computers memory are used, the stack and the heap.
-
-##### The heap
-
-The heap is mostly used for dynamically assigned memory.
-
-##### The stack
-
-A thing you need to remember about the stack is that it grows downwards - This means that for example when space for a new variable is declared the adress of this will be lower than the last one declared.
-
-The stack is mainly used for saving smaller amounts of data. The most important being the next instruction to run and other registers after a function is called, local variables...
-
-The assembler instructions push and pop can be used to quickly add/remove something to/from the stack, like a plate on a stack of plates (the reason for the name stack).
-
-###### What push and pop actually does
-
-push value:
-`sub esp, 4`              Decrease the stack pointer by the size of the data (4 bytes)
-`mov [esp], value`   Store the value at the address now pointed to by ESP
-
-pop destination:
-`mov destination, [esp]`  Load the value at ESP into the destination
-`add esp, 4`                        Increase the stack pointer by the size of the data (4 bytes)
+There are also other registers, for example ax and bx, that have different specific functions in the execution of a program
 
 ##### Stack Frames
 
-For every function that is run a new bit of the stack is used. The old top of the stack (esp) will now be the base of the new Stack Frame (ebp). The stack frame will contain:
-- the old instruction pointer (eip)
+This means that for every function that is run a new bit of the stack is used. The old top of the stack (esp) will now be the base of the new Stack Frame (ebp). The stack frame will contain:
+-  the old instruction pointer (eip)
 - the old base pointer (ebp)
 - other registers saved by the code (compiler/programmer)
 - local variables
@@ -214,7 +208,7 @@ Yay, we can set eip!
 
 #### Find out how much space we have for shellcode
 
-...
+
 
 #### Using shell code
 

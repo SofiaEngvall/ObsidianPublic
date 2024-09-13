@@ -1,3 +1,4 @@
+
 ### SQLi parameter
 
 `https://website.thm/blog?id=1`

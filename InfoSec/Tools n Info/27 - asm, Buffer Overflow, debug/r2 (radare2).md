@@ -3,6 +3,9 @@ Preinstalled in kali full
 https://github.com/radareorg/radare2
 https://book.rada.re - manual
 
+Cheatsheet: https://r2wiki.readthedocs.io/en/latest/home/misc/cheatsheet/
+Docs: https://r2wiki.readthedocs.io/en/latest/
+
 To list strings:
 	`r2 -A <executableFilename>`   (same as aaa at r2 prompt)
 		`iz` list strings
@@ -14,7 +17,7 @@ To debug a file or running process:
 		`pdf @main` print disassembly function
 
 At r2 prompt:
-
+i
 `e asm.syntax=att` set AT&T syntax
 `e asm.syntax=intel` set Intel syntax (default)
 
@@ -40,12 +43,18 @@ At r2 prompt:
 `dsl` step one source line
 `dsp` Step into program (skip libs)
 
-`px <@memory-address>` list memory contents
-`px @rbp-0xc` adress example using rbp
 `dr` list registers contents
 
+`px <@memory-address>` list memory contents
+`px @rbp-0xc` adress example using rbp
+`pxr @rsp`  show hexword references (reverses the order of the bytes compared to normal string order and px or pxa..)
+`pxa @rsp`  show annotated hexdump <--- I'm using this
+`pxw @rsp`  show hexadecimal words dump (32bit) (also reverses ^)
+`pxq @rsp`  show hexadecimal quad-words dump (64bit)
+`ad@r:SP`  to analyze the stack data
+
 `ood` reload the program
-`odd <arguments>` reloads and adds arguments to the program we debug
+`ood <arguments>` reloads and adds arguments to the program we debug
 
 
 ## Examples
@@ -275,6 +284,33 @@ nth paddr       vaddr      bind   type   size name
 
 
 ```
+
+```sh
+[0x00400532]> pxa @rsp
+    - offset -   0 1  2 3  4 5  6 7  8 9  A B  C D  E F  0123456789ABCDEF
+                 /rsp                                                   
+0x7fffffffe230  c0f8 dcf7 ff7f 0000 23e6 ffff ff7f 0000  ........#.......
+0x7fffffffe240  2b00 0000 0000 0000 2c00 0000 0000 0000  +.......,.......
+0x7fffffffe250  0a00 0000 0000 0000 3006 4000 0000 0000  ........0.@.....
+0x7fffffffe260  0004 ddf7 ff7f 0000 0000 0000 0000 0000  ................
+0x7fffffffe270  0000 0000 0000 0000 e12b aaf7 ff7f 0000  .........+......
+0x7fffffffe280  6047 ddf7 ff7f 0000 982f aaf7 ff7f 0000  `G......./......
+0x7fffffffe290  2b00 0000 0000 0000 6047 ddf7 ff7f 0000  +.......`G......
+0x7fffffffe2a0  3006 4000 0000 0000 0c82 a9f7 ff7f 0000  0.@.............
+0x7fffffffe2b0  0000 0000 0000 0000 0000 0000 0000 0000  ................
+0x7fffffffe2c0  f0e2 ffff ff7f 0000 5004 4000 0000 0000  ........P.@.....
+                 /rbp                                                   
+0x7fffffffe2d0  f0e2 ffff ff7f 0000 9005 4000 0000 0000  ..........@.....
+0x7fffffffe2e0  d8e3 ffff ff7f 0000 0000 0000 0200 0000  ................
+0x7fffffffe2f0  a005 4000 0000 0000 3ad1 a4f7 ff7f 0000  ..@.....:.......
+0x7fffffffe300  0000 0000 0000 0000 d8e3 ffff ff7f 0000  ................
+0x7fffffffe310  0000 0400 0200 0000 6405 4000 0000 0000  ........d.@.....
+0x7fffffffe320  0000 0000 0000 0000 d2d9 7c6a 3a7f 2a53  ..........|j:.*S
+
+
+```
+
+
 
 ## Help
 
