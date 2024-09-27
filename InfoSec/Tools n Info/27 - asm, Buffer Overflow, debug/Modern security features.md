@@ -63,3 +63,8 @@ This is reset at reboot.
 
 
 
+### Advanced bypass methods
+
+To add:
+Return Oriented Programming (`ROP`)
+Windows-specific exploitation methods like Egg Hunting or Structured Exception Handling (`SEH`) exploitation.

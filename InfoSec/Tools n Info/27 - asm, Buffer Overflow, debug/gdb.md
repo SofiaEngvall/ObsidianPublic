@@ -16,6 +16,8 @@ gdb commands
 `start`  Starts the program but stopps at the start of main
 `quit` or q  Quit gdb
 
+`attach [process id]` Attach to a process or file outside of GDB
+
 `break [function name]` or `b`  Add breakpoint
 `b test.c:10`  Example of setting breakpoint on C files line number!!  (probably requires compilation with debug info)
 `next` or `n` Step one line
@@ -26,6 +28,7 @@ gdb commands
 `info frame` or `i f`  Get register info
 `info functions`  Get function info
 `info registers` or `i r` Get register info
+`info proc all` lists information about the current process including what memory is in use (stack space...)
 
 `set disassembly-flavor intel` set to intel syntax
 `disassemble [function name]` or `disas` disassemble a function
@@ -40,6 +43,10 @@ gdb commands
 
 cool reverse commands!
 
+<font color=red>SUID SGID: You can only debug a setuid or setgid program if the debugger is running as root. Otherwise you could just call gdb on /bin/su and have root. If you run Gdb as root, you'll be able to run your program, but you'll only be observing its behavior when run by root.<br>
+<br>
+If you need to debug the program when it's not started by root, start the program outside Gdb, make it pause in some fashion before getting to the troublesome part, and `attach` the process inside Gdb (`at 1234` where 1234 is the process ID).</font>
+<font size=2>from https://unix.stackexchange.com/questions/15911/can-gdb-debug-suid-root-programs</font>
 ## Examples
 
 Starting program using start which sets an automatic break point at the start of main
