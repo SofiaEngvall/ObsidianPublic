@@ -3,7 +3,7 @@ Added after Windows XP.
 
 ### DEP (Data Execution Prevention)
 
-Regions of memory, for example the stack, are marked Read-Only. This is to prevent users from putting shellcode in memory and running it by setting the instruction pointer. ^should probably be non-exec?
+Regions of memory, for example the stack, are marked non-executable (NX). This is to prevent users from putting shellcode in memory and running it by setting the instruction pointer.
 
 Counter measure: ROP (Return Oriented Programming) allows upload of shellcode to an executable space and then uses existing calls to execute it. Requires knowledge of the memory addresses where things are stored. ASLR tries to prevent this.
 

@@ -1,4 +1,4 @@
 
 graphical
 
-example [[../../Boxes/Vulnhub/Protostar/Stack/stack3|stack3]]
+example [[Examples/Protostar/Stack/stack3|stack3]]

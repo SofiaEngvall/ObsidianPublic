@@ -24,7 +24,7 @@ Compile:
 ```sh
 gcc bow.c -o bow32 -fno-stack-protector -z execstack -m32 
 ```
-For info on options check [[../../../Tools n Info/27 - asm, Buffer Overflow, debug/Modern security features|Modern security features]]
+For info on options check [[Modern security features|Modern security features]]
 `-m64` for a 64-bit program
 
 Exploring with gdb:

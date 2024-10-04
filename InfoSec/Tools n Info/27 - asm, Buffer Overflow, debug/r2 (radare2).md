@@ -17,7 +17,7 @@ To debug a file or running process:
 		`pdf @main` print disassembly function
 
 At r2 prompt:
-i
+i - removed something here???
 `e asm.syntax=att` set AT&T syntax
 `e asm.syntax=intel` set Intel syntax (default)
 
