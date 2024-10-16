@@ -4,6 +4,9 @@
  
  `xfreerdp /dynamic-resolution /scale:140 +clipboard /cert:ignore /v:10.10.176.91 /u:Administrator /p:'TryH4ckM3!'`
 
+`xfreerdp /dynamic-resolution /workarea /scale-desktop:300 /scale:100 +clipboard /cert:ignore /tls-seclevel:0 /v:10.10.22.167 /u:admin /p:'password'`
+workarea maximizes but might not show start bar.. so start once without and move the bar?
+
 /dynamic-resolution
 /smart-sizing[:<width>x<height>]  Scale remote desktop to window size
 

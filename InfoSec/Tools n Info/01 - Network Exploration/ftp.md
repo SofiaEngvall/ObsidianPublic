@@ -1,6 +1,8 @@
 ftp can be secured by used tls = ftps, default port 990
 and by using ssh = sftp
 
+Download all files
+`wget ftp:// 10.10.10.10:12345/* --ftp-user=ourname --ftp-pass=ourpass`
 
 ### Basic FTP commands
 

