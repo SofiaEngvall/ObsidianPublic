@@ -9,3 +9,7 @@ shutdown now
 
 `<<EOF` can in other words be used to start multiline input to something. You end it with `EOF` on a line alone
 
+`cat /etc/shells` to list available shells
+
+`chsh -s /usr/bin/zsh` to change your default shell
+

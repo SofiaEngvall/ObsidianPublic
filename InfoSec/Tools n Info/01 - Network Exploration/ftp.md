@@ -18,6 +18,10 @@ PASV   switches to passive mode
 TYPE A   switches transfer mode to ACSII
 TYPE I   switches transfer mode to binary
 (we can't transfer files with telnet/nc since a separate connection is created on another port)
+RETR filename   retrieve to download file
+STOR filename    store to upload file
+LIST to list files
+
 
 ```sh
 ┌──(kali㉿kali)-[~/thm/nmap]

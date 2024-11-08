@@ -1,2 +1,2 @@
 
-[[InfoSec/Tools n Info/04 - Shells/python|python]]
+[[../04 - Shells/python reverse shell|python reverse shell]]

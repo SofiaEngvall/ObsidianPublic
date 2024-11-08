@@ -1,0 +1,1 @@
+`sfc /scannow`: scans system files for corruption and repairs them if possible.

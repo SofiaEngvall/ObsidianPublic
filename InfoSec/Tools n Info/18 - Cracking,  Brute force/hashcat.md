@@ -4,6 +4,22 @@ https://github.com/hashcat/hashcat
 Remove old cracked passwords (it won't redo cracked ones)
 `del hashcat.potfile`
 
+
+#### salted hashes
+
+###### in textfile:
+1c318602d6d38d28dc00041fb05601c1:salt
+1c318602d6d38d28dc00041fb05601c1:123
+1c318602d6d38d28dc00041fb05601c1:password
+1c318602d6d38d28dc00041fb05601c1:2019
+
+###### Command:
+hashcat -a 0 -m 10 -w 3 salts /usr/share/wordlists/rockyou.txt
+
+###### result:
+1c318602d6d38d28dc00041fb05601c1:2019:spring 
+
+
 ### Help
 
 ```sh

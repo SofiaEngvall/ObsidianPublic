@@ -2,10 +2,11 @@
 https://www.kali.org/tools/hydra/
 https://github.com/vanhauser-thc/thc-hydra
 
+### Supported formats
 
+Asterisk, AFP, Cisco AAA, Cisco auth, Cisco enable, CVS, Firebird, FTP, HTTP-FORM-GET, HTTP-FORM-POST, HTTP-GET, HTTP-HEAD, HTTP-POST, HTTP-PROXY, HTTPS-FORM-GET, HTTPS-FORM-POST, HTTPS-GET, HTTPS-HEAD, HTTPS-POST, HTTP-Proxy, ICQ, IMAP, IRC, LDAP, MEMCACHED, MONGODB, MS-SQL, MYSQL, NCP, NNTP, Oracle Listener, Oracle SID, Oracle, PC-Anywhere, PCNFS, POP3, POSTGRES, Radmin, RDP, Rexec, Rlogin, Rsh, RTSP, SAP/R3, SIP, SMB, SMTP, SMTP Enum, SNMP v1+v2+v3, SOCKS5, SSH (v1 and v2), SSHKEY, Subversion, TeamSpeak (TS2), Telnet, VMware-Auth, VNC and XMPP
 
-
-find method, url including port and everything
+### find method, url including port and everything
 
 ![The HTML code related to the PIN code form.](https://tryhackme-images.s3.amazonaws.com/user-uploads/5f04259cf9bf5b57aed2c476/room-content/c55803e3eccf061b8beeae6268b9dae1.png)  
 
@@ -151,6 +152,8 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2023-12-04 01:48:
 
 ```sh
 hydra -L users.lst -ssh://P /path/to/wordlist.txt ssh://10.10.x.x -v
+
+hydra -l root -P passwords.txt 10.10.213.24 -t 4 ssh
 
 hydra -V -t 50 -l ftpuser -P /usr/share/wordlists/rockyou.txt ftp://10.10.183.107
 ```

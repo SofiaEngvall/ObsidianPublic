@@ -9,7 +9,23 @@ First checks
 	List environment
 		cmd: `set`
 		ps: `Get-ChildItem env: | Format-Table -Wrap`
+	Information
+		cmd: `ver`
+		cmd: `systeminfo`
+		ps: Get-SystemInfo
+		cmd: `tasklist`
+		ps: `Get-LocalUser`
+	Networking
+		cmd: `ipconfig /all`
+		ps: `Get-NetIPConfiguration`
+		ps: `Get-NetIPAddress`
+		cmd: `netstat`
+		ps: `Get-NetTCPConnection`
 	whatever
+
+Remember
+`dir /a` Displays hidden and system files as well.
+`dir /s` Displays files in the current directory and all subdirectories.
 
 Check for credentials left from unattended installation:
 	`C:\Unattend.xml`

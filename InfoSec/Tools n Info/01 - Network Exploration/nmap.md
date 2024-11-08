@@ -68,6 +68,7 @@
 `--max-parallelism <numprobes>`
 --max-parallelism=512
 
+`--host-timeout <time>` time to wait for a target
 ##### Specifying verbosity
 
 --reason   why is a host up, a port open...

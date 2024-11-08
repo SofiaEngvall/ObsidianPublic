@@ -1,4 +1,4 @@
-fil
+
 file filename
 
 head filename
@@ -17,3 +17,25 @@ recognizes headers n stuff
 
 data duplicator - can get parts out of a binary data file, like a rom image
 `dd if =[filename] skip=[number to start at] bs=[blocksize, probably 1] of=[output filename]`
+
+unzip filename (also works on docx..)
+
+exiftool filename
+
+steghide
+
+hexeditor
+
+cat
+
+
+#### Pcap
+
+`strings traffic.pcapng | grep password -C5`
+
+
+#### Executables
+
+`objdump -t filename`
+
+`objdump -d filename`

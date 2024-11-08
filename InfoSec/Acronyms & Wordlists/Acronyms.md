@@ -23,5 +23,5 @@ SQL structured query language
 
 PIM Privileged Identity Management
 
-UEBA User Entity Behavior Analytics
+UEBA User Entity Behavior Analytics, User and entity behavior analytics
 

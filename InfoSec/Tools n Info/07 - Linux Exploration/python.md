@@ -40,4 +40,4 @@ if __name__ == "__main__":
 
 Both files where created but with karen, the user, as the owner. The chmod worked fine. But without root as the owner it's useless
 
-also check out [[InfoSec/Tools n Info/04 - Shells/python|python]]
+also check out [[../04 - Shells/python reverse shell|python reverse shell]]

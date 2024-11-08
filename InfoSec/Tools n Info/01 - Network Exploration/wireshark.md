@@ -3,6 +3,10 @@ Sample Captures:
 https://wiki.wireshark.org/SampleCaptures
 
 
+download file from ftp packets:
+File -> Export Objects -> FTP-DATA, Save All
+
+
 
 ## Filters
 

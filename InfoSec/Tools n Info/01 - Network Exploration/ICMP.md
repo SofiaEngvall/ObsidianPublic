@@ -5,3 +5,5 @@ If you want to ping a system on the same subnet, an ARP query should precede the
 ICMP is on the network layer
 ![[745e0412b319d324352c7b29863b74f4.png|600]]
 
+thm: https://tryhackme.com/r/room/networkingessentials
+

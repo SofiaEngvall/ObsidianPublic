@@ -44,7 +44,7 @@ files mentioning cron
 grep -r "cron" /path/to/search
 ```
 
-Script to replace sh scripts with in [[bash]]
+Script to replace sh scripts with in [[GTFOBins.github.io/_gtfobins/bash]]
 
 ### Exploiting the path
 
