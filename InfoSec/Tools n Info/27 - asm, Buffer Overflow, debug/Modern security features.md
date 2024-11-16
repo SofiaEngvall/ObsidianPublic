@@ -61,6 +61,29 @@ Example on my kali box
 ```
 This is reset at reboot.
 
+If you want a permanent disable, add this to `/etc/sysctl.conf`:
+```
+kernel.randomize_va_space=0
+```
+
+
+### Check binary
+
+`readelf -s /path/to/your/binary` to see more data
+`__stack_chk_fail` means stack canaries are enabled (remove with `-fstack-protector`)
+
+### Check system
+
+NX protection is a hardware feature that prevents execution of code on the stack. While this is usually controlled by the system, you can check the status with:
+
+`cat /proc/sys/vm/legacy_va_layout`
+
+If it returns `1`, NX is disabled. If it returns `0`, you may need to disable it in the BIOS/UEFI settings or at the kernel level (although this is uncommon in most systems).
+
+
+### Disabling security in windows (for testing)
+
+
 
 
 ### Advanced bypass methods

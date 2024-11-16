@@ -7,3 +7,5 @@ think of what the sql query might be, maybe `SELECT * FROM users WHERE username 
 	`1=1` to have a always true statement
 	`-- -` starta a comment (but requires a space and a random character efter giving `-- -`)
 
+
+[[SQL injection]]

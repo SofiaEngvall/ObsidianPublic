@@ -104,6 +104,7 @@ Open ports
 	`ss -tulpn`
 	`netstat -antplue`
 	`netstat -ano`
+	`lsof -i -P`
 
 finding files, like flags:
 	`find / -type f -name flag2.txt 2> /dev/null`

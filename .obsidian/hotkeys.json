@@ -7,6 +7,23 @@
       "key": "["
     }
   ],
+  "editor:toggle-code": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "="
+    }
+  ],
+  "command-palette:open": [],
+  "obsidian-tts:start-pause-resume-tts-playback": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "P"
+    }
+  ],
   "window:zoom-in": [
     {
       "modifiers": [
@@ -21,14 +38,6 @@
         "Mod"
       ],
       "key": "-"
-    }
-  ],
-  "editor:toggle-code": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "="
     }
   ]
 }

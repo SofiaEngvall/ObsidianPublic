@@ -1289,3 +1289,5 @@ var TTSPlugin = class extends import_obsidian6.Plugin {
     return (_a = this.app.metadataCache.getFileCache(file).frontmatter) == null ? void 0 : _a.lang;
   }
 };
+
+/* nosourcemap */

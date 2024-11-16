@@ -1,8 +1,8 @@
 {
   "defaultVoice": "speechSynthesis-",
-  "pitch": 2,
-  "rate": 2.1,
-  "volume": 0.51,
+  "pitch": 1.5,
+  "rate": 2,
+  "volume": 0.52,
   "speakLinks": false,
   "speakFrontmatter": false,
   "speakSyntax": false,

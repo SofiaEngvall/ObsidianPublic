@@ -1,10 +1,17 @@
-curl 10.10.10.10 -H "Host: my.domain.com"
-curl 10.10.10.10 -H "Host: localhost"
+`curl 10.10.10.10 -H "Host: my.domain.com"`
+`curl 10.10.10.10 -H "Host: localhost"`
 ``
--L     follow redirects
+`-L` follow redirects
+`-o` filename
+`-O` uses filename and current dir
 
--o filename
--O     uses filename and current dir
+`curl http://10.10.10.10/?cmd=id` GET
+
+`curl -s http://10.10.10.10/ -d 'cmd=id'` POST
+`-s` silent mode
+`-d` post data
+
+
 
 #### Help
 
