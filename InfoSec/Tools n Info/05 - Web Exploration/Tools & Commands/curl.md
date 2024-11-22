@@ -1,6 +1,10 @@
+
+##### Setting the hostname
 `curl 10.10.10.10 -H "Host: my.domain.com"`
 `curl 10.10.10.10 -H "Host: localhost"`
-``
+add more headers by adding more -H ""
+
+
 `-L` follow redirects
 `-o` filename
 `-O` uses filename and current dir
