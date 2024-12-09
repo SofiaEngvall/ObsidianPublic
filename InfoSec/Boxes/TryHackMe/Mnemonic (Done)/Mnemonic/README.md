@@ -37,9 +37,9 @@ python3 Mnemonic.py
 
 
 
-![](InfoSec/Boxes/TryHackMe/Mnemonic%20(Done)/Mnemonic/image/1.png)
+![](image/1.png)
 #I entered the path to the picture.
-![](InfoSec/Boxes/TryHackMe/Mnemonic%20(Done)/Mnemonic/image/2.png)
-![](InfoSec/Boxes/TryHackMe/Mnemonic%20(Done)/Mnemonic/image/3.png)
-![](InfoSec/Boxes/TryHackMe/Mnemonic%20(Done)/Mnemonic/image/4.png)
+![](image/2.png)
+![](image/3.png)
+![](image/4.png)
 

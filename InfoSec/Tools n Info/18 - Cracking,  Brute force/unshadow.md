@@ -36,6 +36,23 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed.
 ```
 
+```sh
+┌──(kali㉿kali)-[~/pentesterlab]
+└─$echo "victim:$1$f4teV/4d$jL52CAMpqxNqjHhMf/jE2.:20065:0:99999:7:::" > unix16-shadow
+
+┌──(kali㉿kali)-[~/pentesterlab]
+└─$ john unix16-shadow --format=md5crypt                                           
+Using default input encoding: UTF-8
+Loaded 1 password hash (md5crypt, crypt(3) $1$ (and variants) [MD5 256/256 AVX2 8x3])
+Will run 2 OpenMP threads
+Proceeding with single, rules:Single
+Press 'q' or Ctrl-C to abort, almost any other key for status
+victim4          (victim)     
+1g 0:00:00:00 DONE 1/3 (2024-12-08 23:45) 100.0g/s 4800p/s 4800c/s 4800C/s victim..VictimVictim
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
+```
+
 ### Common Commands
 
 unshadow etc-passwd etc-shadow

@@ -1,6 +1,6 @@
 
 don't miss virtual hosts
-![[Pasted image 20240226193023.png]]
+![[../../TO SORT/Pasted image 20240226193023.png]]
 try `-H 'Host: localhost'`
 try invalid host `skräp.thedomain.com`
 try just `thedomain.com`

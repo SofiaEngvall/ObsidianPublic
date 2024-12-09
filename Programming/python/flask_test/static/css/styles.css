@@ -1,0 +1,63 @@
+/* styles.css */
+
+/* Set the overall background color for the browser window */
+body {
+    background-color: #1f0039; /* Dark, but one step brighter */
+    font-family: Arial, sans-serif;
+    color: #e5d1ff; /* Brighter text color */
+    margin: 0;
+    padding: 0;
+}
+
+/* Center content with a medium bright box */
+main {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #6820b4; /* One step brighter for the box */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    color: #e5d1ff; /* Brighter text color */
+}
+
+/* Form styles */
+form {
+    margin-top: 20px;
+}
+
+/* Label and input styling */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px; /* No extra newlines */
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 2px solid #a378d8; /* Brighter border */
+    border-radius: 5px;
+    background-color: #3a006b; /* Brighter input background */
+    color: #e5d1ff; /* Brighter input text */
+}
+
+input[type="text"]::placeholder {
+    color: #a378d8; /* Brighter placeholder text */
+}
+
+/* Submit button */
+input[type="submit"] {
+    background-color: #1f0039; /* Dark button background */
+    color: #e5d1ff; /* Bright text for contrast */
+    border: 2px solid #a378d8; /* Matching border */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #a378d8; /* Brighter hover effect */
+    color: #1f0039; /* Inverted text color */
+}

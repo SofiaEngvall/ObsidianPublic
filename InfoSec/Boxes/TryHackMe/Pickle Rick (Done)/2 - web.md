@@ -1,7 +1,7 @@
 
 http://10.10.67.14/
 
-![[Pasted image 20240403095916.png]]
+![[Images/Pasted image 20240403095916.png]]
 
 In view code
 ```html

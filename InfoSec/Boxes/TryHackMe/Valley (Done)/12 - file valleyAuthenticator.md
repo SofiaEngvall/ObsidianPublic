@@ -33,11 +33,11 @@ nth paddr vaddr len size section type string
 ```
 
 tried opening in ghidra, there are errors
-![[Pasted image 20240517174628.png]]
+![[Images/Pasted image 20240517174628.png]]
 
 looked at the strings (search, for strings, uncheck req null term, All blocks)
-![[Pasted image 20240517175521.png]]
-![[Pasted image 20240517174809.png]]
+![[Images/Pasted image 20240517175521.png]]
+![[Images/Pasted image 20240517174809.png]]
 
 Googling.. upx -d filename to extract
 Running upx (included in kali):
@@ -2005,8 +2005,8 @@ nth  paddr      vaddr      len size section type    string
 
 Looking good
 
-![[Pasted image 20240517183317.png|800]]
-![[Pasted image 20240517183209.png|800]]
+![[Images/Pasted image 20240517183317.png|800]]
+![[Images/Pasted image 20240517183209.png|800]]
 
 valley is one of the users!
 

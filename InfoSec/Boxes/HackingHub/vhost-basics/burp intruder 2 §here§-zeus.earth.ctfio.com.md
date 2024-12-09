@@ -1,5 +1,5 @@
 
-![[Pasted image 20240227134446.png]]
+![[Images/Pasted image 20240227134446.png]]
 ```http
 GET / HTTP/1.1
 Host: §here§-zeus.earth.ctfio.com
@@ -17,7 +17,7 @@ Sec-Gpc: 1
 Te: trailers
 Connection: close
 ```
-![[Pasted image 20240227134621.png]]
-![[Pasted image 20240227134731.png]]
-![[Pasted image 20240227134801.png]]
+![[Images/Pasted image 20240227134621.png]]
+![[Images/Pasted image 20240227134731.png]]
+![[Images/Pasted image 20240227134801.png]]
 

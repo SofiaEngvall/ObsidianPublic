@@ -1,18 +1,18 @@
 Captured with burp and sent to repeater  - change home.html  to index.php
 
-![](InfoSec/Boxes/TryHackMe/Red%20(Done)/burp1.png)
+![](burp1.png)
 
-![](InfoSec/Boxes/TryHackMe/Red%20(Done)/burp2.png)
+![](burp2.png)
 
-![](InfoSec/Boxes/TryHackMe/Red%20(Done)/burp3.png)
+![](burp3.png)
 
-![](InfoSec/Boxes/TryHackMe/Red%20(Done)/burp4.png)  
+![](burp4.png)  
 
-![](InfoSec/Boxes/TryHackMe/Red%20(Done)/burp5.png)
+![](burp5.png)
 
-![](InfoSec/Boxes/TryHackMe/Red%20(Done)/burp6.png)
+![](burp6.png)
 
-![](InfoSec/Boxes/TryHackMe/Red%20(Done)/burp7.png)
+![](burp7.png)
 
 ![](burp8.png)
 

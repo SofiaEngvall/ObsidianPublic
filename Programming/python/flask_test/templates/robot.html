@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Control the robot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+      <h1>Control the robot</h1>
+
+      <p>Last command: {{ feedback }} </p>
+
+      <form action="/">
+        <label for="direction">Direction:</label>
+        <select id="direction" name="direction">
+          <option value="u">Up</option>
+          <option value="d">Down</option>
+          <option value="r">Right</option>
+          <option value="l">Left</option>
+          <option value="f">Forward</option>
+          <option value="b">Back</option>
+          <option value="o">Open</option>
+          <option value="c">Close</option>
+        </select><br>
+        <label for="degrees">Degrees (0-180):</label><br>
+        <input type="text" id="degrees" name="degrees"><br>
+        <input type="submit" value="Move IT">
+      </form> 
+    </main>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

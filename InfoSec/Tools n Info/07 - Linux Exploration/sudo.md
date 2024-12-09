@@ -4,6 +4,8 @@ sudo -l    lists what you can run
 sudo su -
 
 
+if you have perms to run something as another user, not root, use the -u option:
+`sudo -u some_user /bin/bash
 
 ### env vars
 

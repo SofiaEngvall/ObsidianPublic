@@ -1,0 +1,56 @@
+/* styles.css */
+
+/* Set a purple background color for the entire page */
+body {
+    background-color: #50148a;
+    font-family: Arial, sans-serif; /* Nicer, clean font */
+    color: white; /* Ensure text is visible on the purple background */
+    line-height: 1.6; /* Improve readability by increasing line spacing */
+    margin: 0;
+    padding: 0;
+}
+
+/* Center content on the page */
+main {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white box */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Form styles */
+form {
+    margin-top: 20px;
+}
+
+/* Label and input styling */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Submit button */
+input[type="submit"] {
+    background-color: white;
+    color: #50148a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: lightgray;
+}

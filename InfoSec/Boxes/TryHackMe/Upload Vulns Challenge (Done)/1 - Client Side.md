@@ -89,7 +89,7 @@ $(document).ready(function () {
 
 Confirmed server side catch. If statements not true:
 
-![[Pasted image 20240401092725.png|900]]
+![[Images/Pasted image 20240401092725.png|900]]
 
 reply from server for actual jpg:
 
@@ -130,11 +130,11 @@ invalid
 just sending straight from burp, no js messing about
 
 Real image: (Obs the X-Powered-By: Express. This means node js. We're still using out php revsh to test with.)
-![[Pasted image 20240401195749.png]]
+![[Images/Pasted image 20240401195749.png]]
 
 shell with .jpg extension
-![[Pasted image 20240401200125.png]]
+![[Images/Pasted image 20240401200125.png]]
 
 shell with .jpg.php extension
-![[Pasted image 20240401195854.png]]
+![[Images/Pasted image 20240401195854.png]]
 

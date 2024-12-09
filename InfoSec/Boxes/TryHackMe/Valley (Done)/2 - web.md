@@ -1,5 +1,5 @@
 
-![[Pasted image 20240516224316.png|800]]
+![[Images/Pasted image 20240516224316.png|800]]
 
 `http://valley.thm/pricing/note.txt`
 ```

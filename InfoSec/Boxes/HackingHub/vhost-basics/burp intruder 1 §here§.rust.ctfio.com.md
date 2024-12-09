@@ -1,4 +1,4 @@
-![[Pasted image 20240227132301.png]]
+![[Images/Pasted image 20240227132301.png]]
 ```http
 GET / HTTP/1.1
 Host: §here§.rust.ctfio.com
@@ -16,12 +16,12 @@ Sec-Gpc: 1
 Te: trailers
 Connection: close
 ```
-![[Pasted image 20240227132349.png]]
-![[Pasted image 20240227132450.png]]
-![[Pasted image 20240227132515.png]]
+![[Images/Pasted image 20240227132349.png]]
+![[Images/Pasted image 20240227132450.png]]
+![[Images/Pasted image 20240227132515.png]]
 Site to check out `{host}-zeus.rust.ctfio.com`
-![[Pasted image 20240227132626.png]]
-![[Pasted image 20240227132656.png]]
+![[Images/Pasted image 20240227132626.png]]
+![[Images/Pasted image 20240227132656.png]]
 `FLAG_THREE{078f82925188637ba022dcc9d297f992}`
 
 

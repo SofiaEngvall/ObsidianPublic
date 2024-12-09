@@ -1,0 +1,14 @@
+@font-face {
+    font-family: Galindo;
+    src: url('fonts/Galindo-Regular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: Inter;
+    src: url('fonts/Inter-Regular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: Baloo Bhai;
+    src: url('fonts/BalooBhai-Regular.ttf') format('truetype');
+  }

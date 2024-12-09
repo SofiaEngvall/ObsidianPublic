@@ -1,3 +1,3 @@
 http://10.10.235.155:8080/
 
-![[Pasted image 20231209002731.png]]
+![[Images/Pasted image 20231209002731.png]]

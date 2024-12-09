@@ -1,4 +1,46 @@
 
+get request
+```sh
+~$ nc 127.0.0.1 80
+GET /?a=47b60d9634809e92f729b7c1ed3db4e1&b=d284d4e1%20927c2883%260a13b5cb%23c861ceea HTTP/1.1
+```
+
+post request
+```sh
+~$ nc 127.0.0.1 80
+POST / HTTP/1.1
+Host: qwerty
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 34
+
+a=145c6c71b5fa08c50a19733fd98f1dd9
+```
+
+post request
+```sh
+~$ nc 127.0.0.1 80
+POST / HTTP/1.1
+Host: qwerty
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 78
+
+a=40ecb35129bfeac0d106848749ac4d5e&b=3b2e23a4%200d282a84%26c354458e%2330e88201
+```
+
+json data
+```sh
+~$ nc 127.0.0.1 80
+POST / HTTP/1.1
+Host: qwerty
+Content-Type: application/json
+Content-Length: 38
+
+{"a":"7241a180e476486fd938723fabca372b"}
+```
+
+
+
+
 | netcat as client | `nc 10.10.18.110 PORT_NUMBER` |
 | ---------------- | ----------------------------- |
 | netcat as server | `nc -lvnp PORT_NUMBER`        |

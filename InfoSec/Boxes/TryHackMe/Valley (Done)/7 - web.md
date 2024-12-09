@@ -9,7 +9,7 @@ dev notes from valleyDev:
 ```
 
 http://valley.thm/dev1243224123123/
-![[Pasted image 20240517140121.png|600]]
+![[Images/Pasted image 20240517140121.png|600]]
 
 view-source:http://valley.thm/dev1243224123123/dev.js
 ```js

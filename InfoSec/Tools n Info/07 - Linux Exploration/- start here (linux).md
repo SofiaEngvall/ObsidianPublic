@@ -38,14 +38,19 @@ find users on machine
 	`cat /etc/passwd` users and might find info on services through their accounts
 	~/ `ls -la ..`
 	check permissions on other users directories
+	find passwords in history
+	`find /home -name .*_history -exec grep -A 1 '^passwd' {} \;`
 
 File system - interesting files?
 	`ls -la /opt`
 	`ls -la /var/backup`
 	check logs in `/var/log`
 	are there email? how to find? `/var/mail` `/var/spool/mail`
+	`ls -la /tmp`
+	`ls -la /var/tmp`
 	is `/etc/shadow` readable/writeable
 	is `/etc/passwd` writeable
+	find anything named backup?
 
 Check config files
 	`cat /etc/exports` nfs config file
@@ -72,8 +77,11 @@ Permission info
 Our permissions
 	Find writable files
 		`find /etc -writable -ls 2>/dev/null`
+		`find / -writable -type f 2>/dev/null | grep -v "/proc/"`
 	Find files with permissions for your group (if user has extra groups)
 		`find / -type f -group `mygroup` -exec ls -l {} + 2>/dev/null`
+	Find write exec perm directories
+		`find / -perm -o w -type d 2>/dev/null`
 	Find write exec perm directories
 		`find / -perm -o x -type d 2>/dev/null`
 	Find files with capability "permissions"
@@ -111,6 +119,18 @@ finding files, like flags:
 
 if it's a web server with php:
 	cat /var/www/html/configuration.php or grep for password
+Apache Tomcat creds
+	`find / -name tomcat-users.xml -exec cat {} \; 2> /dev/null`
+
+Check for mysql
+	mysql creds can be found in `/var/lib/mysql/mysql/user.MYD`
+	`mysql -u root`
+		`show databases;`
+		`use [DATABASE];`
+		`show tables;`
+		`select * from [TABLE];`
+
+
 ---
 
 search in logfiles and binaries for usernames and passwords
@@ -128,6 +148,7 @@ if we found a git repo or web dir on the machine
  `grep -ri user`
  `grep -ri pass`
  one level?
+
 
 ---
 
