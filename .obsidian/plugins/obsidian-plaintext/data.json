@@ -1,14 +1,4 @@
 {
   "overrideViewsFromOtherPlugins": false,
-  "extensions": [
-    "c",
-    "cpp",
-    "h",
-    "hpp",
-    "py",
-    "php",
-    "txt",
-    "lnk",
-    "log"
-  ]
+  "extensions": []
 }

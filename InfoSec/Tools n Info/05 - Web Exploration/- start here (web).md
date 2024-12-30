@@ -3,6 +3,16 @@ Quick check:
 		try admin, administrator..
 		try sqli
 
+`gobuster dir -r -u http://server.com -w /usr/share/wordlists/seclists/Discovery/Web-Content/quickhits.txt -t 30 -e`
+
+`gobuster dir -r -u http://server.com -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 30 -e` 
+
+`gobuster dir -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -t 20 -u http://10.10.10.10`
+
+`gobuster vhost -r -u http://10.10.10.10 --domain server.com -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain -t 30`
+
+
+
 
 What's running:
 	check nmap

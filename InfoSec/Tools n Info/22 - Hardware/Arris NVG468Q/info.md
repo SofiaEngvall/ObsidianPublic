@@ -9,6 +9,14 @@ https://www.amazon.com/NVG468MQ-802-11ac-MoCA%C2%AE2-0-Frontier-Wireless-AC/dp/B
 https://oldwiki.archive.openwrt.org/doc/techref/bootloader/cfe
 https://www.commscope.com/contact-us/contact-arris/ - might have firmware
 
+### Text on board
+
+SH694V-0
+E248779
+
+
+
+### Connection info
 
 ```sh
 ┌──(kali㉿kali)-[~/shells]

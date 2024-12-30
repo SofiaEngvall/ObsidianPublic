@@ -1,4 +1,9 @@
 
+0 standard input
+1 standard output
+2 standard error
+/dev/null trash
+
 ```sh
 #!/bin/bash
 if [ "$1" == "" ]
@@ -43,7 +48,14 @@ the same:
 ```sh
 #!/bin/bash
 for i in {1..10}; do
-  echo $i
+	echo $i
+done
+```
+
+infinite while loop
+```sh
+while [ 1 ]; do
+	stuff here
 done
 ```
 
