@@ -44,7 +44,7 @@ or run ps with cmd lol
 continue from [[Al's stream on crackmapexec]]
 
 check [[audrey]]
-check [[win  hacking al]]
+check [[../../TO SORT/win  hacking al]]
 
 -M spider_plus
 from kristiee

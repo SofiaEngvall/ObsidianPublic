@@ -1,5 +1,5 @@
 
-#### Where to test buffer overflow
+#### Where to test doing buffer overflow
 
 THM rooms and other exercises:
 https://tryhackme.com/r/room/bof1 (Linux, r2 and gdb)

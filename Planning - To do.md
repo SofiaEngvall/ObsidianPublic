@@ -3,7 +3,7 @@
 
 Pentesterlab - Will run out, do it, just 1 month
 
-TCM IOT - I only have 3 months
+TCM IOT.. - I only have 3 months
 https://academy.tcm-sec.com/courses/2138967/lectures/48187595
 https://academy.tcm-sec.com/courses/enrolled/1547503
 
@@ -62,8 +62,8 @@ use arduino tools for hardware hacking
 List of boxes for cert study
 
 https://www.vulnhub.com/entry/stapler-1,150/
-
-
+https://docs.google.com/spreadsheets/u/0/d/18weuz_Eeynr6sXFQ87Cd5F0slOj9Z6rt/htmlview?pli=1#
+https://docs.google.com/spreadsheets/u/1/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/htmlview#
 
 
 ### Articles to read
