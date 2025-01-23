@@ -13,7 +13,7 @@ boot loaders
 kernel images
 compressed data
 
-![[Pasted image 20240215135632.png|800]]
+![[images/Pasted image 20240215135632.png|800]]
 https://youtu.be/GIU4yJn2-2A?si=Vw2bqia0nlqhjdW9
 
 

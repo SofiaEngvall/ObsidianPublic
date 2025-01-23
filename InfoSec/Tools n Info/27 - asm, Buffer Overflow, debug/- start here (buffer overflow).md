@@ -9,3 +9,6 @@ Finding a Return Instruction/Finding the shellcode address
 Jumping to Shellcode
 
 add links to the buffer overflow doc...
+
+[[Buffer Overflow/10 - Using shell code]]
+

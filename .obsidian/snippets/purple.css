@@ -1,0 +1,138 @@
+
+/* Logo palette */
+/*
+  color: #ffffff;
+  color: #d8c0f0;
+  color: #8d66b3;
+  color: #6b349e;
+  color: #50148a;
+  color: #2a0054;
+  color: #140028;
+*/
+
+.theme-dark0 {
+--color-base-00: #1e1e1e;
+--color-base-05: #212121;
+--color-base-10: #242424;
+--color-base-20: #262626;
+--color-base-25: #2a2a2a;
+--color-base-30: #363636;
+--color-base-35: #3f3f3f;
+--color-base-40: #555555;
+--color-base-50: #666666;
+--color-base-60: #999999;
+--color-base-70: #b3b3b3;
+--color-base-100: #dadada;
+}
+
+.theme-dark1 {
+/* off in light/dark */
+--color-base-00: #140028;
+--color-base-05: #1a0033;
+--color-base-10: #2a0054;
+--color-base-20: #3c0070;
+--color-base-25: #46007c;
+--color-base-30: #50148a;
+--color-base-35: #5f1d96;
+--color-base-40: #6b349e;
+--color-base-50: #8d66b3;
+--color-base-60: #b194d2;
+--color-base-70: #d3c0e8;
+--color-base-100: #d8c0f0;
+}
+
+.theme-dark2 {
+/* better but too purple */
+--color-base-00: #140028;
+--color-base-05: #1a002b;
+--color-base-10: #2a0054;
+--color-base-20: #3c0066;
+--color-base-25: #460077;
+--color-base-30: #50148a;
+--color-base-35: #5f1d96;
+--color-base-40: #6b349e;
+--color-base-50: #8d66b3;
+--color-base-60: #b194d2;
+--color-base-70: #d3c0e8;
+--color-base-100: #d8c0f0;
+}
+
+.theme-dark3 {
+/* too gray - 50% purple, 50% gray*/
+--color-base-00: #161319;
+--color-base-05: #1b1c2a;
+--color-base-10: #23213e;
+--color-base-20: #302d46;
+--color-base-25: #35304e;
+--color-base-30: #42325f;
+--color-base-35: #4f3b6e;
+--color-base-40: #5f4d77;
+--color-base-50: #786d8b;
+--color-base-60: #a147b6;
+--color-base-70: #bcb7c6;
+--color-base-100: #d4d0e4;
+}
+
+.theme-dark4 {
+/* dark purple - 75% purple, 25% gray */
+--color-base-00: #150025;
+--color-base-05: #1a002b;
+--color-base-10: #260044;
+--color-base-20: #35005c;
+--color-base-25: #3f006e;
+--color-base-30: #4a127d;
+--color-base-35: #55238b;
+--color-base-40: #623393;
+--color-base-50: #7a5aa3;
+--color-base-60: #a07bc2;
+--color-base-70: #c6b0dc;
+--color-base-100: #dac7eb;
+}
+
+.theme-dark5 {
+/* dark purple - 63% purple, 37% gray */
+--color-base-00: #150227; /* Blend of #140028 (63%) and #1e1e1e (37%) */
+--color-base-05: #1a062e; /* Blend of #1a002b (63%) and #212121 (37%) */
+--color-base-10: #260b44; /* Blend of #2a0054 (63%) and #242424 (37%) */
+--color-base-20: #331059; /* Blend of #3c0066 (63%) and #262626 (37%) */
+--color-base-25: #3e166b; /* Blend of #460077 (63%) and #2a2a2a (37%) */
+--color-base-30: #491b7c; /* Blend of #50148a (63%) and #363636 (37%) */
+--color-base-35: #55248b; /* Blend of #5f1d96 (63%) and #3f3f3f (37%) */
+--color-base-40: #623491; /* Blend of #6b349e (63%) and #555555 (37%) */
+--color-base-50: #7b5a9e; /* Blend of #8d66b3 (63%) and #666666 (37%) */
+--color-base-60: #a07dbb; /* Blend of #b194d2 (63%) and #999999 (37%) */
+--color-base-70: #c5b2d6; /* Blend of #d3c0e8 (63%) and #b3b3b3 (37%) */
+--color-base-100: #d8c5ec; /* Blend of #d8c0f0 (63%) and #dadada (37%) */
+}
+
+.theme-dark6 {
+/*a bit brighter*/
+--color-base-00: #19052a; /* Brightened from #150227 */
+--color-base-05: #1f0a30; /* Brightened from #1a062e */
+--color-base-10: #2a1145; /* Brightened from #260b44 */
+--color-base-20: #36165b; /* Brightened from #331059 */
+--color-base-25: #411b6c; /* Brightened from #3e166b */
+--color-base-30: #4c227e; /* Brightened from #491b7c */
+--color-base-35: #582b8d; /* Brightened from #55248b */
+--color-base-40: #643b93; /* Brightened from #623491 */
+--color-base-50: #7d5f9f; /* Brightened from #7b5a9e */
+--color-base-60: #a284bb; /* Same as before */
+--color-base-70: #c7b5d7; /* Same as before */
+--color-base-100: #dac7ed; /* Same as before */
+}
+
+.theme-dark {
+--color-base-00: #1d082c; /* Matches brightness of #1e1e1e */
+--color-base-05: #231030; /* Matches brightness of #212121 */
+--color-base-10: #2f1946; /* Matches brightness of #242424 */
+--color-base-20: #3c225c; /* Matches brightness of #262626 */
+--color-base-25: #47296f; /* Matches brightness of #2a2a2a */
+--color-base-30: #53307f; /* Matches brightness of #363636 */
+--color-base-35: #5f3a8f; /* Matches brightness of #3f3f3f */
+--color-base-40: #6d4d97; /* Matches brightness of #555555 */
+--color-base-50: #84639f; /* Matches brightness of #666666 */
+--color-base-60: #a585bc; /* Matches brightness of #999999 */
+--color-base-70: #c9b3d8; /* Matches brightness of #b3b3b3 */
+--color-base-100: #ddc8eb; /* Matches brightness of #dadada */
+} 
+

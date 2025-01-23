@@ -1,4 +1,4 @@
-ood
+aflood
 Preinstalled in kali full
 https://github.com/radareorg/radare2
 https://book.rada.re - manual
@@ -58,6 +58,10 @@ i - removed something here???
 `ood` reload the program
 `ood <arguments>` reloads and adds arguments to the program we debug
 
+`/a` is search assembly
+`/a jmp esp`  searches asm code for jmp esp instructions (does not search libraries)
+`/a call esp`
+`/a push esp; ret`
 
 ## Examples
 

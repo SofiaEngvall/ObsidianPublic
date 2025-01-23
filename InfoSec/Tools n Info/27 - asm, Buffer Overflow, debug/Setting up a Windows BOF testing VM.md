@@ -29,3 +29,5 @@ The operation completed successfully.
 - **Temporarily Disable Windows Defender**: Go to Windows Security > Virus & threat protection > Manage settings, and turn off real-time protection.
 - **Create Exclusions**: Add your work folder or specific tools as exclusions in Windows Defender to prevent them from being flagged.
 
+
+<font color=red>Add the latest changes here</font>

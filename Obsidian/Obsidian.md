@@ -88,7 +88,7 @@ embed iframe:
 		frameborder=0
 		height=500
 		width=100%
-		src="https://fixitnow.se">
+		src="https://fixit42.com">
 </iframe>
 
 <iframe border=0 frameborder=0 height=450 width=800 src=".mp4"></iframe>

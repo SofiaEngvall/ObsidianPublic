@@ -1,4 +1,4 @@
 
 graphical
 
-example [[Examples/Protostar/Stack/stack3|stack3]]
+example [[Buffer Overflow/Examples/Protostar/Stack/stack3|stack3]]

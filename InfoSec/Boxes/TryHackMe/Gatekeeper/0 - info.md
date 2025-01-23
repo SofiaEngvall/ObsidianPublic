@@ -48,3 +48,6 @@ rdp
 |     Hello
 |   SSLSessionReq, TLSSessionReq, TerminalServerCookie: 
 |_    Hello
+
+smb://10.10.224.11/Users/Share/gatekeeper.exe
+

@@ -114,6 +114,9 @@ Open ports
 	`netstat -ano`
 	`lsof -i -P`
 
+scan for other machines
+	`for ip in {1..254} ;do (ping -c 1 192.168.0.$ip | grep "bytes from") done`
+
 finding files, like flags:
 	`find / -type f -name flag2.txt 2> /dev/null`
 

@@ -83,3 +83,5 @@ smb://10.10.224.11/Users/desktop.ini
 smb://10.10.224.11/Users/Share/gatekeeper.exe                                                                                 
 Downloaded 1.52MB in 16 seconds
 ```
+
+smb://10.10.224.11/Users/Share/gatekeeper.exe

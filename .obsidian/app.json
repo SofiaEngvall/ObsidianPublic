@@ -3,5 +3,6 @@
   "newFileLocation": "current",
   "attachmentFolderPath": "./Images",
   "alwaysUpdateLinks": true,
-  "newLinkFormat": "relative"
+  "newLinkFormat": "relative",
+  "showInlineTitle": true
 }
