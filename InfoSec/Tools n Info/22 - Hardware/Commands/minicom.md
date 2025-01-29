@@ -1,3 +1,0 @@
-
-(preinstalled on kali full)
-

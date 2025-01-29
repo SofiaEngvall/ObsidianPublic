@@ -46,7 +46,7 @@ If we reach the end of the string, going one character at a time, the full strin
 The buffer we copy into is 100 characters.
 I tested to send an argument with 120 characters and got a segmentation fault as expected. time for edb and python
 
-[[9 - validate exec in edb]]
+[[9 - suid shellcode]]
 
 
 

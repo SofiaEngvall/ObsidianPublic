@@ -43,6 +43,7 @@ gdb commands
 
 cool reverse commands!
 
+`at 1234` attach to process 1234
 <font color=red>SUID SGID: You can only debug a setuid or setgid program if the debugger is running as root. Otherwise you could just call gdb on /bin/su and have root. If you run Gdb as root, you'll be able to run your program, but you'll only be observing its behavior when run by root.<br>
 <br>
 If you need to debug the program when it's not started by root, start the program outside Gdb, make it pause in some fashion before getting to the troublesome part, and `attach` the process inside Gdb (`at 1234` where 1234 is the process ID).</font>

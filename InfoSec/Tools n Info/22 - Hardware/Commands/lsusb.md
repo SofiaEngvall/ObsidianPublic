@@ -1,3 +1,0 @@
-
-list usb devices
-`lsusb`

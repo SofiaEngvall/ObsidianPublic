@@ -1,7 +1,7 @@
 
 `/usr/local/bin/validate`
 
-Ghidra decompiled code:
+Ghidra disassembled code:
 ```c
 int main(int argc,char **argv)
 {
