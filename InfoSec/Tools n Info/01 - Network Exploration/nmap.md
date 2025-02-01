@@ -1,4 +1,5 @@
 
+https://nmap.org/book/man-port-scanning-techniques.html
 
 ### Scanning a network
 
