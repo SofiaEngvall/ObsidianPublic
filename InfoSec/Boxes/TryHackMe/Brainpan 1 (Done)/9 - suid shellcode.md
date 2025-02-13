@@ -20,5 +20,6 @@ We will use pwntools shellcraft functionality to get the code we need:
 
 This gives us the shellcode to use later.
 
-
 `pwn shellcraft --format d --avoid "\x00\x46" amd64.linux.setreuid 1001 + amd64.linux.sh`
+
+I'm going pwntools on this one instead - great opportunity to learn

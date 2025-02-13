@@ -2,7 +2,7 @@
  (*details on video ideas in private notes*)
  
 
-- video speed up - browser plugin
+- video speed up - browser plugin - Finished
 - "Magic" study tips
 
 - The Python Course Series

@@ -1,4 +1,9 @@
 
+FOMO - Fear of Missing Out, like stressing people to buy or click an email
+
+CTI - Cyber Threat Intelligence
+DFIR - Digital Forensic & Incident Response
+
 RCE - Remote Code Execution
 
 soar - security orchestration, automation and response

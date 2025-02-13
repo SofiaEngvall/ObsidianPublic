@@ -1,4 +1,6 @@
 
+Guides:
+https://www.rapid7.com/blog/post/2019/02/20/iot-security-introduction-to-embedded-hardware-hacking/
 
 Find a way to connect a ttl to usb adapter
 

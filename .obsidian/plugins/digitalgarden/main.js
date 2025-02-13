@@ -21084,16 +21084,21 @@ var TreeView_default = TreeView;
 
 // src/views/PublicationCenter/PublicationCenter.svelte
 function add_css2(target) {
-  append_styles(target, "svelte-d3dhnt", ".title-separator.svelte-d3dhnt{margin-top:0px;margin-bottom:15px}.footer-separator.svelte-d3dhnt{margin-top:15px;margin-bottom:15px}.footer.svelte-d3dhnt{display:flex;justify-content:flex-end}.loading-msg.svelte-d3dhnt{font-size:1.2rem;display:flex;align-items:center;flex-direction:column}button.svelte-d3dhnt{background-color:var(--interactive-accent);color:var(--text-on-accent);cursor:pointer;font-weight:bold}.loading-container.svelte-d3dhnt{width:100%;height:5px;margin-top:10px}.loading-bar.svelte-d3dhnt{background-color:var(--interactive-accent);height:100%;transition:all 0.5s ease-in-out}.published.svelte-d3dhnt{color:#8bff8b}.deleted.svelte-d3dhnt{color:#ff5757}");
-}
-function get_each_context2(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[23] = list[i];
-  return child_ctx;
+  append_styles(target, "svelte-ghd9h6", ".title-separator.svelte-ghd9h6{margin-top:0px;margin-bottom:15px}.footer-separator.svelte-ghd9h6{margin-top:15px;margin-bottom:15px}.footer.svelte-ghd9h6{display:flex;justify-content:flex-end}.loading-msg.svelte-ghd9h6{font-size:1.2rem;display:flex;align-items:center;flex-direction:column}button.svelte-ghd9h6{background-color:var(--interactive-accent);color:var(--text-on-accent);cursor:pointer;font-weight:bold}.loading-container.svelte-ghd9h6{width:100%;height:5px;margin-top:10px}.loading-bar.svelte-ghd9h6{background-color:var(--interactive-accent);height:100%;transition:all 0.5s ease-in-out}.published.svelte-ghd9h6{color:#8bff8b}.deleted.svelte-ghd9h6{color:#ff5757}.warning.svelte-ghd9h6{background-color:rgba(255, 150, 0, 0.1);border:1px solid rgba(255, 150, 0, 0.2);border-radius:4px;padding:10px;margin-bottom:15px}.callout-title.svelte-ghd9h6{font-weight:bold;margin-bottom:8px}.problematic-file.svelte-ghd9h6{display:flex;flex-direction:column;margin:5px 0;padding:5px 0;border-bottom:1px solid rgba(255, 150, 0, 0.1)}.file-path.svelte-ghd9h6{font-family:monospace;color:var(--text-muted)}.file-issue.svelte-ghd9h6{font-size:0.9em;margin-top:2px}");
 }
 function get_each_context_1(ctx, list, i) {
   const child_ctx = ctx.slice();
-  child_ctx[26] = list[i];
+  child_ctx[28] = list[i];
+  return child_ctx;
+}
+function get_each_context_2(ctx, list, i) {
+  const child_ctx = ctx.slice();
+  child_ctx[31] = list[i];
+  return child_ctx;
+}
+function get_each_context2(ctx, list, i) {
+  const child_ctx = ctx.slice();
+  child_ctx[25] = list[i];
   return child_ctx;
 }
 function create_else_block2(ctx) {
@@ -21124,9 +21129,9 @@ function create_else_block2(ctx) {
   let dispose;
   let if_block = (
     /*failedPublish*/
-    ctx[16].length > 0 && create_if_block_9(ctx)
+    ctx[17].length > 0 && create_if_block_10(ctx)
   );
-  let each_value_1 = ensure_array_like(
+  let each_value_2 = ensure_array_like(
     /*unpublishedToPublish*/
     ctx[3].concat(
       /*changedToPublish*/
@@ -21134,19 +21139,19 @@ function create_else_block2(ctx) {
     )
   );
   let each_blocks_1 = [];
-  for (let i = 0; i < each_value_1.length; i += 1) {
-    each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+  for (let i = 0; i < each_value_2.length; i += 1) {
+    each_blocks_1[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
   }
   const out = (i) => transition_out(each_blocks_1[i], 1, 1, () => {
     each_blocks_1[i] = null;
   });
-  let each_value = ensure_array_like(
+  let each_value_1 = ensure_array_like(
     /*pathsToDelete*/
     ctx[5]
   );
   let each_blocks = [];
-  for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block2(get_each_context2(ctx, each_value, i));
+  for (let i = 0; i < each_value_1.length; i += 1) {
+    each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
   }
   const out_1 = (i) => transition_out(each_blocks[i], 1, 1, () => {
     each_blocks[i] = null;
@@ -21181,18 +21186,18 @@ function create_else_block2(ctx) {
       button = element("button");
       button.textContent = "DONE";
       attr(div0, "class", "callout-title-inner");
-      attr(div2, "class", "loading-bar svelte-d3dhnt");
+      attr(div2, "class", "loading-bar svelte-ghd9h6");
       set_style(
         div2,
         "width",
         /*publishProgress*/
-        ctx[12] + "%"
+        ctx[13] + "%"
       );
-      attr(div3, "class", "loading-container svelte-d3dhnt");
+      attr(div3, "class", "loading-container svelte-ghd9h6");
       attr(div4, "class", "callout");
-      attr(hr, "class", "footer-separator svelte-d3dhnt");
-      attr(button, "class", "svelte-d3dhnt");
-      attr(div5, "class", "footer svelte-d3dhnt");
+      attr(hr, "class", "footer-separator svelte-ghd9h6");
+      attr(button, "class", "svelte-ghd9h6");
+      attr(div5, "class", "footer svelte-ghd9h6");
     },
     m(target, anchor) {
       insert(target, div6, anchor);
@@ -21238,7 +21243,7 @@ function create_else_block2(ctx) {
     },
     p(new_ctx, dirty) {
       ctx = new_ctx;
-      if ((!current || dirty & /*publishedPaths, unpublishedToPublish, changedToPublish, pathsToDelete*/
+      if ((!current || dirty[0] & /*publishedPaths, unpublishedToPublish, changedToPublish, pathsToDelete*/
       120) && t2_value !== (t2_value = `${/*publishedPaths*/
       ctx[6].length} of ${/*unpublishedToPublish*/
       ctx[3].length + /*changedToPublish*/
@@ -21247,21 +21252,21 @@ function create_else_block2(ctx) {
         set_data(t2, t2_value);
       if (
         /*failedPublish*/
-        ctx[16].length > 0
+        ctx[17].length > 0
       )
         if_block.p(ctx, dirty);
-      if (!current || dirty & /*publishProgress*/
-      4096) {
+      if (!current || dirty[0] & /*publishProgress*/
+      8192) {
         set_style(
           div2,
           "width",
           /*publishProgress*/
-          ctx[12] + "%"
+          ctx[13] + "%"
         );
       }
-      if (dirty & /*publishedPaths, unpublishedToPublish, changedToPublish, rotatingCog, processingPaths, failedPublish*/
-      82264) {
-        each_value_1 = ensure_array_like(
+      if (dirty[0] & /*publishedPaths, unpublishedToPublish, changedToPublish, rotatingCog, processingPaths, failedPublish*/
+      164440) {
+        each_value_2 = ensure_array_like(
           /*unpublishedToPublish*/
           ctx[3].concat(
             /*changedToPublish*/
@@ -21269,45 +21274,45 @@ function create_else_block2(ctx) {
           )
         );
         let i;
-        for (i = 0; i < each_value_1.length; i += 1) {
-          const child_ctx = get_each_context_1(ctx, each_value_1, i);
+        for (i = 0; i < each_value_2.length; i += 1) {
+          const child_ctx = get_each_context_2(ctx, each_value_2, i);
           if (each_blocks_1[i]) {
             each_blocks_1[i].p(child_ctx, dirty);
             transition_in(each_blocks_1[i], 1);
           } else {
-            each_blocks_1[i] = create_each_block_1(child_ctx);
+            each_blocks_1[i] = create_each_block_2(child_ctx);
             each_blocks_1[i].c();
             transition_in(each_blocks_1[i], 1);
             each_blocks_1[i].m(div6, t6);
           }
         }
         group_outros();
-        for (i = each_value_1.length; i < each_blocks_1.length; i += 1) {
+        for (i = each_value_2.length; i < each_blocks_1.length; i += 1) {
           out(i);
         }
         check_outros();
       }
-      if (dirty & /*publishedPaths, pathsToDelete, rotatingCog, processingPaths*/
-      16736) {
-        each_value = ensure_array_like(
+      if (dirty[0] & /*publishedPaths, pathsToDelete, rotatingCog, processingPaths*/
+      33376) {
+        each_value_1 = ensure_array_like(
           /*pathsToDelete*/
           ctx[5]
         );
         let i;
-        for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context2(ctx, each_value, i);
+        for (i = 0; i < each_value_1.length; i += 1) {
+          const child_ctx = get_each_context_1(ctx, each_value_1, i);
           if (each_blocks[i]) {
             each_blocks[i].p(child_ctx, dirty);
             transition_in(each_blocks[i], 1);
           } else {
-            each_blocks[i] = create_each_block2(child_ctx);
+            each_blocks[i] = create_each_block_1(child_ctx);
             each_blocks[i].c();
             transition_in(each_blocks[i], 1);
             each_blocks[i].m(div6, t7);
           }
         }
         group_outros();
-        for (i = each_value.length; i < each_blocks.length; i += 1) {
+        for (i = each_value_1.length; i < each_blocks.length; i += 1) {
           out_1(i);
         }
         check_outros();
@@ -21316,10 +21321,10 @@ function create_else_block2(ctx) {
     i(local) {
       if (current)
         return;
-      for (let i = 0; i < each_value_1.length; i += 1) {
+      for (let i = 0; i < each_value_2.length; i += 1) {
         transition_in(each_blocks_1[i]);
       }
-      for (let i = 0; i < each_value.length; i += 1) {
+      for (let i = 0; i < each_value_1.length; i += 1) {
         transition_in(each_blocks[i]);
       }
       current = true;
@@ -21350,28 +21355,33 @@ function create_else_block2(ctx) {
 }
 function create_if_block_12(ctx) {
   var _a2, _b, _c, _d;
-  let treeview0;
   let t0;
-  let treeview1;
+  let treeview0;
   let t1;
-  let treeview2;
+  let treeview1;
   let t2;
-  let treeview3;
+  let treeview2;
   let t3;
-  let hr;
+  let treeview3;
   let t4;
+  let hr;
+  let t5;
   let div;
   let button;
   let current;
   let mounted;
   let dispose;
+  let if_block = (
+    /*problematicFiles*/
+    ctx[8].length > 0 && create_if_block_22(ctx)
+  );
   treeview0 = new TreeView_default({
     props: {
       tree: (
         /*unpublishedNoteTree*/
-        (_a2 = ctx[11]) != null ? _a2 : (
+        (_a2 = ctx[12]) != null ? _a2 : (
           /*emptyNode*/
-          ctx[18]
+          ctx[19]
         )
       ),
       showDiff: (
@@ -21384,9 +21394,9 @@ function create_if_block_12(ctx) {
     props: {
       tree: (
         /*changedNotesTree*/
-        (_b = ctx[10]) != null ? _b : (
+        (_b = ctx[11]) != null ? _b : (
           /*emptyNode*/
-          ctx[18]
+          ctx[19]
         )
       ),
       showDiff: (
@@ -21400,9 +21410,9 @@ function create_if_block_12(ctx) {
     props: {
       tree: (
         /*deletedNoteTree*/
-        (_c = ctx[9]) != null ? _c : (
+        (_c = ctx[10]) != null ? _c : (
           /*emptyNode*/
-          ctx[18]
+          ctx[19]
         )
       ),
       showDiff: (
@@ -21416,9 +21426,9 @@ function create_if_block_12(ctx) {
       readOnly: true,
       tree: (
         /*publishedNotesTree*/
-        (_d = ctx[13]) != null ? _d : (
+        (_d = ctx[14]) != null ? _d : (
           /*emptyNode*/
-          ctx[18]
+          ctx[19]
         )
       ),
       showDiff: (
@@ -21429,34 +21439,40 @@ function create_if_block_12(ctx) {
   });
   return {
     c() {
-      create_component(treeview0.$$.fragment);
+      if (if_block)
+        if_block.c();
       t0 = space();
-      create_component(treeview1.$$.fragment);
+      create_component(treeview0.$$.fragment);
       t1 = space();
-      create_component(treeview2.$$.fragment);
+      create_component(treeview1.$$.fragment);
       t2 = space();
-      create_component(treeview3.$$.fragment);
+      create_component(treeview2.$$.fragment);
       t3 = space();
-      hr = element("hr");
+      create_component(treeview3.$$.fragment);
       t4 = space();
+      hr = element("hr");
+      t5 = space();
       div = element("div");
       button = element("button");
       button.textContent = "PUBLISH SELECTED";
-      attr(hr, "class", "footer-separator svelte-d3dhnt");
-      attr(button, "class", "svelte-d3dhnt");
-      attr(div, "class", "footer svelte-d3dhnt");
+      attr(hr, "class", "footer-separator svelte-ghd9h6");
+      attr(button, "class", "svelte-ghd9h6");
+      attr(div, "class", "footer svelte-ghd9h6");
     },
     m(target, anchor) {
-      mount_component(treeview0, target, anchor);
+      if (if_block)
+        if_block.m(target, anchor);
       insert(target, t0, anchor);
-      mount_component(treeview1, target, anchor);
+      mount_component(treeview0, target, anchor);
       insert(target, t1, anchor);
-      mount_component(treeview2, target, anchor);
+      mount_component(treeview1, target, anchor);
       insert(target, t2, anchor);
-      mount_component(treeview3, target, anchor);
+      mount_component(treeview2, target, anchor);
       insert(target, t3, anchor);
-      insert(target, hr, anchor);
+      mount_component(treeview3, target, anchor);
       insert(target, t4, anchor);
+      insert(target, hr, anchor);
+      insert(target, t5, anchor);
       insert(target, div, anchor);
       append(div, button);
       current = true;
@@ -21465,61 +21481,76 @@ function create_if_block_12(ctx) {
           button,
           "click",
           /*publishMarkedNotes*/
-          ctx[17]
+          ctx[18]
         );
         mounted = true;
       }
     },
     p(ctx2, dirty) {
       var _a3, _b2, _c2, _d2;
+      if (
+        /*problematicFiles*/
+        ctx2[8].length > 0
+      ) {
+        if (if_block) {
+          if_block.p(ctx2, dirty);
+        } else {
+          if_block = create_if_block_22(ctx2);
+          if_block.c();
+          if_block.m(t0.parentNode, t0);
+        }
+      } else if (if_block) {
+        if_block.d(1);
+        if_block = null;
+      }
       const treeview0_changes = {};
-      if (dirty & /*unpublishedNoteTree*/
-      2048)
+      if (dirty[0] & /*unpublishedNoteTree*/
+      4096)
         treeview0_changes.tree = /*unpublishedNoteTree*/
-        (_a3 = ctx2[11]) != null ? _a3 : (
+        (_a3 = ctx2[12]) != null ? _a3 : (
           /*emptyNode*/
-          ctx2[18]
+          ctx2[19]
         );
-      if (dirty & /*showDiff*/
+      if (dirty[0] & /*showDiff*/
       1)
         treeview0_changes.showDiff = /*showDiff*/
         ctx2[0];
       treeview0.$set(treeview0_changes);
       const treeview1_changes = {};
-      if (dirty & /*changedNotesTree*/
-      1024)
+      if (dirty[0] & /*changedNotesTree*/
+      2048)
         treeview1_changes.tree = /*changedNotesTree*/
-        (_b2 = ctx2[10]) != null ? _b2 : (
+        (_b2 = ctx2[11]) != null ? _b2 : (
           /*emptyNode*/
-          ctx2[18]
+          ctx2[19]
         );
-      if (dirty & /*showDiff*/
+      if (dirty[0] & /*showDiff*/
       1)
         treeview1_changes.showDiff = /*showDiff*/
         ctx2[0];
       treeview1.$set(treeview1_changes);
       const treeview2_changes = {};
-      if (dirty & /*deletedNoteTree*/
-      512)
+      if (dirty[0] & /*deletedNoteTree*/
+      1024)
         treeview2_changes.tree = /*deletedNoteTree*/
-        (_c2 = ctx2[9]) != null ? _c2 : (
+        (_c2 = ctx2[10]) != null ? _c2 : (
           /*emptyNode*/
-          ctx2[18]
+          ctx2[19]
         );
-      if (dirty & /*showDiff*/
+      if (dirty[0] & /*showDiff*/
       1)
         treeview2_changes.showDiff = /*showDiff*/
         ctx2[0];
       treeview2.$set(treeview2_changes);
       const treeview3_changes = {};
-      if (dirty & /*publishedNotesTree*/
-      8192)
+      if (dirty[0] & /*publishedNotesTree*/
+      16384)
         treeview3_changes.tree = /*publishedNotesTree*/
-        (_d2 = ctx2[13]) != null ? _d2 : (
+        (_d2 = ctx2[14]) != null ? _d2 : (
           /*emptyNode*/
-          ctx2[18]
+          ctx2[19]
         );
-      if (dirty & /*showDiff*/
+      if (dirty[0] & /*showDiff*/
       1)
         treeview3_changes.showDiff = /*showDiff*/
         ctx2[0];
@@ -21547,10 +21578,13 @@ function create_if_block_12(ctx) {
         detach(t1);
         detach(t2);
         detach(t3);
-        detach(hr);
         detach(t4);
+        detach(hr);
+        detach(t5);
         detach(div);
       }
+      if (if_block)
+        if_block.d(detaching);
       destroy_component(treeview0, detaching);
       destroy_component(treeview1, detaching);
       destroy_component(treeview2, detaching);
@@ -21566,7 +21600,7 @@ function create_if_block2(ctx) {
   let html_tag;
   let raw_value = (
     /*bigRotatingCog*/
-    ((_a2 = ctx[15]()) == null ? void 0 : _a2.outerHTML) + ""
+    ((_a2 = ctx[16]()) == null ? void 0 : _a2.outerHTML) + ""
   );
   let t0;
   let div0;
@@ -21578,7 +21612,7 @@ function create_if_block2(ctx) {
       div0 = element("div");
       div0.textContent = "Calculating publication status from GitHub";
       html_tag.a = t0;
-      attr(div1, "class", "loading-msg svelte-d3dhnt");
+      attr(div1, "class", "loading-msg svelte-ghd9h6");
     },
     m(target, anchor) {
       insert(target, div1, anchor);
@@ -21596,13 +21630,13 @@ function create_if_block2(ctx) {
     }
   };
 }
-function create_if_block_9(ctx) {
+function create_if_block_10(ctx) {
   let div;
   return {
     c() {
       div = element("div");
       div.textContent = `${`(${/*failedPublish*/
-      ctx[16].length} failed)`}`;
+      ctx[17].length} failed)`}`;
     },
     m(target, anchor) {
       insert(target, div, anchor);
@@ -21643,7 +21677,7 @@ function create_else_block_2(ctx) {
     }
   };
 }
-function create_if_block_8(ctx) {
+function create_if_block_9(ctx) {
   let icon;
   let current;
   icon = new Icon_default({ props: { name: "cross" } });
@@ -21671,7 +21705,7 @@ function create_if_block_8(ctx) {
     }
   };
 }
-function create_if_block_72(ctx) {
+function create_if_block_8(ctx) {
   let icon;
   let current;
   icon = new Icon_default({ props: { name: "check" } });
@@ -21699,12 +21733,12 @@ function create_if_block_72(ctx) {
     }
   };
 }
-function create_if_block_62(ctx) {
+function create_if_block_72(ctx) {
   var _a2;
   let html_tag;
   let raw_value = (
     /*rotatingCog*/
-    ((_a2 = ctx[14]()) == null ? void 0 : _a2.outerHTML) + ""
+    ((_a2 = ctx[15]()) == null ? void 0 : _a2.outerHTML) + ""
   );
   let html_anchor;
   return {
@@ -21728,13 +21762,13 @@ function create_if_block_62(ctx) {
     }
   };
 }
-function create_if_block_52(ctx) {
+function create_if_block_62(ctx) {
   let span;
   return {
     c() {
       span = element("span");
       span.textContent = "- PUBLISHED";
-      attr(span, "class", "published svelte-d3dhnt");
+      attr(span, "class", "published svelte-ghd9h6");
     },
     m(target, anchor) {
       insert(target, span, anchor);
@@ -21746,7 +21780,7 @@ function create_if_block_52(ctx) {
     }
   };
 }
-function create_each_block_1(ctx) {
+function create_each_block_2(ctx) {
   let div;
   let show_if_1;
   let show_if_2;
@@ -21756,7 +21790,7 @@ function create_each_block_1(ctx) {
   let t0;
   let t1_value = (
     /*note*/
-    ctx[26].file.name + ""
+    ctx[31].file.name + ""
   );
   let t1;
   let t2;
@@ -21764,27 +21798,27 @@ function create_each_block_1(ctx) {
     /*publishedPaths*/
     ctx[6].includes(
       /*note*/
-      ctx[26].getPath()
+      ctx[31].getPath()
     )
   );
   let current;
-  const if_block_creators = [create_if_block_62, create_if_block_72, create_if_block_8, create_else_block_2];
+  const if_block_creators = [create_if_block_72, create_if_block_8, create_if_block_9, create_else_block_2];
   const if_blocks = [];
   function select_block_type_1(ctx2, dirty) {
-    if (dirty & /*processingPaths, unpublishedToPublish, changedToPublish*/
-    280)
+    if (dirty[0] & /*processingPaths, unpublishedToPublish, changedToPublish*/
+    536)
       show_if_1 = null;
-    if (dirty & /*publishedPaths, unpublishedToPublish, changedToPublish*/
+    if (dirty[0] & /*publishedPaths, unpublishedToPublish, changedToPublish*/
     88)
       show_if_2 = null;
-    if (dirty & /*unpublishedToPublish, changedToPublish*/
+    if (dirty[0] & /*unpublishedToPublish, changedToPublish*/
     24)
       show_if_3 = null;
     if (show_if_1 == null)
       show_if_1 = !!/*processingPaths*/
-      ctx2[8].includes(
+      ctx2[9].includes(
         /*note*/
-        ctx2[26].getPath()
+        ctx2[31].getPath()
       );
     if (show_if_1)
       return 0;
@@ -21792,23 +21826,23 @@ function create_each_block_1(ctx) {
       show_if_2 = !!/*publishedPaths*/
       ctx2[6].includes(
         /*note*/
-        ctx2[26].getPath()
+        ctx2[31].getPath()
       );
     if (show_if_2)
       return 1;
     if (show_if_3 == null)
       show_if_3 = !!/*failedPublish*/
-      ctx2[16].includes(
+      ctx2[17].includes(
         /*note*/
-        ctx2[26].getPath()
+        ctx2[31].getPath()
       );
     if (show_if_3)
       return 2;
     return 3;
   }
-  current_block_type_index = select_block_type_1(ctx, -1);
+  current_block_type_index = select_block_type_1(ctx, [-1, -1]);
   if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-  let if_block1 = show_if && create_if_block_52(ctx);
+  let if_block1 = show_if && create_if_block_62(ctx);
   return {
     c() {
       div = element("div");
@@ -21851,21 +21885,21 @@ function create_each_block_1(ctx) {
         transition_in(if_block0, 1);
         if_block0.m(div, t0);
       }
-      if ((!current || dirty & /*unpublishedToPublish, changedToPublish*/
+      if ((!current || dirty[0] & /*unpublishedToPublish, changedToPublish*/
       24) && t1_value !== (t1_value = /*note*/
-      ctx2[26].file.name + ""))
+      ctx2[31].file.name + ""))
         set_data(t1, t1_value);
-      if (dirty & /*publishedPaths, unpublishedToPublish, changedToPublish*/
+      if (dirty[0] & /*publishedPaths, unpublishedToPublish, changedToPublish*/
       88)
         show_if = /*publishedPaths*/
         ctx2[6].includes(
           /*note*/
-          ctx2[26].getPath()
+          ctx2[31].getPath()
         );
       if (show_if) {
         if (if_block1) {
         } else {
-          if_block1 = create_if_block_52(ctx2);
+          if_block1 = create_if_block_62(ctx2);
           if_block1.c();
           if_block1.m(div, null);
         }
@@ -21922,7 +21956,7 @@ function create_else_block_1(ctx) {
     }
   };
 }
-function create_if_block_42(ctx) {
+function create_if_block_52(ctx) {
   let icon;
   let current;
   icon = new Icon_default({ props: { name: "check" } });
@@ -21950,12 +21984,12 @@ function create_if_block_42(ctx) {
     }
   };
 }
-function create_if_block_32(ctx) {
+function create_if_block_42(ctx) {
   var _a2;
   let html_tag;
   let raw_value = (
     /*rotatingCog*/
-    ((_a2 = ctx[14]()) == null ? void 0 : _a2.outerHTML) + ""
+    ((_a2 = ctx[15]()) == null ? void 0 : _a2.outerHTML) + ""
   );
   let html_anchor;
   return {
@@ -21979,13 +22013,13 @@ function create_if_block_32(ctx) {
     }
   };
 }
-function create_if_block_22(ctx) {
+function create_if_block_32(ctx) {
   let span;
   return {
     c() {
       span = element("span");
       span.textContent = "- DELETED";
-      attr(span, "class", "deleted svelte-d3dhnt");
+      attr(span, "class", "deleted svelte-ghd9h6");
     },
     m(target, anchor) {
       insert(target, span, anchor);
@@ -21997,7 +22031,7 @@ function create_if_block_22(ctx) {
     }
   };
 }
-function create_each_block2(ctx) {
+function create_each_block_1(ctx) {
   let div;
   let show_if_1;
   let show_if_2;
@@ -22006,7 +22040,7 @@ function create_each_block2(ctx) {
   let t0;
   let t1_value = (
     /*path*/
-    ctx[23].split("/").last() + ""
+    ctx[28].split("/").last() + ""
   );
   let t1;
   let t2;
@@ -22014,24 +22048,24 @@ function create_each_block2(ctx) {
     /*publishedPaths*/
     ctx[6].includes(
       /*path*/
-      ctx[23]
+      ctx[28]
     )
   );
   let current;
-  const if_block_creators = [create_if_block_32, create_if_block_42, create_else_block_1];
+  const if_block_creators = [create_if_block_42, create_if_block_52, create_else_block_1];
   const if_blocks = [];
   function select_block_type_2(ctx2, dirty) {
-    if (dirty & /*processingPaths, pathsToDelete*/
-    288)
+    if (dirty[0] & /*processingPaths, pathsToDelete*/
+    544)
       show_if_1 = null;
-    if (dirty & /*publishedPaths, pathsToDelete*/
+    if (dirty[0] & /*publishedPaths, pathsToDelete*/
     96)
       show_if_2 = null;
     if (show_if_1 == null)
       show_if_1 = !!/*processingPaths*/
-      ctx2[8].includes(
+      ctx2[9].includes(
         /*path*/
-        ctx2[23]
+        ctx2[28]
       );
     if (show_if_1)
       return 0;
@@ -22039,15 +22073,15 @@ function create_each_block2(ctx) {
       show_if_2 = !!/*publishedPaths*/
       ctx2[6].includes(
         /*path*/
-        ctx2[23]
+        ctx2[28]
       );
     if (show_if_2)
       return 1;
     return 2;
   }
-  current_block_type_index = select_block_type_2(ctx, -1);
+  current_block_type_index = select_block_type_2(ctx, [-1, -1]);
   if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-  let if_block1 = show_if && create_if_block_22(ctx);
+  let if_block1 = show_if && create_if_block_32(ctx);
   return {
     c() {
       div = element("div");
@@ -22090,21 +22124,21 @@ function create_each_block2(ctx) {
         transition_in(if_block0, 1);
         if_block0.m(div, t0);
       }
-      if ((!current || dirty & /*pathsToDelete*/
+      if ((!current || dirty[0] & /*pathsToDelete*/
       32) && t1_value !== (t1_value = /*path*/
-      ctx2[23].split("/").last() + ""))
+      ctx2[28].split("/").last() + ""))
         set_data(t1, t1_value);
-      if (dirty & /*publishedPaths, pathsToDelete*/
+      if (dirty[0] & /*publishedPaths, pathsToDelete*/
       96)
         show_if = /*publishedPaths*/
         ctx2[6].includes(
           /*path*/
-          ctx2[23]
+          ctx2[28]
         );
       if (show_if) {
         if (if_block1) {
         } else {
-          if_block1 = create_if_block_22(ctx2);
+          if_block1 = create_if_block_32(ctx2);
           if_block1.c();
           if_block1.m(div, null);
         }
@@ -22133,6 +22167,131 @@ function create_each_block2(ctx) {
     }
   };
 }
+function create_if_block_22(ctx) {
+  let div2;
+  let div0;
+  let t1;
+  let div1;
+  let each_value = ensure_array_like(
+    /*problematicFiles*/
+    ctx[8]
+  );
+  let each_blocks = [];
+  for (let i = 0; i < each_value.length; i += 1) {
+    each_blocks[i] = create_each_block2(get_each_context2(ctx, each_value, i));
+  }
+  return {
+    c() {
+      div2 = element("div");
+      div0 = element("div");
+      div0.textContent = "\u26A0\uFE0F Warning: Issues Found";
+      t1 = space();
+      div1 = element("div");
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        each_blocks[i].c();
+      }
+      attr(div0, "class", "callout-title svelte-ghd9h6");
+      attr(div1, "class", "callout-content");
+      attr(div2, "class", "callout warning svelte-ghd9h6");
+    },
+    m(target, anchor) {
+      insert(target, div2, anchor);
+      append(div2, div0);
+      append(div2, t1);
+      append(div2, div1);
+      for (let i = 0; i < each_blocks.length; i += 1) {
+        if (each_blocks[i]) {
+          each_blocks[i].m(div1, null);
+        }
+      }
+    },
+    p(ctx2, dirty) {
+      if (dirty[0] & /*problematicFiles*/
+      256) {
+        each_value = ensure_array_like(
+          /*problematicFiles*/
+          ctx2[8]
+        );
+        let i;
+        for (i = 0; i < each_value.length; i += 1) {
+          const child_ctx = get_each_context2(ctx2, each_value, i);
+          if (each_blocks[i]) {
+            each_blocks[i].p(child_ctx, dirty);
+          } else {
+            each_blocks[i] = create_each_block2(child_ctx);
+            each_blocks[i].c();
+            each_blocks[i].m(div1, null);
+          }
+        }
+        for (; i < each_blocks.length; i += 1) {
+          each_blocks[i].d(1);
+        }
+        each_blocks.length = each_value.length;
+      }
+    },
+    d(detaching) {
+      if (detaching) {
+        detach(div2);
+      }
+      destroy_each(each_blocks, detaching);
+    }
+  };
+}
+function create_each_block2(ctx) {
+  let div;
+  let span0;
+  let t0_value = (
+    /*file*/
+    ctx[25].path + ""
+  );
+  let t0;
+  let t1;
+  let span1;
+  let t2_value = (
+    /*file*/
+    ctx[25].issue + ""
+  );
+  let t2;
+  let t3;
+  return {
+    c() {
+      div = element("div");
+      span0 = element("span");
+      t0 = text(t0_value);
+      t1 = space();
+      span1 = element("span");
+      t2 = text(t2_value);
+      t3 = space();
+      attr(span0, "class", "file-path svelte-ghd9h6");
+      attr(span1, "class", "file-issue svelte-ghd9h6");
+      attr(div, "class", "problematic-file svelte-ghd9h6");
+    },
+    m(target, anchor) {
+      insert(target, div, anchor);
+      append(div, span0);
+      append(span0, t0);
+      append(div, t1);
+      append(div, span1);
+      append(span1, t2);
+      append(div, t3);
+    },
+    p(ctx2, dirty) {
+      if (dirty[0] & /*problematicFiles*/
+      256 && t0_value !== (t0_value = /*file*/
+      ctx2[25].path + ""))
+        set_data(t0, t0_value);
+      if (dirty[0] & /*problematicFiles*/
+      256 && t2_value !== (t2_value = /*file*/
+      ctx2[25].issue + ""))
+        set_data(t2, t2_value);
+    },
+    d(detaching) {
+      if (detaching) {
+        detach(div);
+      }
+    }
+  };
+}
 function create_fragment4(ctx) {
   let div;
   let hr;
@@ -22151,7 +22310,7 @@ function create_fragment4(ctx) {
       return 1;
     return 2;
   }
-  current_block_type_index = select_block_type(ctx, -1);
+  current_block_type_index = select_block_type(ctx, [-1, -1]);
   if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
   return {
     c() {
@@ -22159,7 +22318,7 @@ function create_fragment4(ctx) {
       hr = element("hr");
       t = space();
       if_block.c();
-      attr(hr, "class", "title-separator svelte-d3dhnt");
+      attr(hr, "class", "title-separator svelte-ghd9h6");
     },
     m(target, anchor) {
       insert(target, div, anchor);
@@ -22168,7 +22327,7 @@ function create_fragment4(ctx) {
       if_blocks[current_block_type_index].m(div, null);
       current = true;
     },
-    p(ctx2, [dirty]) {
+    p(ctx2, dirty) {
       let previous_block_index = current_block_type_index;
       current_block_type_index = select_block_type(ctx2, dirty);
       if (current_block_type_index === previous_block_index) {
@@ -22255,10 +22414,30 @@ function instance4($$self, $$props, $$invalidate) {
   let { close } = $$props;
   let publishStatus;
   let showPublishingView = false;
+  let problematicFiles = [];
   function getPublishStatus() {
     return __awaiter(this, void 0, void 0, function* () {
       $$invalidate(2, publishStatus = yield publishStatusManager.getPublishStatus());
+      validateFiles();
     });
+  }
+  function validateFiles() {
+    $$invalidate(8, problematicFiles = []);
+    if (!publishStatus)
+      return;
+    const homeFiles = [
+      ...publishStatus.publishedNotes,
+      ...publishStatus.unpublishedNotes,
+      ...publishStatus.changedNotes
+    ].filter((note) => note.frontmatter && note.frontmatter["dg-home"] === true);
+    if (homeFiles.length > 1) {
+      homeFiles.forEach((file) => {
+        problematicFiles.push({
+          path: file.getPath(),
+          issue: "Multiple files marked as home page (dg-home: true). Only one file should be marked as home."
+        });
+      });
+    }
   }
   onMount(getPublishStatus);
   const rotatingCog = () => {
@@ -22310,24 +22489,24 @@ function instance4($$self, $$props, $$invalidate) {
     $$invalidate(4, changedToPublish = (_b = publishStatus === null || publishStatus === void 0 ? void 0 : publishStatus.changedNotes.filter((note) => changedPaths.includes(note.getPath()))) !== null && _b !== void 0 ? _b : []);
     $$invalidate(7, showPublishingView = true);
     const allNotesToPublish = unpublishedToPublish.concat(changedToPublish);
-    $$invalidate(8, processingPaths = [...allNotesToPublish.map((note) => note.getPath())]);
+    $$invalidate(9, processingPaths = [...allNotesToPublish.map((note) => note.getPath())]);
     yield publisher.publishBatch(allNotesToPublish);
     $$invalidate(6, publishedPaths = [...processingPaths]);
-    $$invalidate(8, processingPaths = []);
+    $$invalidate(9, processingPaths = []);
     for (const path of notesToDelete) {
-      $$invalidate(8, processingPaths = [...processingPaths, path]);
+      $$invalidate(9, processingPaths = [...processingPaths, path]);
       yield publisher.deleteNote(path);
-      $$invalidate(8, processingPaths = processingPaths.filter((p) => p !== path));
+      $$invalidate(9, processingPaths = processingPaths.filter((p) => p !== path));
       $$invalidate(6, publishedPaths = [...publishedPaths, path]);
     }
     for (const path of imagesToDelete) {
-      $$invalidate(8, processingPaths = [...processingPaths, path]);
+      $$invalidate(9, processingPaths = [...processingPaths, path]);
       yield publisher.deleteImage(path);
-      $$invalidate(8, processingPaths = processingPaths.filter((p) => p !== path));
+      $$invalidate(9, processingPaths = processingPaths.filter((p) => p !== path));
       $$invalidate(6, publishedPaths = [...publishedPaths, path]);
     }
     $$invalidate(6, publishedPaths = [...publishedPaths, ...processingPaths]);
-    $$invalidate(8, processingPaths = []);
+    $$invalidate(9, processingPaths = []);
   });
   const emptyNode = {
     name: "",
@@ -22338,39 +22517,39 @@ function instance4($$self, $$props, $$invalidate) {
   };
   $$self.$$set = ($$props2) => {
     if ("publishStatusManager" in $$props2)
-      $$invalidate(19, publishStatusManager = $$props2.publishStatusManager);
+      $$invalidate(20, publishStatusManager = $$props2.publishStatusManager);
     if ("publisher" in $$props2)
-      $$invalidate(20, publisher = $$props2.publisher);
+      $$invalidate(21, publisher = $$props2.publisher);
     if ("showDiff" in $$props2)
       $$invalidate(0, showDiff = $$props2.showDiff);
     if ("close" in $$props2)
       $$invalidate(1, close = $$props2.close);
   };
   $$self.$$.update = () => {
-    if ($$self.$$.dirty & /*publishStatus*/
+    if ($$self.$$.dirty[0] & /*publishStatus*/
     4) {
       $:
-        $$invalidate(13, publishedNotesTree = publishStatus && filePathsToTree(publishStatus.publishedNotes.map((note) => note.getPath()), "Published Notes"));
+        $$invalidate(14, publishedNotesTree = publishStatus && filePathsToTree(publishStatus.publishedNotes.map((note) => note.getPath()), "Published Notes"));
     }
-    if ($$self.$$.dirty & /*publishStatus*/
+    if ($$self.$$.dirty[0] & /*publishStatus*/
     4) {
       $:
-        $$invalidate(10, changedNotesTree = publishStatus && filePathsToTree(publishStatus.changedNotes.map((note) => note.getPath()), "Changed Notes"));
+        $$invalidate(11, changedNotesTree = publishStatus && filePathsToTree(publishStatus.changedNotes.map((note) => note.getPath()), "Changed Notes"));
     }
-    if ($$self.$$.dirty & /*publishStatus*/
+    if ($$self.$$.dirty[0] & /*publishStatus*/
     4) {
       $:
-        $$invalidate(9, deletedNoteTree = publishStatus && filePathsToTree([...publishStatus.deletedNotePaths, ...publishStatus.deletedImagePaths].map((path) => path.path), "Deleted Notes"));
+        $$invalidate(10, deletedNoteTree = publishStatus && filePathsToTree([...publishStatus.deletedNotePaths, ...publishStatus.deletedImagePaths].map((path) => path.path), "Deleted Notes"));
     }
-    if ($$self.$$.dirty & /*publishStatus*/
+    if ($$self.$$.dirty[0] & /*publishStatus*/
     4) {
       $:
-        $$invalidate(11, unpublishedNoteTree = publishStatus && filePathsToTree(publishStatus.unpublishedNotes.map((note) => note.getPath()), "Unpublished Notes"));
+        $$invalidate(12, unpublishedNoteTree = publishStatus && filePathsToTree(publishStatus.unpublishedNotes.map((note) => note.getPath()), "Unpublished Notes"));
     }
-    if ($$self.$$.dirty & /*publishedPaths, unpublishedToPublish, changedToPublish, pathsToDelete*/
+    if ($$self.$$.dirty[0] & /*publishedPaths, unpublishedToPublish, changedToPublish, pathsToDelete*/
     120) {
       $:
-        $$invalidate(12, publishProgress = (publishedPaths.length + failedPublish.length) / (unpublishedToPublish.length + changedToPublish.length + pathsToDelete.length) * 100);
+        $$invalidate(13, publishProgress = (publishedPaths.length + failedPublish.length) / (unpublishedToPublish.length + changedToPublish.length + pathsToDelete.length) * 100);
     }
   };
   return [
@@ -22382,6 +22561,7 @@ function instance4($$self, $$props, $$invalidate) {
     pathsToDelete,
     publishedPaths,
     showPublishingView,
+    problematicFiles,
     processingPaths,
     deletedNoteTree,
     changedNotesTree,
@@ -22407,12 +22587,13 @@ var PublicationCenter = class extends SvelteComponent {
       create_fragment4,
       safe_not_equal,
       {
-        publishStatusManager: 19,
-        publisher: 20,
+        publishStatusManager: 20,
+        publisher: 21,
         showDiff: 0,
         close: 1
       },
-      add_css2
+      add_css2,
+      [-1, -1]
     );
   }
 };
@@ -23611,7 +23792,7 @@ var DigitalGardenSiteManager = class {
       );
       const hashes = {};
       for (const img of images) {
-        const vaultPath = decodeURI(img.path.replace(IMAGE_PATH_BASE2, ""));
+        const vaultPath = img.path.replace(IMAGE_PATH_BASE2, "");
         hashes[vaultPath] = img.sha;
       }
       return hashes;
@@ -29006,6 +29187,14 @@ var DigitalGardenSettingTab = class extends import_obsidian15.PluginSettingTab {
 
 // main.ts
 var import_js_logger9 = __toESM(require_logger());
+var defaultTheme = {
+  name: "Red Graphite",
+  author: "SeanWcom",
+  repo: "seanwcom/Red-Graphite-for-Obsidian",
+  screenshot: "thumbnail.png",
+  modes: ["dark", "light"],
+  cssUrl: "https://raw.githubusercontent.com/seanwcom/Red-Graphite-for-Obsidian/HEAD/theme.css"
+};
 var DEFAULT_SETTINGS = {
   githubRepo: "",
   githubToken: "",
@@ -29013,7 +29202,8 @@ var DEFAULT_SETTINGS = {
   gardenBaseUrl: "",
   prHistory: [],
   baseTheme: "dark",
-  theme: '{"name": "default", "modes": ["dark"]}',
+  // Stringify to be backwards compatible with older versions
+  theme: JSON.stringify(defaultTheme),
   faviconPath: "",
   useFullResolutionImages: false,
   noteSettingsIsInitialized: false,

