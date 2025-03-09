@@ -29,3 +29,10 @@ print(str(x))
 test = None  # does not have a value
 print(type(test))
 print(test)
+
+
+print(bool(0)) #prints False
+print(bool(1)) #prints True
+
+
+

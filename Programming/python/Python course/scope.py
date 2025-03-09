@@ -24,3 +24,7 @@ def scope_test():
 
 scope_test()
 print("In global scope:", spam)
+
+
+
+#observe that a global variable can be accessed for reading from a function but to write to it we need the "global varname"

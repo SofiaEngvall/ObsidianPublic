@@ -24,3 +24,13 @@ print('I found',word_count,'words without',letters+'.')
 file.close()
 
 #open(filename, 'r', encoding = 'utf-8-sig')
+
+
+print(file.name) #filename
+print(file.closed) #True/False
+print(file.mode) #mode used when opening
+
+with open("rockyou.txt", encoding="latin-1") af file
+  for line in file:
+    print(line.strip())
+

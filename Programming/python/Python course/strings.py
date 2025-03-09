@@ -87,6 +87,11 @@ print(str1.strip())
 
 string = 'hello'
 print('My string: {} world!'.format(string))
+print("{:x} {:.3f} {}".format(len(mystring),5.0,mystring))
+print('My string: {my_string_here} world!'.format(my_string_here=string))
+
+print('string length: % !' % len(string))
+
 
 #f'' strings
 num = 5.6
@@ -107,3 +112,20 @@ print(ord('A'))
 print(chr(65))
 
 print(len('my little test sting'))
+
+if mystring.startswith("something"):
+  pass
+
+if "hello" in mystring:
+  pass
+
+print(mystring.encode())
+print(mystring.encode("utf-8"))
+
+print(mystring.rjust(12))
+print(mystring.rjust(12,"."))
+
+print(mystring.ljust(12))
+print(mystring.ljust(12,"."))
+
+

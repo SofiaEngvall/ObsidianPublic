@@ -1,5 +1,5 @@
 
-
+`nxc smb <ip> -u '' -p '' -M gpp_password` fast user, priv, service enum
 
 
 ### Help
