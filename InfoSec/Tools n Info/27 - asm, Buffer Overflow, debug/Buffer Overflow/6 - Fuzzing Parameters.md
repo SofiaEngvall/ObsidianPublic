@@ -14,7 +14,7 @@ When you get a crash from an overflow, check:
 If we fail to get "the right" type of crash we might need to try both a smaller and a bigger amout of data.
 
 We usually run python scripts to test input automatically.
-An example here: [[Code/fuzzer.py]]
+An example here: [[../../../../Programming/python/Python Scripts for Hacking/bof/Code - moved from 999 python scripts/fuzzer.py]]
 
 In this script we can set the size of the steps we take when testing and it can do really big numbers.
 

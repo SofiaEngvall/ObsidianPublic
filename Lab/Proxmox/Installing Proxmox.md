@@ -110,11 +110,3 @@ The filesystem on /dev/pve/root is now 119736320 (4k) blocks long.
    ![[Images/Pasted image 20250227201354.png]]
 3. Run `apt update`
 4. Run `apt upgrade`
-
-
-### TODO!
-
-install ad on server
-install win11
-workarounds for gfx card sharing to kali
-

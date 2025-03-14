@@ -1,4 +1,4 @@
-#thm demo, expand
+#!/usr/bin/env python3
 
 from scapy.all import *
 

@@ -1,10 +1,12 @@
 
+##### Proxmox
 Recognition sign: Centurion
 i7 2600k 3.4 GHz (4 Cores, 8 Threads @3.4GHz, Sandy Bridge. Release date: Q1 2011)
 16 GB RAM
 256 GB SSD
 Nvidia GeForce GTX 970
 OBS! Broken power button!
+
 
 Recognition sign: Blue box
 i5 2500k 3.3 GHz (4 Cores, 4 Threads @3.3 GHz, Sandy Bridge. Release date ≤ Q4 2013)

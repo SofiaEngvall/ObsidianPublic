@@ -25,3 +25,5 @@ root@pve:~#
 
 In the VMs Hardware settings: Add PCI Device → Select NVIDIA 970 with "All Functions" and "Primary GPU" enabled.
 
+We ran into problems here - The motherboard on my proxmox server is two years too old to have the feature = We can't share the pci card to the vm
+

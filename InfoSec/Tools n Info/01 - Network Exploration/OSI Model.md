@@ -8,3 +8,5 @@
 |Layer 3|Network layer|Logical addressing and routing between networks|IP, ICMP, IPSec|
 |Layer 2|Data link layer|Reliable data transfer between adjacent nodes|Ethernet (802.3), WiFi (802.11)|
 |Layer 1|Physical layer|Physical data transmission media|Electrical, optical, and wireless signals|
+
+![[Images/Pasted image 20250312184926.png]]

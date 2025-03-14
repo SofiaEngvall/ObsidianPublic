@@ -33,10 +33,12 @@ Ctrl+G Go to packet number
 
 ### Manual filters
 
-`(tcp || udp) && (ip.src ==  8.8.8.8 || ip.dst == 8.8.8.8)`
-
 `(tcp || udp) && (ip.src ==  10.0.0.3 || ip.dst == 10.0.0.3)`
+`(tcp || udp) && (ip.addr == 8.8.8.8)` same as above
 
+`ip.addr`
+`tcp.port`
+`udp.port`
 
 To display packets with a specific source IP address:
 `ip.src == 192.168.1.1`
@@ -71,4 +73,15 @@ To display all traffic except DNS:
 `!(dns)`
 
 [Wireshark Display Filter Reference](https://www.wireshark.org/docs/dfref/)
+
+#### Filtering Operators
+
+- and - operator: and / &&
+- or - operator: or / ||
+- equals - operator: eq / ==
+- not equal - operator: ne / !=
+- greater than - operator: gt /  >
+- less than - operator: lt / <
+
+There's also the `contains`, `matches`, and `bitwise_and` operators.
 
