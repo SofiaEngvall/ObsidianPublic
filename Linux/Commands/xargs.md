@@ -10,3 +10,8 @@ obs that  this removes  lines to, use tr for more control
 $ echo "     welcome to   baeldung  " | xargs
 welcome to baeldung
 ```
+
+example that can handle spaces in filenames
+```sh
+fin . -type f -print0 | xargs -0 sha1sum
+```

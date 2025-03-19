@@ -36,4 +36,7 @@
    - Alternative way: use the files in the D:\guest-agent\qemu-ga-x86_64.msi (the wirtio-win-iso)
    - (This didn't seem to work at all and we got a crash at reboot)
    
-8. To enable file sharing we also need the WebDAV Daemon https://www.spice-space.org/download/windows/spice-webdavd/
+6. To enable file sharing we also need the WebDAV Daemon https://www.spice-space.org/download/windows/spice-webdavd/
+   - Windows ^
+   - Linux: [[Linux VM Spice]]
+
