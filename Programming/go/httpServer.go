@@ -8,11 +8,9 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-
-	"github.com/gorilla/mux"
 )
 
-var port int = 10000
+var port int = 4567
 
 type Article struct {
 	Title   string `json:"Title"`
@@ -35,10 +33,13 @@ func returnAllArticles(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleRequests() {
-	myRouter := mux.NewRouter().StrictSlash(true)
-	myRouter.HandleFunc("/", homePage)
-	myRouter.HandleFunc("/articles", returnAllArticles)
-	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), myRouter))
+	//myRouter := mux.NewRouter().StrictSlash(true)
+	//myRouter.HandleFunc("/", homePage)
+	//myRouter.HandleFunc("/articles", returnAllArticles)
+	//log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), myRouter))
+	http.HandleFunc("/", homePage)
+	http.HandleFunc("/articles", returnAllArticles)
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
 }
 
 func main() {
@@ -47,7 +48,6 @@ func main() {
 		Article{Title: "Hello", Desc: "Article Description", Content: "Article Content"},
 		Article{Title: "Hello 2", Desc: "Article Description", Content: "Article Content"},
 	}
-	fmt.Println("Using Rest API v2.0 - Mux Routers")
 	fmt.Printf("Starting the web server on port %d\n", port)
 	handleRequests()
 }

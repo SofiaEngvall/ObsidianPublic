@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-const VERBOSE = false
+const VERBOSE = true
 
 func scanPort(host string, port int) bool {
 	address := fmt.Sprintf("%s:%d", host, port)
@@ -23,7 +23,6 @@ func scanPort(host string, port int) bool {
 }
 
 func main() {
-
 	host := "192.168.0.1"
 	start_port := 0
 	stop_port := 100
@@ -66,7 +65,7 @@ func main() {
 	fmt.Println("start port =", stop_port)
 
 	fmt.Println("Starting port scan:")
-	for port := 1; port <= 100; port++ {
+	for port := start_port; port <= stop_port; port++ {
 		if scanPort(host, port) {
 			fmt.Printf("Port %d is open\n", port)
 			ports++
