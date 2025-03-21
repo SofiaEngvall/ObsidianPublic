@@ -65,6 +65,8 @@ nothing to commit, working tree clean
 
 2. to totally delete all changes on the local machine
 
+make sure to close obsidian it you're stashing files
+
 ```sh
 git stash
 git stash drop

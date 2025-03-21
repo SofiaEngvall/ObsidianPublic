@@ -16,6 +16,7 @@ func main() {
 	fmt.Printf("Now you have %g problems.\n", math.Sqrt(7))
 	fmt.Printf("Pi is %e\n", math.Pi)
 	fmt.Println("Pi is", math.Pi)
+	fmt.Println("Pi is" + fmt.Sprint(math.Pi))
 	fmt.Printf("Type: %T Value: %v\n", MaxInt, MaxInt)
 
 }

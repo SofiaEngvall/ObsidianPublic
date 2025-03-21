@@ -1,5 +1,7 @@
 
-Printf
+```go
+fmt.Printf("Type: %T Value: %v\n", MaxInt, MaxInt)
+```
 
 ### Common `fmt` Verbs
 
