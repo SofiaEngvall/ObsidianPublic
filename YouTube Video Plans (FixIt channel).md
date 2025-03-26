@@ -2,6 +2,14 @@
  (*details on video ideas in private notes*)
  
 
+## New ideas
+
+- interview people
+	- Brian Fehrman - ai hacking
+
+
+## to do
+
 - video speed up - browser plugin - Finished
 - "Magic" study tips
 

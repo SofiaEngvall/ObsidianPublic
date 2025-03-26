@@ -1,7 +1,11 @@
+# How to run a Free Kali VM in the Cloud 2025
+
+Do you need to run a fully capable Kali VM in the cloud? Here's an easy to follow step-by-step guide!
 
 Log in to aws.amazon.com or create a new account if you don't have one.
 
-Observe that free tier only works the first year after the account was created.
+Observe that free tier only works the first year after the account was created!
+
 
 
 

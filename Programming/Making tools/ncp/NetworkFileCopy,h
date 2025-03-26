@@ -1,0 +1,53 @@
+#ifndef NETWORKFILECOPY_H
+#define NETWORKFILECOPY_H
+
+#include "TCPTalk.h"
+#include <string>
+#include <filesystem>
+#include <vector>
+#include <arpa/inet.h>
+#include <cstdint>
+
+class NetworkFileCopy
+{
+private:
+    struct FileItem
+    {
+        std::filesystem::path filename;
+        std::filesystem::path filepath;
+        uint64_t filesize;
+    };
+
+    std::vector<FileItem> fileList;
+
+    bool isSendMode;
+    in_addr_t ip;
+    uint16_t port;
+    std::filesystem::path path;
+    std::filesystem::path destPath;
+
+    TCPTalk tcpTalk;
+
+public:
+    NetworkFileCopy();
+    ~NetworkFileCopy();
+
+    void isSending();
+    void isReceiving();
+    bool setIP(const char *ip);
+    bool setPort(const std::string &port);
+    bool setPath(std::filesystem::path &path);
+    bool setPath(std::filesystem::path &path, const std::filesystem::path &inPath);
+    bool setOriginPath();
+    bool setOriginPath(const std::filesystem::path &path);
+    bool setDestinationPath();
+    bool setDestinationPath(const std::filesystem::path &path);
+    void enumFiles();
+    bool initConnection();
+    bool sendFileList();
+    void receiveFileList();
+    void sendFiles();
+    void receiveFiles();
+};
+
+#endif

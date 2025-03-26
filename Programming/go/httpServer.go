@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-var port int = 4567
+var port int = 50000
 
 type Article struct {
 	Title   string `json:"Title"`

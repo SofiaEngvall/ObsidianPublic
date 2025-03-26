@@ -13,13 +13,12 @@ To list strings:
 		`iz` list strings
 
 To debug a file or running process:
-	`r2 -d ./file1 [arguments for file1]`
-		`aaa` analyze
+	`r2 -d A ./file1 [arguments for file1]`
 		`afl` functions list
 		`pdf @main` print disassembly function
 
 At r2 prompt:
-i - removed something here???
+`i`  show file info
 `e asm.syntax=att` set AT&T syntax
 `e asm.syntax=intel` set Intel syntax (default)
 
