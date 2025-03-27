@@ -5,6 +5,9 @@
 `smbclient //10.10.97.172/profiles -U Anonymous`
 `smbclient //10.10.97.172/profiles -U krktgt`
 
+`dir` to list files
+`get <filename>` to get a file
+
 ### Commands
 
 ```sh

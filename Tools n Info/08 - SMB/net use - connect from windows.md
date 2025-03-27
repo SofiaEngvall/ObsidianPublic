@@ -15,6 +15,9 @@ net use <driveletter>: \\<server>\<sharename> /USER:[domain\]<username> <passwor
 
 `net use q: \\10.21.31.111\share /USER:user password /PERSISTENT:YES`
 
+`net use v: \\10.10.10.10\share /USER:username password`
+or `net use \\10.10.10.10\share /USER:username password` and connect in gui
+
 if problems:
 `net use \\<server>\<sharename> /delete`
 

@@ -95,3 +95,4 @@ we get he same error when trying other files that doesn't exist
 
 also tested rfi, does not work
 
+/etc/home/developer/flag.txt

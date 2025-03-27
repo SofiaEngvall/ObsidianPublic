@@ -2,6 +2,20 @@
 create share for upload to our machine
 `sudo impacket-smbserver -smb2support -username <user> -password <password> myshare <../dirname>`
 
-`sudo impacket-smbserver -smb2support -username user -password password myshare share`
+`sudo impacket-smbserver -smb2support -username user -password password share share`
+where the subdirectory `share` is shared under the share name `share`
 
 
+Can easily be user to access files from both Windows and Linux:
+
+#### Linux
+[[smbclient - Connect to smb share]]
+`smbclient //10.10.10.10/share -U user`
+
+#### Windows
+[[net use - connect from windows]]
+`net use v: \\10.10.10.10\share /USER:user password`
+or `net use \\10.10.10.10\share /USER:user password` and connect in gui
+
+`dir` to list files
+`get <filename>` to get a file
