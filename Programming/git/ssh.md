@@ -3,7 +3,7 @@
 
 in normal ps window or linux terminal:
 ```powershell
-PS C:\Users\sofia\.ssh> ssh-keygen -t ed25519 -C "sofia@babythings.se"
+PS C:\Users\sofia\.ssh> ssh-keygen -t ed25519 -C "sofia@fixit42.com"
 Generating public/private ed25519 key pair.
 Enter file in which to save the key (C:\Users\sofia/.ssh/id_ed25519):
 Enter passphrase (empty for no passphrase):
@@ -32,8 +32,6 @@ Identity added: .\id_ed25519 (sofia@babythings.se)
 
 TO DO paste from history of asus kali laptop!
 ```sh
-sudo 
-
 ssh-add ~/.ssh/id_ed25519
 ```
 
