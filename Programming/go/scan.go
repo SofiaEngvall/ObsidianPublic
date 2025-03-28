@@ -5,6 +5,8 @@ import (
 	"net"
 	"os"
 	"strconv"
+	"strings"
+	"time"
 )
 
 type scanned_port struct {
@@ -14,6 +16,14 @@ type scanned_port struct {
 }
 
 const VERBOSE = false
+
+var (
+	bad_context_count         int = 0
+	refused_connection_count  int = 0
+	timeout_count             int = 0
+	insufficient_buffer_count int = 0
+	invalid_port_count        int = 0
+)
 
 func parse_arguments(arguments []string) (string, int, int) {
 	//Default values
@@ -87,13 +97,16 @@ func print_result(ports int) {
 
 func main() {
 
+	var beginTime = time.Now()
+
 	host, start_port, stop_port := parse_arguments(os.Args)
 	fmt.Printf("Starting port scan of %s (%d-%d):\n", host, start_port, stop_port)
 
-	message_channel := make(chan scanned_port, 500) //(stop_port - start_port)) //change buffer size later
+	message_channel := make(chan scanned_port, (stop_port - start_port)) //change buffer size later
 
 	for port := start_port; port <= stop_port; port++ {
 		go scanPort(host, port, message_channel)
+		time.Sleep(time.Microsecond * 100)
 	}
 
 	ports := 0
@@ -103,12 +116,40 @@ func main() {
 			fmt.Printf("Port %d is open\n", new_message.port)
 			ports++
 		} else {
+			var tempStr string = fmt.Sprint(new_message.problem)
 			if VERBOSE {
-				fmt.Printf("Error: %s\n", new_message.problem)
+				fmt.Printf("Error: %s\n", tempStr)
+			}
+
+			if strings.Contains(tempStr, "connectex: The requested address is not valid in its context.") {
+				bad_context_count++
+			}
+			if strings.Contains(tempStr, "connectex: No connection could be made because the target machine actively refused it.") {
+				refused_connection_count++
+			}
+			if strings.Contains(tempStr, "connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.") {
+				timeout_count++
+			}
+			if strings.Contains(tempStr, "bind: An operation on a socket could not be performed because the system lacked sufficient buffer space or because a queue was full.") {
+				insufficient_buffer_count++
+			}
+			if strings.Contains(tempStr, "invalid port") {
+				invalid_port_count++
 			}
 		}
 	}
 
 	close(message_channel)
 	print_result(ports)
+	fmt.Printf("-----------------------------------------------------------------------------------------------\n")
+	fmt.Printf("refused_connection_count (closed): %d\n", refused_connection_count)
+	fmt.Printf("timeout_count: %d\n", timeout_count)
+	fmt.Printf("insufficient_buffer_count: %d\n", insufficient_buffer_count)
+	fmt.Printf("invalid_port_count: %d\n", invalid_port_count)
+	fmt.Printf("bad_context_count: %d\n", bad_context_count) //port 0
+	fmt.Printf("-----------------------------------------------------------------------------------------------\n")
+
+	t := time.Since(beginTime)
+	fmt.Printf("Total time: %02f\n", t.Seconds())
+
 }

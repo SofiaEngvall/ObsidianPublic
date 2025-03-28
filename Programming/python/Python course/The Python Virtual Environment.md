@@ -1,13 +1,19 @@
 
-First install `pypy3-venv`
+First install `pypy3-venv`:
+`sudo apt update`
+`sudo apt install pypy3-venv`
 
-Create a virtual environment in the directory: `python3 -m venv .`
+Create a virtual environment in the directory:
+`python3 -m venv .`
 
-Run `source bin/activate` to start using the environment
+Start using the environment by runnig:
+`source bin/activate`
 
+To run scripts
 The venv will be used automatically for the user but to run a script with sudo you need to give the local python path: `./bin/python`
 
-Run `deactivate` to exit the virtual environment
+Exit the virtual environment by running:
+`deactivate`
 
-Use pip3 for installing libraries, it's aware of virtual environments
-
+Use pip3 for installing libraries, it's aware of virtual environments:
+`pip3 install pwntools`

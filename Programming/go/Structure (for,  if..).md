@@ -24,6 +24,25 @@ infinite loop
 	}
 ```
 
+for each loop
+```go
+	stuff := []string{
+		"something",
+		"something else",
+		"whatever",
+	}
+
+	for url := range stuff {
+		fmt.Printf("Look: %s\n",url)
+	}
+```
+or
+```go
+	for index, url := range stuff {
+		fmt.Printf("Look: %s\n",url)
+	}
+```
+
 if
 ```go
 	if x < 0 {
