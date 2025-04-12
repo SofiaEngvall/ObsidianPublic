@@ -1,6 +1,4 @@
 {
   "overrideViewsFromOtherPlugins": false,
-  "extensions": [
-    "go"
-  ]
+  "extensions": []
 }

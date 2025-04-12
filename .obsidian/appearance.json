@@ -1,7 +1,8 @@
 {
   "accentColor": "",
-  "baseFontSize": 18,
+  "baseFontSize": 23,
   "enabledCssSnippets": [
     "purple"
-  ]
+  ],
+  "baseFontSizeAction": true
 }

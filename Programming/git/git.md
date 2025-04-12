@@ -34,8 +34,8 @@ To install Git run:
 `git --version`
 
 Add used info:  
-`git config --global user.name "Name"`
-`git config --global user.email "name@domain.com"`
+`git config --global user.name "Sofia Engvall"`
+`git config --global user.email "sofia@fixit42.com"`
 `git config --list`
 `nano ~/.gitconfig`
 

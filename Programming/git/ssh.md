@@ -16,7 +16,7 @@ The key fingerprint is:
 
 ## Start using it in windows
 
-in admin ps window:
+in <font color=red>admin</font> ps window:
 ```powershell
 Get-Service -Name ssh-agent | Set-Service -StartupType Manual
 Start-Service ssh-agent
@@ -25,7 +25,7 @@ Start-Service ssh-agent
 in normal ps window:
 ```powershell
 PS C:\Users\sofia\.ssh> ssh-add .\id_ed25519
-Identity added: .\id_ed25519 (sofia@babythings.se)
+Identity added: .\id_ed25519 (sofia@fixit42.se)
 ```
 
 ## Start using it in linux

@@ -85,3 +85,18 @@ To display all traffic except DNS:
 
 There's also the `contains`, `matches`, and `bitwise_and` operators.
 
+### Decrypt HTTPS (or other TLS) application data
+
+If Application Data is encrypted
+
+Edit, Preferences, Protocols, TLS
+By `RSA Key List`, click `Edit`
+(In older Wireshark, it's SSL)
+
+Enter similar to
+`IP Address:` the ip
+`Port: start_tls`
+`Protocol: http`
+`Keyfile:` browse for the key file
+
+

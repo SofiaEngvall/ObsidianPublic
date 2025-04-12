@@ -106,7 +106,7 @@ func main() {
 
 	for port := start_port; port <= stop_port; port++ {
 		go scanPort(host, port, message_channel)
-		time.Sleep(time.Microsecond * 100)
+		time.Sleep(time.Microsecond * 100) //remove later, for testing
 	}
 
 	ports := 0
