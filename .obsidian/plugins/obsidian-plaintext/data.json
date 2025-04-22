@@ -1,4 +1,11 @@
 {
   "overrideViewsFromOtherPlugins": false,
-  "extensions": []
+  "extensions": [
+    "py",
+    "txt",
+    "go",
+    "c",
+    "cpp",
+    "h"
+  ]
 }
