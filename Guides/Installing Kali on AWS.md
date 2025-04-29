@@ -28,61 +28,61 @@ Log in to aws.amazon.com or create a new account if you don't have one.
 
 Observe that free tier only works the first year after the account was created!
 
-![[Images 1/Pasted image 20250424135642.png]]
+![[Images/Pasted image 20250424135642.png]]
 
-![[Images 1/Pasted image 20250424135721.png]]
+![[Images/Pasted image 20250424135721.png]]
 
 on the right side, click Launch instance
-![[Images 1/Pasted image 20250424135824.png]]
+![[Images/Pasted image 20250424135824.png]]
 
-![[Images 1/Pasted image 20250424140228.png]]
+![[Images/Pasted image 20250424140228.png]]
 
-![[Images 1/Pasted image 20250424140349.png]]
+![[Images/Pasted image 20250424140349.png]]
 
-![[Images 1/Pasted image 20250424141005.png]]
+![[Images/Pasted image 20250424141005.png]]
 
-![[Images 1/Pasted image 20250424141031.png]]
+![[Images/Pasted image 20250424141031.png]]
 
-![[Images 1/Pasted image 20250424141141.png]]
+![[Images/Pasted image 20250424141141.png]]
 
-![[Images 1/Pasted image 20250424141227.png]]
+![[Images/Pasted image 20250424141227.png]]
 
-![[Images 1/Pasted image 20250424141251.png]]
+![[Images/Pasted image 20250424141251.png]]
 
-![[Images 1/Pasted image 20250424141329.png]]
+![[Images/Pasted image 20250424141329.png]]
 
 we get back to the launch instance page with free tier eligable kali selected
 
-![[Images 1/Pasted image 20250424141501.png]]
+![[Images/Pasted image 20250424141501.png]]
 
 keep the only free tier option for instance type:
-![[Images 1/Pasted image 20250424141601.png]]
+![[Images/Pasted image 20250424141601.png]]
 
-![[Images 1/Pasted image 20250424141646.png]]
+![[Images/Pasted image 20250424141646.png]]
 
 create a key pair:
 
-![[Images 1/Pasted image 20250424141820.png]]
+![[Images/Pasted image 20250424141820.png]]
 you can select ED25519 if you want
 save the key file in a place you remember
 
 if you know all its you will access this vm from you can enter them here for higher security, otherwise just leave it as it is
-![[Images 1/Pasted image 20250424142020.png]]
+![[Images/Pasted image 20250424142020.png]]
 
 here we need more space to fit full kali, so set it to the maximum free tier eligible option, for my it says 30GB
-![[Images 1/Pasted image 20250424142337.png]]
-![[Images 1/Pasted image 20250424142426.png]]
+![[Images/Pasted image 20250424142337.png]]
+![[Images/Pasted image 20250424142426.png]]
 
-![[Images 1/Pasted image 20250424142609.png]]
+![[Images/Pasted image 20250424142609.png]]
 
 Observe the information:
 ***Free tier:** In your first year of opening an AWS account, you get 750 hours per month of t2.micro instance usage (or t3.micro where t2.micro isn't available) when used with free tier AMIs, 750 hours per month of public IPv4 address usage, 30 GiB of EBS storage, 2 million I/Os, 1 GB of snapshots, and 100 GB of bandwidth to the internet.*
 
-![[Images 1/Pasted image 20250424142756.png]]
+![[Images/Pasted image 20250424142756.png]]
 
-![[Images 1/Pasted image 20250424142835.png]]
+![[Images/Pasted image 20250424142835.png]]
 
-![[Images 1/Pasted image 20250424143306.png]]
+![[Images/Pasted image 20250424143306.png]]
 
 Make sure to note down the IP address
 
@@ -106,7 +106,7 @@ now when kali has a password we can set it the normal way
 └─$ sudo passwd kali
 ```
 
-![[Images 1/Pasted image 20250425205208.png]]
+![[Images/Pasted image 20250425205208.png]]
 
 ## Setting permissions on PEM file
 
@@ -136,7 +136,7 @@ kali@56.228.19.43: Permission denied (publickey).
 chmod 600 FixIt42-AWS-kali.pem
 ```
 
-![[Images 1/Pasted image 20250425165729.png]]
+![[Images/Pasted image 20250425165729.png]]
 
 ### Setting permissions on the PEM file in Windows command line
 
@@ -149,28 +149,28 @@ Icacls kali-key.pem /Inheritance:r
 Icacls kali-key.pem /Grant:r "$($env:USERNAME):(R)"
 ```
 
-![[Images 1/Pasted image 20250425163911.png]]
-![[Images 1/Pasted image 20250425164051.png]]
+![[Images/Pasted image 20250425163911.png]]
+![[Images/Pasted image 20250425164051.png]]
 
 ### Setting permissions on the PEM file in Windows, using GUI
 
-![[Images 1/Pasted image 20250424144018.png]]
+![[Images/Pasted image 20250424144018.png]]
 
-![[Images 1/Pasted image 20250424144131.png]]
+![[Images/Pasted image 20250424144131.png]]
 
-![[Images 1/Pasted image 20250424144255.png]]
+![[Images/Pasted image 20250424144255.png]]
 
-![[Images 1/Pasted image 20250424144329.png]]
+![[Images/Pasted image 20250424144329.png]]
 
-![[Images 1/Pasted image 20250424144403.png]]
+![[Images/Pasted image 20250424144403.png]]
 
-![[Images 1/Pasted image 20250424144419.png]]
+![[Images/Pasted image 20250424144419.png]]
 
-![[Images 1/Pasted image 20250424144438.png]]
+![[Images/Pasted image 20250424144438.png]]
 
-![[Images 1/Pasted image 20250424144522.png]]
+![[Images/Pasted image 20250424144522.png]]
 
-![[Images 1/Pasted image 20250424144610.png]]
+![[Images/Pasted image 20250424144610.png]]
 
 ## Connecting to the AWS VM using ssh
 
@@ -181,9 +181,9 @@ ssh -i kali-key.pem kali@56.228.19.43
 ```
 (use your ip address)
 
-![[Images 1/Pasted image 20250425170650.png]]
+![[Images/Pasted image 20250425170650.png]]
 
-![[Images 1/Pasted image 20250424145028.png]]
+![[Images/Pasted image 20250424145028.png]]
 
 ## Upgrading to full Kali with GUI on the AWS VM
 
@@ -247,7 +247,7 @@ tightvncserver :1 -geometry 1920x1080
 ```
 *set password when asked - remember we also need the ssh connection running and have the security of it's PEM-file*
 
-![[Images 1/Pasted image 20250425183528.png|800]]
+![[Images/Pasted image 20250425183528.png|800]]
 
 Stop VLC:
 ```sh
@@ -269,25 +269,25 @@ tightvncserver :1 -geometry 1920x1080
 ```
 
 Start Remmina:
-![[Images 1/Pasted image 20250425195617.png]]
+![[Images/Pasted image 20250425195617.png]]
 
 Select VNC:
-![[Images 1/Pasted image 20250425200057.png]]
+![[Images/Pasted image 20250425200057.png]]
 
 enter `localhost:5901`
-![[Images 1/Pasted image 20250425200220.png]]
+![[Images/Pasted image 20250425200220.png]]
 
 log in with your selected password:
-![[Images 1/Pasted image 20250425200403.png]]
+![[Images/Pasted image 20250425200403.png]]
 
 Enter Full-screen mode
-![[Images 1/Pasted image 20250425200551.png]]
+![[Images/Pasted image 20250425200551.png]]
 
 We're in Kali GUI with a lot of tools!
-![[Images 1/Pasted image 20250425200946.png]]
+![[Images/Pasted image 20250425200946.png]]
 
 To exit full screen mode, move the mouse over the upper middle of the screen, over the white line, and it expands into a menu. Click Toggle Full Screen mode.
-![[Images 1/Pasted image 20250425201357.png]]
+![[Images/Pasted image 20250425201357.png]]
 
 ### Connecting from Windows
 
@@ -304,23 +304,23 @@ tightvncserver :1 -geometry 1920x1080
 RealVNC is a viewer on windows that can do full screen:
 Download here: https://www.realvnc.com/en/connect/download/viewer/windows/
 
-![[Images 1/Pasted image 20250425184622.png]]
+![[Images/Pasted image 20250425184622.png]]
 
-![[Images 1/Pasted image 20250425184801.png]]
+![[Images/Pasted image 20250425184801.png]]
 
-![[Images 1/Pasted image 20250425202132.png]]
+![[Images/Pasted image 20250425202132.png]]
 
-![[Images 1/Pasted image 20250425202205.png]]
+![[Images/Pasted image 20250425202205.png]]
 
-![[Images 1/Pasted image 20250425202247.png]]
+![[Images/Pasted image 20250425202247.png]]
 
-![[Images 1/Pasted image 20250425202345.png]]
+![[Images/Pasted image 20250425202345.png]]
 
 We're in Kali GUI with a lot of tools!
-![[Images 1/Pasted image 20250425202524.png]]
+![[Images/Pasted image 20250425202524.png]]
 
 To exit full screen mode, move the mouse over the upper middle of the screen, over the white line, and it expands into a menu. Click Toggle Full Screen mode.
-![[Images 1/Pasted image 20250425202655.png]]
+![[Images/Pasted image 20250425202655.png]]
 
 ## RDP
 
@@ -339,14 +339,14 @@ systemctl enable xrdp
 #systemctl enable xrdp-sesman     #installed but later uninstalled and it still worked
 ```
 
-![[Images 1/Pasted image 20250425211356.png]]
+![[Images/Pasted image 20250425211356.png]]
 
 Since port 3389 will already be in use on windows machines and we might want to connect from windows, we need to change the port RDP uses:
 ```sh
 sudo nano /etc/xrdp/xrdp.ini
 ```
 
-![[Images 1/Pasted image 20250425211538.png]]
+![[Images/Pasted image 20250425211538.png]]
 Edit the file and change `port=3389` to `port=3390`
 Save and exit by pressing Ctrl + s x
 
@@ -354,7 +354,7 @@ Save and exit by pressing Ctrl + s x
 sudo /etc/init.d/xrdp start
 ```
 
-![[Images 1/Pasted image 20250425211922.png]]
+![[Images/Pasted image 20250425211922.png]]
 
 ### Connecting from Linux
 
@@ -364,25 +364,25 @@ ssh -L 3390:localhost:3390 -i kali-key.pem kali@13.60.203.194
 ```
 
 Start Remmina:
-![[Images 1/Pasted image 20250425195617.png]]
+![[Images/Pasted image 20250425195617.png]]
 
-![[Images 1/Pasted image 20250425215614.png]]
+![[Images/Pasted image 20250425215614.png]]
 
-![[Images 1/Pasted image 20250425215707.png]]
+![[Images/Pasted image 20250425215707.png]]
 
 
-![[Images 1/Pasted image 20250425215839.png]]
+![[Images/Pasted image 20250425215839.png]]
 
-![[Images 1/Pasted image 20250425220108.png]]
+![[Images/Pasted image 20250425220108.png]]
 
-![[Images 1/Pasted image 20250425221340.png]]
+![[Images/Pasted image 20250425221340.png]]
 
-![[Images 1/Pasted image 20250425220238.png]]
+![[Images/Pasted image 20250425220238.png]]
 
 We're in Kali GUI with a lot of tools!
-![[Images 1/Pasted image 20250425221419.png]]
+![[Images/Pasted image 20250425221419.png]]
 
-![[Images 1/Pasted image 20250425221732.png]]
+![[Images/Pasted image 20250425221732.png]]
 
 ### Connecting from Windows
 
@@ -392,25 +392,25 @@ ssh -L 3390:localhost:3390 -i kali-key.pem kali@13.60.203.194
 ```
 
 start Remote Desktop Connection:
-![[Images 1/Pasted image 20250425214055.png]]
+![[Images/Pasted image 20250425214055.png]]
 
-![[Images 1/Pasted image 20250425214151.png]]
+![[Images/Pasted image 20250425214151.png]]
 
-![[Images 1/Pasted image 20250425214400.png]]
+![[Images/Pasted image 20250425214400.png]]
 
-![[Images 1/Pasted image 20250425214528.png]]
+![[Images/Pasted image 20250425214528.png]]
 
-![[Images 1/Pasted image 20250425214641.png]]
+![[Images/Pasted image 20250425214641.png]]
 
 We're in Kali GUI with a lot of tools!
-![[Images 1/Pasted image 20250425214737.png]]
+![[Images/Pasted image 20250425214737.png]]
 
 Exit fullscreen here
-![[Images 1/Pasted image 20250425214956.png]]
+![[Images/Pasted image 20250425214956.png]]
 
 
 Free 
-![[Images 1/Pasted image 20250424135604.png]]
+![[Images/Pasted image 20250424135604.png]]
 
 
 nmap scan with RDP but not VNC running

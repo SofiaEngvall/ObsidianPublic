@@ -2,7 +2,9 @@
 Cap is an easy Linux machine. We will follow the Guided Mode questions.
 To learn, give a question a try before you read the next step in this walkthrough.
 
-##### How many TCP ports are open?
+### Getting started - nmap
+
+> How many TCP ports are open?
 
 The first thing we usually do is a port scan to on which ports the machine we're supposed to hack are listening on. This can tell us a lot about what programs are running on it. Maybe it is a web server or a file sharing server.
 
@@ -28,7 +30,7 @@ rtt min/avg/max/mdev = 23.077/23.346/23.579/0.206 ms
 ```
 *Ping does not automatically stop so you have to press Ctrl+C to stop it.*
 
-Good, we know the VPN is working as it should. If you don't get and answers go back to [[HTB VPN Connection & Starting a Box]] or ask for help. HackTheBox also has a guide here: https://help.hackthebox.com/en/articles/5185687-introduction-to-lab-access.
+Good, we know the VPN is working as it should. If you don't get and answers go back to [[../HTB VPN Connection & Starting a Box]] or ask for help. HackTheBox also has a guide here: https://help.hackthebox.com/en/articles/5185687-introduction-to-lab-access.
 
 Now, let's run a basic nmap scan:
 `nmap 10.10.10.245`
@@ -88,11 +90,13 @@ This means we have the answer for our first question!
 
 Before you even read the next question, ask yourself what ways you can see to get even more information about this machine.
 
-#### After running a "Security Snapshot", the browser is redirected to a path of the format `/[something]/[id]`, where `[id]` represents the id number of the scan. What is the `[something]`?
+### Exploring the web page
+
+> After running a "Security Snapshot", the browser is redirected to a path of the format `/[something]/[id]`, where `[id]` represents the id number of the scan. What is the `[something]`?
 
 What are they talking about? Ah, parts on an URL. Let's open up a browser and browse to the IP address. To make sure the browser doesn't decide to google out IP address we'll put http:// before it.
 
-If we had not had this hint, we could still have arrived at the same conclusion, right?
+If we had not had this hint, we could still have arrived at the same conclusion, right? We need to look at the web page.
 
 `http://10.10.10.245`
 
@@ -106,11 +110,13 @@ The third page contains ip config information from this computer.
 ![[Images/Pasted image 20250429022303.png]]
 
 Oh, interesting. Here we can for example see from the inside that the machine is listening to the ports we found and there's also a 53 (dns) mentioned. (We can disregard this one.)
-![[Images/Pasted image 20250429022731.png]]
+![[Images/Pasted image 20250429141216.png]]
 
 Now let's go back to the interesting pcap download page. Just as the question mentioned, we noticed an id in the URL. This is very interesting.
 
 There is a common vulnerability called IDOR which means that while logged in as one user, you can change the id number in the browser URL and see other users data. We have to try this out!
+
+### Burp Suite basics
 
 We could do this in the browser, but why not take the opportunity to learn Burp!
 
@@ -165,5 +171,91 @@ As the pcap is a mix of text and binary data this will look a bit funny.
 ![[Images/Pasted image 20250429040203.png]]
 We could possibly find the information we need in here. It would be similar to cat:ing a pcap in the terminal, where you could for example filter the information with grep. Wireshark is a much nicer tool graphical to read pcap data in though.
 
+Now, let's open the url in the browser and download the pcap. id 0 seem to have the most packets.
 
-------- TO BE CONTINUED TOMORROW :D -------
+![[Images/Pasted image 20250429141738.png]]
+
+Download the pcap and open it. (You should have Wireshark installed)
+
+![[Images/Pasted image 20250429142529.png]]
+
+### Time for Wireshark
+
+Check through the packages and see if you can find any interesting and useful information. One thing to look for is credentials.
+
+![[Images/Pasted image 20250429142855.png]]
+
+In packets 36 and 40 we found a FTP login. As FTP is not encrypted it is all in clear text. We can use credentials to log in to the ftp. We saw that the machine is running a ftp server in our nmap results.
+
+user: nathan
+password: Buck3tH4TF0RM3!
+
+### What can we find on FTP?
+
+First let's make a directory for files we might find
+![[Images/Pasted image 20250429143728.png]]
+
+And we connect
+
+`ftp 10.10.10.245`
+
+![[Images/Pasted image 20250429143904.png]]
+
+What files can we see? Let's download them all.
+
+`dir`  to list files
+`mget *` to download all files in the directory
+
+![[Images/Pasted image 20250429144828.png]]
+
+Type `exit` to disconnect.
+
+![[Images/Pasted image 20250429145151.png]]
+
+Oh, we got the user without actually connecting to the machines terminal.
+
+...
+
+### Password reuse?
+
+Also always check for password re-use, in other words. Will the same password and username work for other services...
+
+Might the one we have also work for ssh?
+
+![[Images/Pasted image 20250429150507.png]]
+![[Images/Pasted image 20250429150626.png]]
+
+Yay, we're in!
+
+Here we can see all the users files.
+
+### Escalation privileges
+
+Now we just have to find a way to get root credentials and read the root flag.
+
+(I will add more about finding different vulnerabilities here later. What I usually look for and since linpeas is on the box we will go through that too. But now I have a limited time so we will use the hint given in the Guided Mode.)
+
+> What is the full path to the binary on this machine has special capabilities that can be abused to obtain root privileges?
+
+Capabilities is a newer kind of permissions on files. They make it possible for a program to have some extra permissions instead of having to be run, for example, with root.
+
+To find capabilities on the machine, we run
+`getcap -r / 2>/dev/null`
+
+![[Images/Pasted image 20250429151401.png]]
+
+Look at python! It has just the permissions we need.
+
+(I will add more explanations later)
+
+![[Images/Pasted image 20250429152057.png]]
+
+The root flag is usually in the `/root` driectory
+
+![[Images/Pasted image 20250429152320.png]]
+
+There we have the root flag, and you should also have the information to be able to answer all the questions!
+
+Please ask me if you have any questions!! <3
+
+(I will add more explanations and information later - Sorry for the limited version today!)

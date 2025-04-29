@@ -3,7 +3,7 @@ Briv Gem Farming
 
 Map: The Everlasting Rime (Icewind Dale, lowest town)
 
-![[Guides/Images 1/Pasted image 20250428033607.png]]
+![[Guides/Images/Pasted image 20250428033607.png]]
 
 Champions: according to the picture
 Specializations: according to the picture
