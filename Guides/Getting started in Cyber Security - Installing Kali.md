@@ -1,6 +1,5 @@
 
 
-
 ### Installing Kali Linux
 
 Download a Kali image from https://www.kali.org/get-kali

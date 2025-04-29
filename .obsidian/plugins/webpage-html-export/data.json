@@ -43,7 +43,7 @@
   "defaultFileIcon": "lucide//file",
   "defaultFolderIcon": "lucide//folder",
   "defaultMediaIcon": "lucide//file-image",
-  "exportPath": "H:\\\\fixit42.com\\public_html\\notes",
+  "exportPath": "D:\\\\fixit42.com\\public_html\\notes",
   "filesToExport": [
     [
       "all"
