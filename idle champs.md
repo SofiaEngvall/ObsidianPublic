@@ -25,31 +25,31 @@ Briv
    Strategic Stride - Cap to 9j  - Available for Gems 30th April (Guess)
    Accurate Acrobatics - Round down to last whole jump - 100k Mirt Ruby Coins
 Ellywick
-   Asteria's Love - Decrease card draw requirement by 40% - 50,000 Gems
-   The Celestial Suite - 40% increase to Deck of Many Things - Gold Chests
+v   Asteria's Love - Decrease card draw requirement by 40% - 50,000 Gems
+   The Celestial Suite - 40% increase to Deck of Many Things - **Gold Chests**
    Gem - First draw is always a gem card - Available for Gems 30th April (Guess)
 Hew Maan
 v   Walking Lessons - 40% increase to Carefully Balanced - 12,500 Gems
 v   We're A Treant - 80% increase to Carefully Balanced - 50,000 Gems
 v   The Path Is Clear - 10% increase to game speed - 12,500 Gems
 Diana
-   Keep Up - 40% increase to We'll Be Right Back - 12,500 Gems
-   Quickly Now - 80% increase to We'll Be Right Back - 50,000 Gems
-   Gold Medal - Base attack cooldown -0.5 sec - 12,500 Gems
+v   Keep Up - 40% increase to We'll Be Right Back - 12,500 Gems
+v   Quickly Now - 80% increase to We'll Be Right Back - 50,000 Gems
+v   Gold Medal - Base attack cooldown -0.5 sec - 12,500 Gems
 v   Silver Medal - Base attack cooldown -0.25 sec - Free
 Widdle
 v   You Look Delicious - 40% increase to Tasty Friends - Gold Chests
-   First Into The Fray - 80% increase to Tasty Friends - 50,000 Gems
+v   First Into The Fray - 80% increase to Tasty Friends - 50,000 Gems
 BBEG
-   Skipping Ahead - 100% increase to Railroad - 50,000 Gems
+v   Skipping Ahead - 100% increase to Railroad - 50,000 Gems
 Thellora
 v   Thin Their Ranks - Gain stacks after 5 zones instead of 10 - 50,000 Gems
-   Darting Weapon - Base attack cooldown -0.5 sec - Gold Chests
+   Darting Weapon - Base attack cooldown -0.5 sec - **Gold Chests**
 Sentry
 v   Sprint - 30% increase to Echo Resolution - Free
 Shandie
 v   Sprinter - 100% increase to Dash - Free
-   Second Wind - Dash activation time reduced from 30 to 10 seconds - 50,000 Gems
+v   Second Wind - Dash activation time reduced from 30 to 10 seconds - 50,000 Gems
 
 
 TODO!

@@ -30,7 +30,7 @@ rtt min/avg/max/mdev = 23.077/23.346/23.579/0.206 ms
 ```
 *Ping does not automatically stop so you have to press Ctrl+C to stop it.*
 
-Good, we know the VPN is working as it should. If you don't get and answers go back to [[../HTB VPN Connection & Starting a Box]] or ask for help. HackTheBox also has a guide here: https://help.hackthebox.com/en/articles/5185687-introduction-to-lab-access.
+Good, we know the VPN is working as it should. If you don't get and answers go back to [[HackTheBox/Connecting using VPN]] or ask for help. HackTheBox also has a guide here: https://help.hackthebox.com/en/articles/5185687-introduction-to-lab-access.
 
 Now, let's run a basic nmap scan:
 `nmap 10.10.10.245`

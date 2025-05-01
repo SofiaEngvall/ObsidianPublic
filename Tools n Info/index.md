@@ -1,5 +1,12 @@
 
-Here's my main Cyber Security notes
+##### Articles and guides
+
+[[../Guides/HackTheBox/Index|HackTheBox Introduction]]
+
+[[../Guides/Getting started in Cyber Security - Installing Kali|Getting started in Cyber Security - Installing Kali]]
+[[../Guides/Installing Kali on AWS|Installing Kali on AWS]]
+
+##### Here are my main Cyber Security notes
 
 [[01 - Network Exploration/- start here (network)|- start here (network)]]
 [[05 - Web Exploration/- start here (web)|- start here (web)]]
@@ -11,4 +18,4 @@ Here's my main Cyber Security notes
 [[27 - asm, Buffer Overflow, debug/- start here (buffer overflow)|- start here (buffer overflow)]]
 
 
-[[index|back to main index]]
+[[../Index|back to main index]]

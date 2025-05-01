@@ -55,6 +55,7 @@ File system - interesting files?
 	is `/etc/shadow` readable/writeable
 	is `/etc/passwd` writeable
 	find anything named backup?
+	write permissions in the directories in the path - might be able to replace executable
 
 Check config files
 	`cat /etc/exports` nfs config file
