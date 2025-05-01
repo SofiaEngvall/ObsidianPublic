@@ -127,11 +127,13 @@ Click `Next` and `Start Burp` without changing any options to start Burp.
 First time Burp user?
 If this is the first time you started burp and used it with your browser you can find a guide how to set it up here: https://   . In short, there are two things you need to do. Add the plugin FoxyProxy to your browser and proxy for burp and http for hostname 127.0.0.1 and port 8080 (Options, Proxy, Add). Then enable the burp proxy by selecting it in FoxyProxy and go to `http://burpsuite` in the browser. Click CA Certificate to download burps cert and go to your browsers settings. View Certificates and import the certificate. More details on the cert download here: https://portswigger.net/burp/documentation/desktop/external-browser-config/certificate/ca-cert-firefox
 
-When you have Burp open, click the Proxy tab and make sure it says `Intercept off`. Go to the HTTP history. If your Burp is correctly connected to your browser all requests made by your browser should be passed through, proxied, through Burp and end up in this list.
+When you have Burp open, click the Proxy tab and make sure it says `Intercept off`. This functionality is to make burp pause before sending a web request to a web server, so you can change the request or the response, before it reaches your browser.
+
+Go to the HTTP history. If your Burp is correctly connected to your browser all requests made by your browser should be passed through, proxied, through Burp and end up in this list.
 
 Test this by going back to your browser, making sure that proxying through Burp is enabled in FoxyProxy (or another way) Press Ctrl+F5 to fully update the web page you are on, the PCAP download page.
 
-Go back to Burp and look at the list. It should now be far from empty. Find the line where URL is `/data/10` and click it
+Go back to Burp and look at the list. It should now be far from empty. Find the line where URL is `/data/10`, or whatever your pcap pages id number was, and click it.
 ![[Images/Pasted image 20250429025819.png]]
 
 The lower part of the screen will now be split into two sections where you can see the Request sent from your browser and the Response from the web server. If you never saw these before, take the opportunity to study them.
@@ -181,6 +183,8 @@ Download the pcap and open it. (You should have Wireshark installed)
 
 ### Time for Wireshark
 
+
+
 Check through the packages and see if you can find any interesting and useful information. One thing to look for is credentials.
 
 ![[Images/Pasted image 20250429142855.png]]
@@ -227,11 +231,35 @@ Might the one we have also work for ssh?
 
 Yay, we're in!
 
+### The Linux command prompt
+
 Here we can see all the users files.
+
+A simple `ls`
+
+![[Images/Pasted image 20250501034430.png]]
+
+![[Images/Pasted image 20250501034506.png]]
+
+![[Images/Pasted image 20250501034536.png]]
+
+![[Images/Pasted image 20250501034609.png]]
+
+
+When we list files on a box it's smart to also list the permissions, links and hidden files. This will give us more information and sometimes a part of a challenge can be to find a hidden file.
+
+![[Images/Pasted image 20250430172847.png]]
+
+Can you see any files that look interesting?
+
+Let's look at
+
+![[Images/Pasted image 20250501034652.png]]
+
 
 ### Escalation privileges
 
-Now we just have to find a way to get root credentials and read the root flag.
+Now we just have to find a way to get root on the box and read the root flag.
 
 (I will add more about finding different vulnerabilities here later. What I usually look for and since linpeas is on the box we will go through that too. But now I have a limited time so we will use the hint given in the Guided Mode.)
 
@@ -246,16 +274,29 @@ To find capabilities on the machine, we run
 
 Look at python! It has just the permissions we need.
 
-(I will add more explanations later)
+When you have sudo, suid, capabilities or any other special condition you want to know if you can exploit for privilege escalation there's a great web site we can use: https://gtfobins.github.io/
 
-![[Images/Pasted image 20250429152057.png]]
+Just search for the tool, it this case python, and as there's a Capabilities option we click that
+![[Images/Pasted image 20250430165606.png]]
 
-The root flag is usually in the `/root` driectory
+The selected text is the actual exploit. The two lines above is how to create the vulnerability for testing and similar.
+
+![[Images/Pasted image 20250430165800.png]]
+
+We need to run this but with the full path and name of our vulnerable python. This way we know that another python version that might also be installed is not used. Also, let's use bash so we keep our nice prompt.
+
+`/usr/bin/python3.8 -c 'import os; os.setuid(0); os.system("/bin/bash")'`
+
+using sh it looks like this:
+![[Images/Pasted image 20250430170728.png]]
+
+and with bash:
+![[Images/Pasted image 20250430170841.png]]
+
+The root flag is usually in the `/root` directory so let's go there and look
 
 ![[Images/Pasted image 20250429152320.png]]
 
 There we have the root flag, and you should also have the information to be able to answer all the questions!
 
 Please ask me if you have any questions!! <3
-
-(I will add more explanations and information later - Sorry for the limited version today!)
