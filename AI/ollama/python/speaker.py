@@ -1,16 +1,17 @@
 import win32com.client
 
-SPEAKING_SPEED = 4  # -10 to 10
+VOICE = 2  # 0 to 5
+SPEED = 4  # -10 to 10
 
 class Speaker():
-    def __init__(self, also_print=False):
+    def __init__(self, also_print=False, speed=SPEED):
         self.tts = win32com.client.Dispatch('SAPI.Spvoice')
 
         self.also_print=also_print
 
         # self.print_voices()
         self.set_voice(2)
-        self.set_speed(SPEAKING_SPEED)
+        self.set_speed(speed)
         # self.tell_speed()
 
     def set_voice(self, voice_number):
