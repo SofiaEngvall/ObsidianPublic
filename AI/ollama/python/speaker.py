@@ -3,8 +3,10 @@ import win32com.client
 SPEAKING_SPEED = 4  # -10 to 10
 
 class Speaker():
-    def __init__(self):
+    def __init__(self, also_print=False):
         self.tts = win32com.client.Dispatch('SAPI.Spvoice')
+
+        self.also_print=also_print
 
         # self.print_voices()
         self.set_voice(2)
@@ -28,5 +30,6 @@ class Speaker():
         self.speak(f"My speaking rate is set to {self.tts.Rate}.")
 
     def speak(self, text):
-        #print(text)
+        if self.also_print:
+            print(text)
         self.tts.Speak(text)

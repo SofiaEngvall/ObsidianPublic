@@ -17,7 +17,7 @@ https://ollama.com/search - model search
 ##### good and safe models to start with
 llama3.2 - Following instructions, Summarization, Prompt rewriting, Tool use - multilingual (8 languages?)
 mistral - function calling, 
-phi4 - microsoft
+phi4 - microsoft - too slow for my computer
 
 ##### other llms to test
 gemma3:4b (1b, 4b, 12b) - question answering, summarization, and reasoning - 140 languages - runs on resource-limited devices

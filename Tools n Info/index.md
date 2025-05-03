@@ -4,7 +4,7 @@
 [[../Guides/HackTheBox/Index|HackTheBox Introduction]]
 
 [[../Guides/Getting started in Cyber Security - Installing Kali|Getting started in Cyber Security - Installing Kali]]
-[[../Guides/Installing Kali on AWS|Installing Kali on AWS]]
+[[../Guides/AWS/Installing Kali on AWS|Installing Kali on AWS]]
 
 ##### Here are my main Cyber Security notes
 
