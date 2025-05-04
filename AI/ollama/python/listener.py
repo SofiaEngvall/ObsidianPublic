@@ -48,4 +48,3 @@ class Listener():
                 self.s.speak(
                     "Could you repeat that, please?")
         return name
-    

@@ -1,7 +1,7 @@
 import win32com.client
 
-VOICE = 2  # 0 to 5
-SPEED = 4  # -10 to 10
+VOICE = 2  # Run this script to list the voices
+SPEED = 4  # -10 to 10, default is 0
 
 class Speaker():
     def __init__(self, also_print=False, speed=SPEED):
@@ -33,4 +33,12 @@ class Speaker():
     def speak(self, text):
         if self.also_print:
             print(text)
-        self.tts.Speak(text)
+        try:
+            self.tts.Speak(text)
+        except Exception as e:
+            #Only happened when bluetooth batteries ran out
+            print(f"Error in TTS: {e}")
+
+if __name__ == "__main__":
+    s = Speaker()
+    s.print_voices()

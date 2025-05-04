@@ -68,98 +68,105 @@ import listener
 use_ollama = True #If True, use Ollama for summarization. If False, just read the full articles, even if they are thousands of words long.
 START_OLLAMA = True #If True, start Ollama if it is not running. If False, ask the user if they want to start it.
 OLLAMA_PATH = "D:/ollama/ollama.exe" #The full path to the ollama executable file. Use double backslashes or single forward slashes.
+DEFAULT_TTS_SPEED = 4 #The default speed of the text-to-speech voice. -10 to 10, where 0 is normal speed.
 DEFAULT_STT_RETRIES = 0 # -1 = no question asked, 0 = ask once, 1 = retry once, 2 = retry twice, etc.
 DEFAULT_ARTICLE_DAYS = 20 #How old articles to read, older ones are skipped
 DEFAULT_ARTICLE_LENGTH = 200 #Default length of the long article summary. Articles 100 words longer are read in full.
 ALWAYS_READ_LONG = True # if True, always read the long summary and will skip making a short summary
 
 
-### Security related RSS feeds to fetch articles from
+### RSS feeds - Please tell me if you have more feeds to add something is incorrect or missing so I can fix it!
+### The list was refined and formatted with the help of AI so please tell me errors I missed, like a bad description.
+### Format: (name, description, category, feed_url, site_url, status, rating)
+### Status: "{overall_status} | link={link_quality} | content={content_type} | desc={desc_quality}"
+
 rss_feeds = [
+    # =====================
+    # 🚨 Time-Critical Alerts
+    # =====================
+    ("CISA Alerts", "Government vulnerability alerts", "alerts", "https://www.cisa.gov/news-events/cybersecurity-advisories/rss.xml", "https://www.cisa.gov", "ok | link=direct | content=full_html | desc=partial", 10),
+    ("Krebs on Security", "Investigative security journalism", "alerts", "https://krebsonsecurity.com/feed/", "https://krebsonsecurity.com", "ok | link=direct | content=full_html | desc=partial", 10),
+    ("SANS Internet Storm Center", "Daily threat intelligence", "alerts", "https://isc.sans.edu/rssfeed_full.xml", "https://isc.sans.edu", "ok | link=direct | content=rss_only | desc=full", 9),
+    ("The Hacker News", "Breaking cybersecurity news", "alerts", "https://feeds.feedburner.com/TheHackersNews?format=xml", "https://thehackernews.com", "ok | link=redirects | content=full_html | desc=partial", 9),
+    ("Dark Reading", "Urgent security news", "alerts", "https://www.darkreading.com/rss.xml", "https://www.darkreading.com", "ok | link=direct | content=full_html | desc=partial", 9),
+    ("BleepingComputer", "Ransomware tracking", "alerts", "https://www.bleepingcomputer.com/feed/", "https://www.bleepingcomputer.com", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Threatpost", "Vulnerability disclosures", "alerts", "https://threatpost.com/feed/", "https://threatpost.com", "ok | link=direct | content=full_html | desc=partial", 8),
+    ("CyberScoop", "Policy and breach alerts", "alerts", "https://www.cyberscoop.com/feed/", "https://www.cyberscoop.com", "ok | link=direct | content=full_html | desc=partial", 7),
+    ("NCSC News", "UK National Cyber Security Centre alerts", "alerts", "https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml", "https://www.ncsc.gov.uk/news", "need_java | link=direct | content=js_required | desc=full", 5),
 
-    #Alerts
+    # =====================
+    # 🔥 Advanced Threat Intel
+    # =====================
+    ("Citizen Lab", "Spyware and disinformation research", "threat_intel", "https://citizenlab.ca/feed/", "https://citizenlab.ca", "ok | link=direct | content=full_html | desc=full", 10),
+    ("Project Zero", "Zero-day vulnerability research", "threat_intel", "http://googleprojectzero.blogspot.com/feeds/posts/default", "https://googleprojectzero.blogspot.com", "ok | link=direct | content=full_html | desc=full", 10),
+    ("Mandiant Blog", "APT group analysis", "threat_intel", "https://www.mandiant.com/resources/blog/rss.xml", "https://www.mandiant.com/resources/blog", "ok | link=direct | content=full_html | desc=full", 9),
+    ("Talos Intel", "Threat reports from Cisco", "threat_intel", "https://blog.talosintelligence.com/feeds/posts/default", "https://blog.talosintelligence.com", "ok | link=direct | content=full_html | desc=full", 9),
+    ("Kaspersky Securelist", "Malware deep dives", "threat_intel", "https://securelist.com/feed/", "https://securelist.com", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Unit42 (Palo Alto)", "Threat intelligence", "threat_intel", "https://unit42.paloaltonetworks.com/feed/", "https://unit42.paloaltonetworks.com", "ok | link=direct | content=full_html | desc=full", 8),
+    ("WeLiveSecurity", "Malware trends from ESET", "threat_intel", "https://feeds.feedburner.com/eset/blog", "https://www.welivesecurity.com", "ok | link=direct | content=full_html | desc=full", 8),
+    ("FireEye Threat Research", "APT analysis", "threat_intel", "https://www.fireeye.com/blog/threat-research/_jcr_content.feed", "https://www.fireeye.com/blog/threat-research", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Check Point Research", "Emerging threats", "threat_intel", "https://research.checkpoint.com/feed/", "https://research.checkpoint.com/", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Recorded Future", "Threat intelligence platform", "threat_intel", "https://www.recordedfuture.com/feed", "https://www.recordedfuture.com", "ok | link=direct | content=full_html | desc=partial", 7),
+    ("PT SWARM", "APT research", "threat_intel", "https://swarm.ptsecurity.com/feed/", "https://swarm.ptsecurity.com", "ok | link=direct | content=full_html | desc=full", 7),
+    ("Keen Security Lab (Tencent)", "Advanced vulnerability research", "threat_intel", "https://little-canada.org/feeds/output/tencent-keenlabs.rss", "https://keenlab.tencent.com/en/", "ok | link=direct | content=full_html | desc=full", 7),
 
-    #News
-    #"https://krebsonsecurity.com/feed/", #Krebs on Security
-    #"https://isc.sans.edu/rssfeed_full.xml", #SANS Internet Storm Center
-    #"https://securelist.com/feed/", #Kaspersky Securelist
-    #"https://feeds.feedburner.com/TheHackersNews?format=xml", #The Hacker News
+    # =====================
+    # 🛠️ Exploit Development
+    # =====================
+    ("PortSwigger Research", "Web application exploits", "exploit_dev", "https://portswigger.net/research/rss", "https://portswigger.net/research", "ok | link=direct | content=full_html | desc=full", 9),
+    ("Project Zero Bug Tracker", "Zero-day exploit database", "exploit_dev", "https://little-canada.org/feeds/output/projectzero-bugs.rss", "https://bugs.chromium.org/p/project-zero", "ok | link=direct | content=full_html | desc=none", 9),
+    ("STÖK's Blog", "Bug bounty techniques", "exploit_dev", "https://stokfredrik.com/rss.xml", "https://stokfredrik.com", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Diary of a Reverse-Engineer", "Reverse engineering techniques", "exploit_dev", "https://doar-e.github.io/feeds/rss.xml", "https://doar-e.github.io/", "ok | link=direct | content=full_html | desc=full", 8),
+    ("GRIMM Blog", "Exploit development", "exploit_dev", "https://blog.grimm-co.com/feeds/posts/default", "https://blog.grimm-co.com/", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Hexacorn", "Malware analysis tricks", "exploit_dev", "https://www.hexacorn.com/blog/feed/", "https://www.hexacorn.com", "ok | link=direct | content=full_html | desc=full", 7),
+    ("Doyensec's Blog", "Application security", "exploit_dev", "https://blog.doyensec.com/atom.xml", "https://blog.doyensec.com/", "ok | link=direct | content=full_html | desc=full", 7),
+    ("Access Vector", "Vulnerability research", "exploit_dev", "https://accessvector.net/rss.xml", "https://accessvector.net/", "ok | link=direct | content=full_html | desc=full", 7),
+    ("RET2 Systems Blog", "Exploit development", "exploit_dev", "https://blog.ret2.io/feed.xml", "https://blog.ret2.io/", "ok | link=direct | content=full_html | desc=full", 7),
+    ("Gamozo Labs Blog", "Low-level exploitation", "exploit_dev", "https://gamozolabs.github.io/feed.xml", "https://gamozolabs.github.io/", "ok | link=direct | content=full_html | desc=full", 7),
 
-    #"https://cyberalerts.io/rss/latest-public", # Cyber Alerts - Some news don't have working links or a github PR..
+    # =====================
+    # 🔴 Red Team & Offensive
+    # =====================
+    ("SpecterOps Blog", "Active Directory security", "red_team", "https://posts.specterops.io/feed", "https://posts.specterops.io", "ok | link=direct | content=full_html | desc=full", 9),
+    ("MDSec ActiveBreach", "Red team tradecraft", "red_team", "https://www.mdsec.co.uk/feed/", "https://www.mdsec.co.uk", "ok | link=direct | content=full_html | desc=full", 9),
+    ("Rasta Mouse's Blog", "C2 framework development", "red_team", "https://rastamouse.me/rss.xml", "https://rastamouse.me", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Airbus CERT Blog", "ICS/OT security", "red_team", "https://blog.airbus-cyber-security.com/rss/", "https://blog.airbus-cyber-security.com", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Synacktiv | Publications", "Advanced exploitation", "red_team", "https://little-canada.org/feeds/output/synacktiv-publications.rss", "https://www.synacktiv.com/en/publications", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Rhino Security Labs", "Cloud red teaming", "red_team", "https://rhinosecuritylabs.com/feed/", "https://rhinosecuritylabs.com/", "ok | link=direct | content=full_html | desc=full", 7),
+    ("Elttam", "Red team research", "red_team", "https://little-canada.org/feeds/output/elttam.rss", "https://www.elttam.com/blog/", "ok | link=direct | content=full_html | desc=full", 7),
 
-    #Longer news
-    #"https://news.sophos.com/en-us/category/security-operations/feed/", #Sophos Security Operations News
+    # =====================
+    # 📰 General News
+    # =====================
+    ("Schneier on Security", "Security policy analysis", "news", "https://www.schneier.com/feed/atom/", "https://www.schneier.com", "ok | link=direct | content=full_html | desc=partial", 9),
+    ("Risky Business Podcast", "Weekly news roundup", "news", "https://risky.biz/feeds/risky-business/", "https://risky.biz", "ok | link=audio | content=episode_page | desc=full", 9),
+    ("SecurityWeek", "Enterprise security news", "news", "https://www.securityweek.com/rss", "https://www.securityweek.com", "ok | link=direct | content=full_html | desc=partial", 7),
+    ("CSO Online", "Enterprise security", "news", "https://www.csoonline.com/index.rss", "https://www.csoonline.com", "ok | link=direct | content=full_html | desc=partial", 7),
+    ("ZDNet Security", "Technology security news", "news", "https://www.zdnet.com/topic/security/rss.xml", "https://www.zdnet.com/security/", "ok | link=direct | content=full_html | desc=partial", 7),
+    ("Infosecurity Magazine", "Cybersecurity news", "news", "https://www.infosecurity-magazine.com/rss/news/", "https://www.infosecurity-magazine.com", "ok | link=direct | content=full_html | desc=partial", 7),
+    ("Help Net Security", "Security news", "news", "https://www.helpnetsecurity.com/feed/", "https://www.helpnetsecurity.com", "ok | link=direct | content=full_html | desc=partial", 7),
+    ("SC Magazine", "Security news", "news", "https://www.scmagazine.com/home/feed/", "https://www.scmagazine.com", "warn | link=paywall | content=truncated | desc=partial", 4),
 
-    #Security blogs
-    #"https://www.schneier.com/feed/atom/", #Schneier on Security
+    # =====================
+    # 🧠 Deep Dives & Education
+    # =====================
+    ("The DFIR Report", "Incident response case studies", "education", "https://thedfirreport.com/feed/", "https://thedfirreport.com", "ok | link=direct | content=full_html | desc=full", 8),
+    ("SANS Digital Forensics", "Forensics techniques", "education", "https://digital-forensics.sans.org/blog/rss.xml", "https://digital-forensics.sans.org", "ok | link=direct | content=full_html | desc=full", 7),
+    ("Lenny Zeltser's Blog", "Malware analysis guides", "education", "https://zeltser.com/feed/", "https://zeltser.com", "ok | link=direct | content=full_html | desc=full", 7),
+    ("NCC Group Research", "Technical whitepapers", "education", "https://research.nccgroup.com/feed/", "https://research.nccgroup.com", "ok | link=direct | content=full_html | desc=full", 7),
+    ("Windows Internals Blog", "OS security deep dives", "education", "https://windows-internals.com/feed/", "https://windows-internals.com", "ok | link=direct | content=full_html | desc=full", 7),
+    ("Troy Hunt", "Security tutorials", "education", "https://www.troyhunt.com/rss/", "https://www.troyhunt.com", "ok | link=direct | content=full_html | desc=full", 8),
+    ("Trenchant", "Advanced research", "education", "http://little-canada.org/feeds/output/trenchant.rss", "https://trenchant.io/", "ok | link=direct | content=full_html | desc=full", 7),
 
-    #Podcasts
-    #"https://podcast.darknetdiaries.com/", #Darknet Diaries, summary of longer articles
-    #"https://grahamcluley.com/feed/", #Graham Cluley, podcast info
-
-    #Research
-    #"https://feeds.feedburner.com/eset/blog", #WeLiveSecurity
-    #"https://news.sophos.com/en-us/category/threat-research/feed/", #Sophos Threat Research News
-
-    #Personal blogs of security researchers
-    #"https://www.troyhunt.com/rss/", #Troy Hunt
-
-
-
-    #Requires javascript to run - TODO! - use playwright to bypass this
-    #"https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml", #Latest from 2025-03
-    #"https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml", #"You need to enable JavaScript to run this app."
-    #"https://www.ncsc.gov.uk/api/1/services/v1/blog-post-rss-feed.xml", #"You need to enable JavaScript to run this app."
-    #"https://www.ncsc.gov.uk/api/1/services/v1/guidance-rss-feed.xml", #"You need to enable JavaScript to run this app."
-
-    #Sourses
-    #Long list of RSS feeds - https://0dayfans.com/feeds.txt
-
-
-    #the first dew from googling, the rest from ai
-    #"https://www.reddit.com/r/netsec/.rss",  # authors, author_detail, href, author, tags, content, summary, id, guidislink, link, links, updated, updated_parsed, published, published_parsed, title, title_detail
-    #"https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml",  # title, title_detail, links, link, summary, summary_detail, published, published_parsed, id, guidislink
-    #"https://www.cshub.com/rss/articles",  # title, title_detail, links, link, summary, summary_detail, authors, author, author_detail, id, guidislink, published, published_parsed
-    #"https://www.cshub.com/rss/news-trends"  # empty now
-    #"https://threatpost.com/feed/", # news from 2022
-    #"https://www.darkreading.com/rss.xml", #403 #title, title_detail, links, link, summary, summary_detail, published, published_parsed, authors, author, author_detail, id, guidislink, media_thumbnail, href, media_content
-    #"https://krebsonsecurity.com/feed/", #ok
-    #"https://www.securityweek.com/rss", #403
-    #"https://www.scmagazine.com/home/feed/", #b'' odd data
-    #"https://www.cyberscoop.com/feed/", #b'' odd data
-    #"https://www.zdnet.com/topic/security/rss.xml", #ok
-    #"https://www.wired.com/category/security/feed/", #ok
-    #"https://www.csoonline.com/index.rss", # byte data and no title
-    #"https://www.infosecurity-magazine.com/rss/news/", #odd data
-    #"https://www.helpnetsecurity.com/feed/", #ok
-    #"https://www.hackread.com/feed/", #odd data
-    #"https://portswigger.net/daily-swig/rss", #ok
-    #"https://www.tripwire.com/state-of-security/feed/", #ok
-    #"https://www.schneier.com/blog/atom.xml", #byte data
-    #"https://securityaffairs.co/wordpress/feed", #byte data
-
-    # to check:
-    # "https://www.fireeye.com/blog/threat-research/_jcr_content.feed", #ok
-    # "https://www.recordedfuture.com/feed",
-    # "https://unit42.paloaltonetworks.com/feed/",
-    # "https://blog.talosintelligence.com/feeds/posts/default",
-    # "https://www.malwarebytes.com/blog/feed",
-    # "https://www.crowdstrike.com/blog/feed/",
-    # "https://www.trendmicro.com/rss/enterprise-security.xml",
-    # "https://www.fortinet.com/blog/threat-research/_jcr_content.feed",
-    # "https://www.mcafee.com/blogs/feed/",
-    # "https://www.sophos.com/en-us/rss.aspx",
-    # "https://www.avast.com/en-us/rss",
-    # "https://securelist.com/feed/",
-    # "https://www.eset.com/int/about/newsroom/rss/",
-    # "https://www.cybersecurity-insiders.com/feed/",
-    # "https://www.nakedsecurity.sophos.com/feed/",
-    # "https://www.thehackernews.com/feeds/posts/default",
-    # "https://www.cyberark.com/resources/blog/feed/",
-    # "https://www.imperva.com/blog/feed/",
-    # "https://www.varonis.com/blog/rss.xml",
-    # "https://www.exabeam.com/feed/"
+    # =====================
+    # 🎙️ Podcasts
+    # =====================
+    ("Security Now (TWIT)", "Deep-dive security podcast", "podcast", "https://feeds.twit.tv/sn.xml", "https://twit.tv/shows/security-now", "ok | link=audio | content=episode_page | desc=full", 8),
+    ("Darknet Diaries", "True cybercrime stories", "podcast", "https://feeds.megaphone.fm/darknetdiaries", "https://darknetdiaries.com", "ok | link=audio | content=episode_page | desc=full", 9),
+    ("Risky Business Podcast", "Weekly news analysis", "podcast", "https://risky.biz/feeds/risky-business/", "https://risky.biz", "ok | link=episode_page | content=show_notes | desc=full", 9),
+    ("Graham Cluley", "Security podcast", "podcast", "https://grahamcluley.com/feed/", "https://grahamcluley.com", "ok | link=direct | content=full_html | desc=full", 7),
 ]
+
 
 ### Headers for the requests - Used to mimic a real browser request and avoid being blocked
 headers = {
@@ -366,7 +373,7 @@ def get_feed_entry_content(entry):
 ### Main function to run the script
 if __name__ == "__main__":
 
-    s = speaker.Speaker(also_print=True)
+    s = speaker.Speaker(also_print=True, speed=DEFAULT_TTS_SPEED)
     l = listener.Listener()
 
     ollama_process = None
@@ -378,7 +385,7 @@ if __name__ == "__main__":
 
     for rss_feed in rss_feeds:
 
-        entries = get_feed_entries(rss_feed)
+        entries = get_feed_entries(rss_feed[3]) #feed_url
         if not entries:
             continue
 
