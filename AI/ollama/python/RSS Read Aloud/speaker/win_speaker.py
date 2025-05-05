@@ -1,3 +1,8 @@
+# win_speaker.py - Class to simplify use of the win32com.client TTS
+# version 1.0
+# by Sofia Engvall - FixIt42, 2023-10-22, 2025-05-04
+
+
 import win32com.client
 
 VOICE = 2  # Run this script to list the voices

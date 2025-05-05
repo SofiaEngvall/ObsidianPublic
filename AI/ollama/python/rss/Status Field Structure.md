@@ -16,14 +16,14 @@
 
 ### **2. Link Quality (`link=`)**
 
-|Value|Meaning|Example Feeds|
-|---|---|---|
-|`direct`|Links go straight to the article HTML.|Krebs, PortSwigger|
-|`redirects`|Links require following HTTP redirects.|The Hacker News|
-|`js_required`|Links need JS to render content (e.g., SPAs).|NCSC|
-|`paywall`|Links lead to paywalled content.|SC Magazine|
-|`audio`|Links point to podcast episodes (may need special handling).|Darknet Diaries|
-|`rss_only`|No article link (only RSS body exists).|SANS ISC|
+| Value         | Meaning                                                      | Example Feeds      |
+| ------------- | ------------------------------------------------------------ | ------------------ |
+| `direct`      | Links go straight to the article HTML.                       | Krebs, PortSwigger |
+| `redirects`   | Links require following HTTP redirects.                      | The Hacker News    |
+| `js_required` | Links need JS to render content (e.g., SPAs).                | NCSC               |
+| `paywall`     | Links lead to paywalled content.                             | SC Magazine        |
+| `audio`       | Links point to podcast episodes (may need special handling). | Darknet Diaries    |
+| `rss_only`    | No article link (only RSS body exists).                      | SANS ISC           |
 
 ---
 

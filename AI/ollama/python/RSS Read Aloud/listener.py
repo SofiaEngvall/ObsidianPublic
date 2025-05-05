@@ -1,3 +1,7 @@
+#listener.py - Class to simplify use of speech_recognition
+# version 1.0
+# by Sofia Engvall - FixIt42, 2023-10-22
+
 import speech_recognition as sr
 import speaker
 

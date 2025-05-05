@@ -1,0 +1,10 @@
+beautifulsoup4==4.13.4
+feedparser==6.0.11
+lxml_html_clean==0.4.2
+ollama==0.4.8
+playwright==1.51.0
+python-dateutil==2.9.0.post0
+pywin32==310
+readability-lxml==0.8.1
+requests==2.32.3
+SpeechRecognition==3.14.2

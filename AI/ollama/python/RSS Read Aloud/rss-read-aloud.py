@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 # rss-read-aloud.py - RSS feed reader with AI summarization
-# by Sofia Engvall - FixIt42, 2025-05-03
+# version 1.0
+# by Sofia Engvall - FixIt42, 2025-05-04
 # https://github.com/SofiaEngvall/RSS-Read-Aloud-Cyber-News-Reader.git
 
 # This script fetches articles from a list of RSS feeds, summarizes them using AI (Ollama), and reads them aloud.
@@ -10,13 +11,14 @@
 # 
 # - `os` to get terminal size
 # - `subprocess` to start Ollama
+# - `sys` to find the python executable running this script to use when installing ms playwright
 # 
 # - `time` and `datetime` to manage time and timezones
 # - `dateutil.parser` to parse dates
 # 
 # - `feedparser` to parse RSS feeds
 # - `requests` to download articles
-# - `playwright` to bypass restrictions on some webpages - TODO!
+# - `playwright` to bypass restrictions on some webpages
 # - `webbrowser` to open links in a browser
 # - `readability-lxml` (and `lxml_html_clean`) to extract the main content from webpages
 # - `BeautifulSoup` to convert HTML to plain text
@@ -32,6 +34,7 @@
 ### Import libraries
 import os
 import subprocess
+import sys
 
 import time
 from datetime import datetime, timezone
@@ -39,8 +42,8 @@ from dateutil import parser
 
 import feedparser
 import requests
-#from playwright.sync_api import sync_playwright
-from webbrowser import open_new_tab #for opening odd pages in a browser
+from playwright.sync_api import sync_playwright
+from webbrowser import open_new_tab
 from readability import Document
 from bs4 import BeautifulSoup
 
@@ -50,7 +53,8 @@ import speaker
 import listener
 
 
-# TODO!
+# TODO! Features to add!
+# - Add Linus TTS - possibly using gtts, suggestions are welcome
 # - Add functionality to save and load (file? registry?) information, for example:
 #   - Read articles - to remember what you already read/heard
 #   - RSS feed list
@@ -62,6 +66,7 @@ import listener
 # - Make a database for the RSS feeds, or just add more fields to the list
 # - Add feedback on the feeds - Maybe at the end of the reading of a feed - connect to db on the web server?
 #   - Then maybe host a db for feeds there too - then just sync at start
+# - Make main fit on one page
 
 
 ### Settings
@@ -70,9 +75,10 @@ START_OLLAMA = True #If True, start Ollama if it is not running. If False, ask t
 OLLAMA_PATH = "D:/ollama/ollama.exe" #The full path to the ollama executable file. Use double backslashes or single forward slashes.
 DEFAULT_TTS_SPEED = 4 #The default speed of the text-to-speech voice. -10 to 10, where 0 is normal speed.
 DEFAULT_STT_RETRIES = 0 # -1 = no question asked, 0 = ask once, 1 = retry once, 2 = retry twice, etc.
-DEFAULT_ARTICLE_DAYS = 20 #How old articles to read, older ones are skipped
-DEFAULT_ARTICLE_LENGTH = 200 #Default length of the long article summary. Articles 100 words longer are read in full.
+DEFAULT_ARTICLE_DAYS = 7 #How old articles to read, older ones are skipped
+DEFAULT_ARTICLE_LENGTH = 400 #Default length of the long article summary. Articles 100 words longer are read in full.
 ALWAYS_READ_LONG = True # if True, always read the long summary and will skip making a short summary
+use_playwright = True #If true, use Microsoft Playwright to access anti-scraping web pages
 
 
 ### RSS feeds - Please tell me if you have more feeds to add something is incorrect or missing so I can fix it!
@@ -80,19 +86,28 @@ ALWAYS_READ_LONG = True # if True, always read the long summary and will skip ma
 ### Format: (name, description, category, feed_url, site_url, status, rating)
 ### Status: "{overall_status} | link={link_quality} | content={content_type} | desc={desc_quality}"
 
+
 rss_feeds = [
     # =====================
     # 🚨 Time-Critical Alerts
     # =====================
-    ("CISA Alerts", "Government vulnerability alerts", "alerts", "https://www.cisa.gov/news-events/cybersecurity-advisories/rss.xml", "https://www.cisa.gov", "ok | link=direct | content=full_html | desc=partial", 10),
     ("Krebs on Security", "Investigative security journalism", "alerts", "https://krebsonsecurity.com/feed/", "https://krebsonsecurity.com", "ok | link=direct | content=full_html | desc=partial", 10),
-    ("SANS Internet Storm Center", "Daily threat intelligence", "alerts", "https://isc.sans.edu/rssfeed_full.xml", "https://isc.sans.edu", "ok | link=direct | content=rss_only | desc=full", 9),
+    #("SANS Internet Storm Center", "Daily threat intelligence", "alerts", "https://isc.sans.edu/rssfeed_full.xml", "https://isc.sans.edu", "ok | link=direct | content=rss_only | desc=full", 9),
     ("The Hacker News", "Breaking cybersecurity news", "alerts", "https://feeds.feedburner.com/TheHackersNews?format=xml", "https://thehackernews.com", "ok | link=redirects | content=full_html | desc=partial", 9),
-    ("Dark Reading", "Urgent security news", "alerts", "https://www.darkreading.com/rss.xml", "https://www.darkreading.com", "ok | link=direct | content=full_html | desc=partial", 9),
+    ("Dark Reading", "Urgent security news", "alerts", "https://www.darkreading.com/rss.xml", "https://www.darkreading.com", "playwright | link=direct | content=anti_scraping | desc=partial", 9),
     ("BleepingComputer", "Ransomware tracking", "alerts", "https://www.bleepingcomputer.com/feed/", "https://www.bleepingcomputer.com", "ok | link=direct | content=full_html | desc=full", 8),
-    ("Threatpost", "Vulnerability disclosures", "alerts", "https://threatpost.com/feed/", "https://threatpost.com", "ok | link=direct | content=full_html | desc=partial", 8),
+    ##("Threatpost", "Vulnerability disclosures", "alerts", "https://threatpost.com/feed/", "https://threatpost.com", "outdated | link=direct | content=full_html | desc=partial", 8),
     ("CyberScoop", "Policy and breach alerts", "alerts", "https://www.cyberscoop.com/feed/", "https://www.cyberscoop.com", "ok | link=direct | content=full_html | desc=partial", 7),
-    ("NCSC News", "UK National Cyber Security Centre alerts", "alerts", "https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml", "https://www.ncsc.gov.uk/news", "need_java | link=direct | content=js_required | desc=full", 5),
+    ("NCSC News", "UK National Cyber Security Centre alerts", "alerts", "https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml", "https://www.ncsc.gov.uk/news", "playwright | link=direct | content=js_required | desc=full", 5),
+
+    # =====================
+    # 📰 General News
+    # =====================
+    ("Help Net Security", "Security news", "news", "https://www.helpnetsecurity.com/feed/", "https://www.helpnetsecurity.com", "ok | link=direct | content=full_html | desc=partial", 7),
+    ("Schneier on Security", "Security policy analysis", "news", "https://www.schneier.com/feed/atom/", "https://www.schneier.com", "ok | link=direct | content=full_html | desc=partial", 9),
+    #***FIX***("SecurityWeek", "Enterprise security news", "news", "https://www.securityweek.com/rss", "https://www.securityweek.com", "playwright | link=direct 403 | content=full_html | desc=partial", 7),
+    ("ZDNet Security", "Technology security news", "news", "https://www.zdnet.com/topic/security/rss.xml", "https://www.zdnet.com/security/", "ok | link=direct | content=full_html | desc=partial", 7),
+    ("Infosecurity Magazine", "Cybersecurity news", "news", "https://www.infosecurity-magazine.com/rss/news/", "https://www.infosecurity-magazine.com", "ok | link=direct | content=full_html | desc=partial", 7),
 
     # =====================
     # 🔥 Advanced Threat Intel
@@ -107,65 +122,52 @@ rss_feeds = [
     ("FireEye Threat Research", "APT analysis", "threat_intel", "https://www.fireeye.com/blog/threat-research/_jcr_content.feed", "https://www.fireeye.com/blog/threat-research", "ok | link=direct | content=full_html | desc=full", 8),
     ("Check Point Research", "Emerging threats", "threat_intel", "https://research.checkpoint.com/feed/", "https://research.checkpoint.com/", "ok | link=direct | content=full_html | desc=full", 8),
     ("Recorded Future", "Threat intelligence platform", "threat_intel", "https://www.recordedfuture.com/feed", "https://www.recordedfuture.com", "ok | link=direct | content=full_html | desc=partial", 7),
-    ("PT SWARM", "APT research", "threat_intel", "https://swarm.ptsecurity.com/feed/", "https://swarm.ptsecurity.com", "ok | link=direct | content=full_html | desc=full", 7),
-    ("Keen Security Lab (Tencent)", "Advanced vulnerability research", "threat_intel", "https://little-canada.org/feeds/output/tencent-keenlabs.rss", "https://keenlab.tencent.com/en/", "ok | link=direct | content=full_html | desc=full", 7),
+    ("PT SWARM", "APT research", "threat_intel", "https://swarm.ptsecurity.com/feed/", "https://swarm.ptsecurity.com", "empty? | link=direct | content=full_html | desc=full", 7),
+    ("Keen Security Lab (Tencent)", "Advanced vulnerability research", "threat_intel", "https://little-canada.org/feeds/output/tencent-keenlabs.rss", "https://keenlab.tencent.com/en/", "outdated | link=direct | content=full_html | desc=full", 7),
 
     # =====================
     # 🛠️ Exploit Development
     # =====================
     ("PortSwigger Research", "Web application exploits", "exploit_dev", "https://portswigger.net/research/rss", "https://portswigger.net/research", "ok | link=direct | content=full_html | desc=full", 9),
     ("Project Zero Bug Tracker", "Zero-day exploit database", "exploit_dev", "https://little-canada.org/feeds/output/projectzero-bugs.rss", "https://bugs.chromium.org/p/project-zero", "ok | link=direct | content=full_html | desc=none", 9),
-    ("STÖK's Blog", "Bug bounty techniques", "exploit_dev", "https://stokfredrik.com/rss.xml", "https://stokfredrik.com", "ok | link=direct | content=full_html | desc=full", 8),
-    ("Diary of a Reverse-Engineer", "Reverse engineering techniques", "exploit_dev", "https://doar-e.github.io/feeds/rss.xml", "https://doar-e.github.io/", "ok | link=direct | content=full_html | desc=full", 8),
-    ("GRIMM Blog", "Exploit development", "exploit_dev", "https://blog.grimm-co.com/feeds/posts/default", "https://blog.grimm-co.com/", "ok | link=direct | content=full_html | desc=full", 8),
+    ##("STÖK's Blog", "Bug bounty techniques", "exploit_dev", "https://stokfredrik.com/rss.xml", "https://stokfredrik.com", "404 | link=direct | content=full_html | desc=full", 8),
+    ##("Diary of a Reverse-Engineer", "Reverse engineering techniques", "exploit_dev", "https://doar-e.github.io/feeds/rss.xml", "https://doar-e.github.io/", "outdated 2023 | link=direct | content=full_html | desc=full", 8),
     ("Hexacorn", "Malware analysis tricks", "exploit_dev", "https://www.hexacorn.com/blog/feed/", "https://www.hexacorn.com", "ok | link=direct | content=full_html | desc=full", 7),
     ("Doyensec's Blog", "Application security", "exploit_dev", "https://blog.doyensec.com/atom.xml", "https://blog.doyensec.com/", "ok | link=direct | content=full_html | desc=full", 7),
-    ("Access Vector", "Vulnerability research", "exploit_dev", "https://accessvector.net/rss.xml", "https://accessvector.net/", "ok | link=direct | content=full_html | desc=full", 7),
+    ##("Access Vector", "Vulnerability research", "exploit_dev", "https://accessvector.net/rss.xml", "https://accessvector.net/", "ok 2024 | link=direct | content=full_html | desc=full", 7),
     ("RET2 Systems Blog", "Exploit development", "exploit_dev", "https://blog.ret2.io/feed.xml", "https://blog.ret2.io/", "ok | link=direct | content=full_html | desc=full", 7),
-    ("Gamozo Labs Blog", "Low-level exploitation", "exploit_dev", "https://gamozolabs.github.io/feed.xml", "https://gamozolabs.github.io/", "ok | link=direct | content=full_html | desc=full", 7),
+    ##("Gamozo Labs Blog", "Low-level exploitation", "exploit_dev", "https://gamozolabs.github.io/feed.xml", "https://gamozolabs.github.io/", "old 2021 | link=direct | content=full_html | desc=full", 7),
 
     # =====================
     # 🔴 Red Team & Offensive
     # =====================
     ("SpecterOps Blog", "Active Directory security", "red_team", "https://posts.specterops.io/feed", "https://posts.specterops.io", "ok | link=direct | content=full_html | desc=full", 9),
     ("MDSec ActiveBreach", "Red team tradecraft", "red_team", "https://www.mdsec.co.uk/feed/", "https://www.mdsec.co.uk", "ok | link=direct | content=full_html | desc=full", 9),
-    ("Rasta Mouse's Blog", "C2 framework development", "red_team", "https://rastamouse.me/rss.xml", "https://rastamouse.me", "ok | link=direct | content=full_html | desc=full", 8),
-    ("Airbus CERT Blog", "ICS/OT security", "red_team", "https://blog.airbus-cyber-security.com/rss/", "https://blog.airbus-cyber-security.com", "ok | link=direct | content=full_html | desc=full", 8),
     ("Synacktiv | Publications", "Advanced exploitation", "red_team", "https://little-canada.org/feeds/output/synacktiv-publications.rss", "https://www.synacktiv.com/en/publications", "ok | link=direct | content=full_html | desc=full", 8),
     ("Rhino Security Labs", "Cloud red teaming", "red_team", "https://rhinosecuritylabs.com/feed/", "https://rhinosecuritylabs.com/", "ok | link=direct | content=full_html | desc=full", 7),
-    ("Elttam", "Red team research", "red_team", "https://little-canada.org/feeds/output/elttam.rss", "https://www.elttam.com/blog/", "ok | link=direct | content=full_html | desc=full", 7),
-
-    # =====================
-    # 📰 General News
-    # =====================
-    ("Schneier on Security", "Security policy analysis", "news", "https://www.schneier.com/feed/atom/", "https://www.schneier.com", "ok | link=direct | content=full_html | desc=partial", 9),
-    ("Risky Business Podcast", "Weekly news roundup", "news", "https://risky.biz/feeds/risky-business/", "https://risky.biz", "ok | link=audio | content=episode_page | desc=full", 9),
-    ("SecurityWeek", "Enterprise security news", "news", "https://www.securityweek.com/rss", "https://www.securityweek.com", "ok | link=direct | content=full_html | desc=partial", 7),
-    ("CSO Online", "Enterprise security", "news", "https://www.csoonline.com/index.rss", "https://www.csoonline.com", "ok | link=direct | content=full_html | desc=partial", 7),
-    ("ZDNet Security", "Technology security news", "news", "https://www.zdnet.com/topic/security/rss.xml", "https://www.zdnet.com/security/", "ok | link=direct | content=full_html | desc=partial", 7),
-    ("Infosecurity Magazine", "Cybersecurity news", "news", "https://www.infosecurity-magazine.com/rss/news/", "https://www.infosecurity-magazine.com", "ok | link=direct | content=full_html | desc=partial", 7),
-    ("Help Net Security", "Security news", "news", "https://www.helpnetsecurity.com/feed/", "https://www.helpnetsecurity.com", "ok | link=direct | content=full_html | desc=partial", 7),
-    ("SC Magazine", "Security news", "news", "https://www.scmagazine.com/home/feed/", "https://www.scmagazine.com", "warn | link=paywall | content=truncated | desc=partial", 4),
+    ("Elttam", "Red team research", "red_team", "https://little-canada.org/feeds/output/elttam.rss", "https://www.elttam.com/blog/", "empty | link=direct | content=full_html | desc=full", 7),
 
     # =====================
     # 🧠 Deep Dives & Education
     # =====================
     ("The DFIR Report", "Incident response case studies", "education", "https://thedfirreport.com/feed/", "https://thedfirreport.com", "ok | link=direct | content=full_html | desc=full", 8),
-    ("SANS Digital Forensics", "Forensics techniques", "education", "https://digital-forensics.sans.org/blog/rss.xml", "https://digital-forensics.sans.org", "ok | link=direct | content=full_html | desc=full", 7),
     ("Lenny Zeltser's Blog", "Malware analysis guides", "education", "https://zeltser.com/feed/", "https://zeltser.com", "ok | link=direct | content=full_html | desc=full", 7),
-    ("NCC Group Research", "Technical whitepapers", "education", "https://research.nccgroup.com/feed/", "https://research.nccgroup.com", "ok | link=direct | content=full_html | desc=full", 7),
     ("Windows Internals Blog", "OS security deep dives", "education", "https://windows-internals.com/feed/", "https://windows-internals.com", "ok | link=direct | content=full_html | desc=full", 7),
-    ("Troy Hunt", "Security tutorials", "education", "https://www.troyhunt.com/rss/", "https://www.troyhunt.com", "ok | link=direct | content=full_html | desc=full", 8),
+    #***FIX***("Troy Hunt", "Security tutorials", "education", "https://www.troyhunt.com/rss/", "https://www.troyhunt.com", "ok | link=direct | content=full_html | desc=full", 8),
     ("Trenchant", "Advanced research", "education", "http://little-canada.org/feeds/output/trenchant.rss", "https://trenchant.io/", "ok | link=direct | content=full_html | desc=full", 7),
 
     # =====================
     # 🎙️ Podcasts
     # =====================
-    ("Security Now (TWIT)", "Deep-dive security podcast", "podcast", "https://feeds.twit.tv/sn.xml", "https://twit.tv/shows/security-now", "ok | link=audio | content=episode_page | desc=full", 8),
     ("Darknet Diaries", "True cybercrime stories", "podcast", "https://feeds.megaphone.fm/darknetdiaries", "https://darknetdiaries.com", "ok | link=audio | content=episode_page | desc=full", 9),
+    ("Risky Business Podcast", "Weekly news roundup", "news", "https://risky.biz/feeds/risky-business/", "https://risky.biz", "ok | link=audio | content=episode_page | desc=full", 9),
     ("Risky Business Podcast", "Weekly news analysis", "podcast", "https://risky.biz/feeds/risky-business/", "https://risky.biz", "ok | link=episode_page | content=show_notes | desc=full", 9),
+    #***FIX***("Security Now (TWIT)", "Deep-dive security podcast", "podcast", "https://feeds.twit.tv/sn.xml", "https://twit.tv/shows/security-now", "ok | link=audio | content=episode_page | desc=full", 8),
     ("Graham Cluley", "Security podcast", "podcast", "https://grahamcluley.com/feed/", "https://grahamcluley.com", "ok | link=direct | content=full_html | desc=full", 7),
 ]
+# New rss feeds:
+# https://www.wired.com/feed/category/security/latest/rss
+# https://malpedia.caad.fkie.fraunhofer.de/feeds/rss/latest
 
 
 ### Headers for the requests - Used to mimic a real browser request and avoid being blocked
@@ -274,6 +276,30 @@ def start_ollama():
         print()
         exit(0) #replace with 1 if you want, 1 makes my debugger stop :D
 
+### Function to check if the playwright mini browser is installed
+def check_for_playwright():
+    try:
+        with sync_playwright() as p:
+            p.chromium.launch(headless=True).close()
+    except Exception as e:
+        print(f"Error: {e}")
+        return False
+    return True
+
+### Function to install playwright binaries (<400MB) if it is not installed, first asking the user for permission
+def install_playwright():
+    dash_line() #------------------------------------------
+    if get_yes_no("\nMicrosoft Playwright is not installed. It is used to download articles from sites using anti-scraping. Do you want to install it (<200MB)?", "yes") == "yes":
+        s.speak("Installing Playwright...")
+        subprocess.run([sys.executable, "-m", "playwright", "install", "--with-deps"], check=True)
+
+        if check_for_playwright():
+            s.speak("Successfully installed Playwright.")
+            return
+        else:
+            s.speak("Could not install Playwright. Disabling Playwright fallback.\n")
+            global use_playwright
+            use_playwright = False
 
 ### Function to check if an article is old or already read, also prints the title and published date if available
 def print_info_n_check_if_old_or_read():
@@ -305,20 +331,42 @@ def download_article(url):
         response.raise_for_status()
     except Exception as e:
         print(f"Error: {e}")
-        s.speak("An error occurred while processing the article.")
-        return None
+        print("An error occurred while downloading the article.")
+        return ""
     return response.content #text
 
-### Function to download an article from a given URL, using Playwright to bypass restrictions
-# TODO! continue debugging the url's where we only get odd byte data
-# def get_full_article(url):
-#     with sync_playwright() as p:
-#         browser = p.firefox.launch(headless=True)
-#         page = browser.new_page()
-#         page.goto(url, timeout=60000)
-#         html = page.content()
-#         browser.close()
-#         return html
+### Function to download an article from a given URL, using Playwright to bypass anti-scraping
+def download_article_playwright(url):
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            headless=True,
+            #slow_mo=1000,
+            #args=["--disable-blink-features=AutomationControlled"]
+        )
+        context = browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            viewport={"width": 1366, "height": 768},
+            #locale="en-US",
+            #java_script_enabled=True
+        )
+        page = context.new_page()
+
+        page.goto(url,
+            timeout=60000,
+            #wait_until="domcontentloaded"
+            wait_until="networkidle",
+            #referer="https://www.google.com/"
+        )
+
+        html = page.evaluate("""() => {
+            // More robust hydration check
+            if (typeof window.__REACT_HYDRATED__ !== 'undefined' && !window.__REACT_HYDRATED__) {
+                document.dispatchEvent(new CustomEvent('app-ready'));
+            }
+            return new XMLSerializer().serializeToString(document); // Most comprehensive capture
+        }""")
+
+        return html.encode("utf-8")
 
 ### Function to get the encoding and string content from a response
 def get_format_n_string(content): #
@@ -341,9 +389,14 @@ def get_format_n_string(content): #
 
 ### Function to extract the title and content from a webpage using Readability
 def extract_article_from_webpage(html):
-    doc = Document(html)
-    title = doc.short_title()
-    content = doc.summary()
+    try:
+        doc = Document(html)
+        title = doc.short_title()
+        content = doc.summary()
+    except Exception as e:
+        print(f"Error: {e}")
+        s.speak("An error occurred while extracting the article from the webpage.")
+        return "", ""
     return title, content
 
 ### Function to convert HTML content to plain text using BeautifulSoup
@@ -362,15 +415,18 @@ def generate_article_summary(article_html, lenth):
 ### Function to get the content/summary/description of a feed entry
 def get_feed_entry_content(entry):
     if 'content' in entry:
-        return entry.content[0].value
+        print(f"entry.content[0].value: {entry.content[0].value}")
+        return entry.content[0].value #TODO! Check for more that [0]
     elif 'summary' in entry and entry.summary != entry.title:
+        print(f"entry.summary: {entry.summary}")
         return entry.summary
     elif 'description' in entry and entry.description != entry.title:
+        print(f"entry.description: {entry.description}")
         return entry.description
     else:
         return None
 
-### Main function to run the script
+### Main function to run the script #################################################
 if __name__ == "__main__":
 
     s = speaker.Speaker(also_print=True, speed=DEFAULT_TTS_SPEED)
@@ -380,6 +436,9 @@ if __name__ == "__main__":
 
     if use_ollama and not check_for_ollama():
         ollama_process = start_ollama()
+
+    if use_playwright and not check_for_playwright():
+        install_playwright()
 
     s.speak("\nHere are the latest articles from your RSS feeds.")
 
@@ -398,16 +457,20 @@ if __name__ == "__main__":
 
             skip_article = print_info_n_check_if_old_or_read()
             if skip_article:
-                    continue
+                continue
 
             link_fail = False
             if "link" in entry:
                 print(f"Link: {entry.link}")
 
-                article_html = download_article(entry.link)
-                if article_html is None:
-                    article_html = ""
+                if "playwright" not in rss_feed[5]:
+                    article_html = download_article(entry.link)
+                elif "playwright" in rss_feed[5] and use_playwright:
+                    article_html = download_article_playwright(entry.link)
                 else:
+                    article_html = ""
+
+                if article_html:
                     article_format, article_string = get_format_n_string(article_html)
 
                     if article_format == "unredable":
@@ -415,11 +478,13 @@ if __name__ == "__main__":
                         print(article_string[:100])
                         article_html = ""
                     else:
-                        print(f"Format: {article_format}")
+                        #print(f"Format: {article_format}")
                         article_html = article_string
 
-                title, article_html_fixed = extract_article_from_webpage(article_html)
-                article_text = convert_html_to_text(article_html_fixed)
+                    title, article_html_fixed = extract_article_from_webpage(article_html)
+                    article_text = convert_html_to_text(article_html_fixed)
+                else:
+                    article_text = ""
 
                 word_count = len(article_text.split())
                 print(f"Word count: {word_count}")
