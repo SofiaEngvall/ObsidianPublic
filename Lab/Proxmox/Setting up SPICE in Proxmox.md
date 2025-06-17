@@ -35,8 +35,13 @@
    - (This did seem to crash the vm - might be a conflict with rdp as rdp closes now when we open spice?)
    - Alternative way: use the files in the D:\guest-agent\qemu-ga-x86_64.msi (the wirtio-win-iso)
    - (This didn't seem to work at all and we got a crash at reboot)
-   
-6. To enable file sharing we also need the WebDAV Daemon https://www.spice-space.org/download/windows/spice-webdavd/
+     
+6. Install the Guest Tools for Linux (might be preinstalled)
+   - Install `sudo apt install spice-vdagent`
+   - Start/Enable `sudo systemctl start spice-vdagent` or `sudo systemctl enable spice-vdagent`
+   - Check the status of the service: `sudo systemctl status spice-vdagent`
+     
+9. To enable file sharing we also need the WebDAV Daemon https://www.spice-space.org/download/windows/spice-webdavd/
    - Windows ^
    - Linux: [[Linux VM Spice]]
 

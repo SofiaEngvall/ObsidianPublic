@@ -125,16 +125,7 @@ We already know that there is SUID capable files on the system, thanks to our Li
 **2>/dev/null** - Suppresses errors
 
 
-
-
-
-
-
-
-
-
-
-
+---
 
 
 ### normal SUID

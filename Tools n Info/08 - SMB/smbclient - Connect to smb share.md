@@ -8,6 +8,22 @@
 `dir` to list files
 `get <filename>` to get a file
 
+download all files recursively
+```sh
+smbclient '\\server\share'
+mask ""
+recurse ON
+prompt OFF
+cd 'path\to\remote\dir'
+lcd '~/path/to/download/to/'
+mget *
+```
+
+oneliner:
+```sh
+smbclient '\\server\share' -N -c prompt OFF;recurse ON;cd "path";lcd "local path";mget *
+```
+
 ### Commands
 
 ```sh

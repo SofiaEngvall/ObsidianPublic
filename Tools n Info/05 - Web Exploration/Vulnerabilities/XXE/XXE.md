@@ -1,4 +1,12 @@
 
+WML External Entity (XXE) injection
+
+Mess with an application's processing of XML data.
+- view data
+- interact with backend
+- using ssrf to access backend
+
+
 1. Use Convert to XML in Burp and modify the XML data
 2. We can try changing the `Content-Type:` to `text/xml`
 3. Add a doctype: `<!DOCTYPE test SYSTEM "http://10.21.31.111:8000/hello">`

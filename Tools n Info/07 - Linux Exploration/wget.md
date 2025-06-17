@@ -3,6 +3,10 @@
 
 mirror a ftp site
 `wget -m --no-passive ftp://anonymous:anonymous@10.10.32.52`
+
+download all files recursively from ftp (can do special character username & password):
+`wget --recursive --level=inf --user="user@login" --password="Pa$$wo|^D" ftp://server.com/`
+
 ### Help
 
 ```sh

@@ -30,6 +30,45 @@ First checks
 		ps: `Get-NetTCPConnection`
 	whatever
 
+whoami /all
+
+net user - list local users
+net user username
+net user administrator
+net localgroup
+net localgroup administrators
+
+ipconfig /all
+dns might be domain server
+
+arp -a
+are there other computer but us and the dns?
+
+route print
+
+netstat -ano
+what are we listening on, did we see all in nmap
+
+--
+
+manual password hunting
+`findstr /ai password *.txt *.ini *.config*` does a recursive search in files
+also search for uid, pwd and auth
+
+av & fw
+`sc` - service controll
+`sc query windefend`
+`sc queryex type=service`
+netsh advfirewall firewall dump
+netsh firewall show state
+netsh firewall show config
+
+
+wmic
+	`wmic qfe` quick fix engineering - list hotfixes/patches
+	`wmic logicaldisc` - list drives
+
+
 Remember
 `dir /a` Displays hidden and system files as well.
 `dir /s` Displays files in the current directory and all subdirectories.
@@ -48,7 +87,7 @@ Powershell history
 
 Other interesting files
 	`\windows\win.ini`
-	sam
+	`\windows\system32\config\sam`
 
 Saved credentials
 	cmd/ps: `cmdkey /list` no passwords, but can be used with `runas /savecred /user:admin cmd.exe`

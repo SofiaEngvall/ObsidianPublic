@@ -1,7 +1,7 @@
 
-mysql -h -w 10.10.10.10 -u root -p
+`mysql -h -w 10.10.10.10 -u root -p`
 
-
+`/usr/bin/mysql -u root -p '' 2>&1` (also show err on a basic shell)
 
 
 

@@ -1,6 +1,11 @@
 get all files on a share recursively (might have problems with big files?)
 `smbget --recursive smb://10.10.212.230/anonymous`
 
+`smbget --user="Guest" --password="" --recursive smb://10.10.212.230/Users`
+
+`--user=[DOMAIN/]USERNAME[%PASSWORD]`
+`--password=STRING`
+
 ```sh
 ┌──(kali㉿kali)-[~]
 └─$ smbget --recursive smb://10.10.110.17/anonymous

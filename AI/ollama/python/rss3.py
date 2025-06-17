@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import ollama
 import speaker
-import listener
+import AI.ollama.python.listener as listener
 
 s = speaker.Speaker()
 

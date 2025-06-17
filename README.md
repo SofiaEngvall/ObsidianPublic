@@ -2,5 +2,5 @@
 ## My cyber security notes
 
 
-These notes are constantly growing as I learn new thing
+These notes are constantly growing as I learn new things!
 

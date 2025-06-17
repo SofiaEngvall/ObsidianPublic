@@ -7,7 +7,7 @@ Quick check:
 
 `gobuster dir -r -u http://server.com -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 30 -e` 
 
-`gobuster dir -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -t 20 -u http://10.10.10.10`
+`gobuster dir -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -t 20 -u http://10.10.10.95`
 
 `gobuster vhost -r -u http://10.10.10.10 --domain server.com -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain -t 30`
 
@@ -91,16 +91,18 @@ PHP filter
 	PHP://filter/convert.base64-encode/resource=
 	example: `GET /test.php?view=PHP://filter/convert.base64-encode/resource=/var/www/html/development_testing/test.php HTTP/1.1`
 
+iis? way to put a aspx shell?
+	google it or msfvenom can generate
 
 
 webshell or revshell upload
 	use what the system is built on; php, python django, vbscript node.js... perl might also work
 
-
 Run scanners:
 	`nikto -h http://whatever.thm`
 	`whatweb -a 4 http://dailybugle.thm`
-	``
+
+scan with zap
 
 https://owasp.org/www-project-web-security-testing-guide/latest/
 

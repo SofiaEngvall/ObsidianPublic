@@ -3,8 +3,10 @@
 -t   set ttl
 -n   count on windows
 
-ttl windows = 127...
-ttl linux.. = 62...
+###### Default ttl vaules
+linux, mac = 64
+windows = 128
+cisco = 256
 
 ```sh
 for i in $(seq 254); do ping 192.168.0.${i} -c1 -W1 & done | grep from

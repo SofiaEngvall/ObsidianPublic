@@ -2,6 +2,14 @@
 mysql -u root -p
 enter password
 
+`show databases;`
+`use my_database;`
+
+`show tables;`
+`select * from user;`
+
+---
+
 CREATE DATABASE database_name;
 SHOW DATABASES;
 

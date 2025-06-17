@@ -1,5 +1,5 @@
 
-[[wpscan]]
+[[Tools & Commands/wpscan]]
 
 You can replace one of the php files of a Theme by going into Appearance/Theme Editor.
 You can replace the code with for example pentestmonkeys rev shell.

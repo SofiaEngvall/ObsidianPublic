@@ -198,13 +198,18 @@ sudo apt install kali-desktop-xfce
 sudo reboot
 ```
 
-### Add FULL Kali tools
+### Add FULL Kali tools (Doesn't fit on 30 GB anymore)
 
 ```sh
 sudo apt install kali-linux-everything
 ```
 
-TODO! check the name ^
+### Add Large Kali tools (Fits on the 30 GB free drive)
+
+```sh
+sudo apt install kali-linux-large
+```
+
 ### Installation of headless Kali
 
 ```sh

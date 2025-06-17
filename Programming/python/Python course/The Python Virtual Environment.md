@@ -17,3 +17,10 @@ Exit the virtual environment by running:
 
 Use pip3 for installing libraries, it's aware of virtual environments:
 `pip3 install pwntools`
+
+# For python2
+
+`sudo apt install virtualenv`
+`virtualenv -p python2 py2env`
+`source py2env/bin/activate`
+
