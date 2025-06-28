@@ -6,5 +6,6 @@ creds.json
 token.json.zooe
 OPENAI_API_KEY
 OPENAI_API_KEY.OLD
+script_read_access.key
 python-yr-1.4.7.post2
 OSINT

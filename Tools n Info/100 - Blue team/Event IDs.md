@@ -1,4 +1,8 @@
 
+https://tryhackme.com/room/windowseventlogs, task 6 - add these
+
+### extra interesting ones
+
 Event ID
 
 4624
@@ -17,4 +21,15 @@ Event ID
 
 4768 a Kerberos Ticket Granting Ticket (TGT) is requested
 4769 a Kerberos service ticket is requested
+
+### all
+
+1: Process Creation
+3: Network Connection
+7: Image Loaded, DLLs loaded by processes? google
+8: CreateRemoteThread, could be used by malware
+11: File Created
+12 / 13 / 14: Registry Event
+15: FileCreateStreamHash
+22: DNS Event
 

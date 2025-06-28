@@ -29,3 +29,5 @@ Might work in java based apps? https://book.hacktricks.xyz/pentesting-web/xxe-xe
 ```
 
 
+AI:
+reflective xss in ai

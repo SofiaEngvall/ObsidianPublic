@@ -1,4 +1,8 @@
 
+try adding ./ everywhere - if it still works the same!!
+
+also use file upload/RFI/log files
+
 https://github.com/danielmiessler/SecLists/blob/master/Fuzzing/LFI/LFI-Jhaddix.txt
 
 https://github.com/danielmiessler/SecLists/tree/master/Fuzzing/LFI
@@ -47,4 +51,6 @@ grep -v "rem_address" /proc/net/tcp  | awk 'function hextodec(str,ret,n,i,k,c){
 } {x=hextodec(substr($2,index($2,":")-2,2)); for (i=5; i>0; i-=2) x = x"."hextodec(substr($2,i,2))}{print x":"hextodec(substr($2,index($2,":")+1,4))}'
 ```
 For info on local ports, like listening ports - replace `$2` with `$1` to get the local address column
+
+
 
