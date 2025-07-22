@@ -84,8 +84,8 @@ In a Windows environment, protocols such as LLMNR and NBT-NS can often be easily
     Responder IP               [10.21.31.111]
     Responder IPv6             [fe80::3b67:c794:fba5:622c]
     Challenge set              [random]
-    Don't Respond To Names     ['ISATAP', 'ISATAP.LOCAL']
-    Don't Respond To MDNS TLD  ['_DOSVC']
+    Don´t Respond To Names     ['ISATAP', 'ISATAP.LOCAL']
+    Don´t Respond To MDNS TLD  ['_DOSVC']
     TTL for poisoned response  [default]
 
 [+] Current Session Variables:

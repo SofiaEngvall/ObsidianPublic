@@ -1,5 +1,5 @@
 
-part of the sysinternals tools
+part of the [[../../Windows/Sysinternal Tools|Sysinternal Tools]]
 
 Logs from sysmon are found in `Applications and Services Logs/Microsoft/Windows/Sysmon/Operational`
 

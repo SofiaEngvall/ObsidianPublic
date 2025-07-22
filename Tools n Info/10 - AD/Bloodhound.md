@@ -1,6 +1,7 @@
 
+### Gathering data using Sharphound
 
-### Running Sharphound
+run on windows machine
 
 https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound-all-flags.html old?
 https://support.bloodhoundenterprise.io/hc/en-us/sections/17274904083483
@@ -15,17 +16,59 @@ Execute Sharphound with the "All" collection method once at the start of your as
 Then execute Sharphound at least twice a day using the "Session" collection method (coffee break time?)
 (Click "Clear Session Information" in Bloodhound before importing the data from the Session runs.)
 
+Stealthier option:
+`SharpHound.exe -c Session,LocalAdmin,Trusts,ACL `
+
+### Gathering from Kali
+
+`bloodhound-python -u svc-admin -p 'management2005' -d spookysec.local -dc AttacktiveDirectory.spookysec.local -ns 10.10.229.142 -c all`
+-c works the same as with sharphound
+
+### Gather offline data
+
+- the NTDS.dit
+- registry hives
+- group membership dumps
+
+can we do this? if so, how to import?
+
 ### Running Bloodhound
 
-`neo4j console start`
+##### Starting Bloodhound
+
 `bloodhound --no-sandbox`
 
-Left Ctrl - Toggle Labels
+opens http://127.0.0.1:8080
 
-Pathfinding from user to a admin
+neo4j available at http://localhost:7474
+
+##### Clearing old data
+
+- Go to neo4j at http://localhost:7474
+- In the field containing `neo4j$`, enter `MATCH (n) DETACH DELETE n;`
+
+##### Ingesting data
+
+- Go to `Administration`, `File Ingest` and click `Upload File(s)`
+- Drag files in or select in file browser
+- Click `Upload`, `Upload` and `Close`
+- Wait until the `Status Message` is `Complete`
+
+##### Look at data
+
+###### Example to see who has permissions for the domain
+- Go to `Explore` `Search` and click the search field
+- Type `.`
+- Click something and remove everything but the domain name
+- Double click the domain name
+- Click the domain in the graph
+- Click Controllers on the left side
+
+![[Images/Pasted image 20250705020519.png]]
+##### Pathfinding from user to a admin
 ![[Images/Pasted image 20250313232837.png]]
 
-Example exploitation of this path:
+###### Example exploitation of this path
 1. Use our AD credentials to RDP into **THMJMP1**.
 2. Look for a privilege escalation vector on the host that would provide us with Administrative access.
 3. Using Administrative access, we can use credential harvesting techniques and tools such as Mimikatz.
@@ -36,7 +79,9 @@ https://bloodhound.readthedocs.io/en/latest/data-analysis/edges.html
 Check the Analysis tab!
 - List all Kerberoastable Accounts
 
+##### Key shortcuts
 
+Left Ctrl - Toggle Labels
 
 
 ### Examples
@@ -61,11 +106,77 @@ Closing writers
 2025-03-13T19:43:04.3500417+00:00|INFORMATION|SharpHound Enumeration Completed at 7:43 PM on 3/13/2025! Happy Graphing!
 ```
 
+
+### Problemsolving
+
+##### Error - Outdated Postgres
+
+###### error when trying to run bloodhound
+
+```sh
+┌──(kali㉿proxli)-[~/boxes/thm/attacktive]
+└─$ bloodhound --no-sandbox
+[sudo] password for kali: 
+
+ It seems it's the first time you run bloodhound
+
+ Please run bloodhound-setup first
+
+Do you want to run bloodhound-setup now? [Y/n] y
+
+ [*] Starting PostgreSQL service
+
+ [*] Creating Database
+WARNING:  database "postgres" has a collation version mismatch
+DETAIL:  The database was created using collation version 2.40, but the operating system provides version 2.41.
+HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+
+ Creating database user
+WARNING:  database "postgres" has a collation version mismatch
+DETAIL:  The database was created using collation version 2.40, but the operating system provides version 2.41.
+HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+WARNING:  database "postgres" has a collation version mismatch
+DETAIL:  The database was created using collation version 2.40, but the operating system provides version 2.41.
+HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+
+ Creating database
+WARNING:  database "postgres" has a collation version mismatch
+DETAIL:  The database was created using collation version 2.40, but the operating system provides version 2.41.
+HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+createdb: error: database creation failed: ERROR:  template database "template1" has a collation version mismatch
+DETAIL:  The template database was created using collation version 2.40, but the operating system provides version 2.41.
+HINT:  Rebuild all objects in the template database that use the default collation and run ALTER DATABASE template1 REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "bloodhound" does not exist
+```
+###### steps to take
+
+```sh
+┌──(kali㉿proxli)-[~/boxes/thm/attacktive]
+└─$ sudo -u postgres psql                                                                               
+WARNING:  database "postgres" has a collation version mismatch
+DETAIL:  The database was created using collation version 2.40, but the operating system provides version 2.41.
+HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+psql (17.5 (Debian 17.5-1))
+Type "help" for help.
+
+postgres=# ALTER DATABASE postgres REFRESH COLLATION VERSION;
+NOTICE:  changing version from 2.40 to 2.41
+ALTER DATABASE
+```
+
+
+##### Error - Data is not uploaded as is should
+
+###### Check Neo4j Directly
+Open the Neo4j browser: [`http://localhost:7474`](http://localhost:7474) (default credentials: `neo4j:neo4j`).
+- To check if there's data - Run `MATCH (n) RETURN count(n);`
+  If this returns `0`, the data wasn’t imported.
+- To delete all data and start over - Run `MATCH (n) DETACH DELETE n;`
+  and Re-import the JSON files
+
 ### Installation
 
-
-
-`sudo apt update && sudo apt install -y bloodhound`
+`sudo apt install bloodhound neo4j`
 `sudo neo4j console`
 
 continue: https://www.kali.org/tools/bloodhound/
@@ -155,7 +266,7 @@ Starting Neo4j.
 ```
 
 Password set to: monster-chaos-mike-distant-action-9068
-
+bloodhound: *:hi7hdka&~.$ZH
 
 ```sh
 ┌──(kali㉿kali)-[~/ad-temp]
@@ -182,3 +293,4 @@ Unpacking bloodhound (4.3.1-0kali2) ...
 Setting up bloodhound (4.3.1-0kali2) ...
 Processing triggers for kali-menu (2025.1.1) ...
 ```
+

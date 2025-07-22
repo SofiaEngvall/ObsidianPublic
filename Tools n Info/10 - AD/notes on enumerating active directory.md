@@ -1,7 +1,4 @@
-**notes on enumerating active directory**
-
-
-
+from audrey
 
 # SMB
 

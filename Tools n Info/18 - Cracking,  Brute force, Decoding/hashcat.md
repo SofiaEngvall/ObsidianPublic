@@ -1,6 +1,8 @@
 
 https://github.com/hashcat/hashcat
 
+Example hashes list: https://hashcat.net/wiki/doku.php?id=example_hashes
+
 Remove old cracked passwords (it won't redo cracked ones)
 `del hashcat.potfile`
 

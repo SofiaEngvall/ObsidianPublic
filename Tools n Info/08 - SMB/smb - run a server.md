@@ -9,7 +9,7 @@ where the subdirectory `share` is shared under the share name `share`
 Can easily be user to access files from both Windows and Linux:
 
 #### Linux
-[[smbclient - Connect to smb share]]
+[[smbclient]]
 `smbclient //10.10.10.10/share -U user`
 
 #### Windows

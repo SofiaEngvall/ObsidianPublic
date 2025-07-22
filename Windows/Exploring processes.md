@@ -152,7 +152,7 @@ Normal winlogon.exe:
 `parent: userinit.exe (terminates after loading explorer so Non-existent later)`
 <font size=3>Winlogon runs userinit.exe, which launches "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell"</font>
 
-![[Images/explorer.png]]
+![[Images/explorer.png|1000]]
 
 
 

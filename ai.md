@@ -1,3 +1,0 @@
-
-chatgpt for hacking
-PentestGPT

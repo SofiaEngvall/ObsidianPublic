@@ -22,7 +22,7 @@ Event ID
 4768 a Kerberos Ticket Granting Ticket (TGT) is requested
 4769 a Kerberos service ticket is requested
 
-### all
+### sysmon event ids
 
 1: Process Creation
 3: Network Connection

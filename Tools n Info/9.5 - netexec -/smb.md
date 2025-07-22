@@ -41,9 +41,9 @@ custom amsi bypass on cme webbpage
 or run ps with cmd lol
 `cme smb 10.10.10.10 -u 'Administrator' -p 'securepass2' -x 'powershell.exe -c "GCI C:\"'`
 
-continue from [[../09 - Windows Exploration/crackmapexec/Al's stream on crackmapexec]]
+continue from [[Al's stream on crackmapexec]]
 
-check [[../10 - AD/audrey]]
+check [[../10 - AD/notes on enumerating active directory]]
 check [[../../../TO SORT/win  hacking al]]
 
 -M spider_plus
