@@ -1,4 +1,6 @@
 
+DNS settings -> [[Kali  + Windows DNS settings]]
+
 ### Enumerating AD room
 
 Got creds from http://distributor.za.tryhackme.com/creds

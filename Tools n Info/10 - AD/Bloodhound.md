@@ -19,7 +19,7 @@ Then execute Sharphound at least twice a day using the "Session" collection meth
 Stealthier option:
 `SharpHound.exe -c Session,LocalAdmin,Trusts,ACL `
 
-### Gathering from Kali
+### Gathering data from Kali
 
 `bloodhound-python -u svc-admin -p 'management2005' -d spookysec.local -dc AttacktiveDirectory.spookysec.local -ns 10.10.229.142 -c all`
 -c works the same as with sharphound
@@ -79,6 +79,10 @@ https://bloodhound.readthedocs.io/en/latest/data-analysis/edges.html
 Check the Analysis tab!
 - List all Kerberoastable Accounts
 
+### Bloodhound new GUI - Finding the `Pre-built Searches`
+
+![[Images/Pasted image 20250723211855.png]]
+
 ##### Key shortcuts
 
 Left Ctrl - Toggle Labels
@@ -106,7 +110,30 @@ Closing writers
 2025-03-13T19:43:04.3500417+00:00|INFORMATION|SharpHound Enumeration Completed at 7:43 PM on 3/13/2025! Happy Graphing!
 ```
 
-
+bloodhound-python:
+```sh
+┌──(kali㉿proxli)-[~/boxes/thm/attacktive]
+└─$ bloodhound-python -u svc-admin -p 'management2005' -d spookysec.local -dc AttacktiveDirectory.spookysec.local -ns 10.10.229.142 -c all
+INFO: BloodHound.py for BloodHound LEGACY (BloodHound 4.2 and 4.3)
+INFO: Found AD domain: spookysec.local
+INFO: Getting TGT for user
+WARNING: Failed to get Kerberos TGT. Falling back to NTLM authentication. Error: [Errno Connection error (AttacktiveDirectory.spookysec.local:88)] [Errno -2] Name or service not known
+INFO: Connecting to LDAP server: AttacktiveDirectory.spookysec.local
+INFO: Found 1 domains
+INFO: Found 1 domains in the forest
+INFO: Found 1 computers
+INFO: Connecting to LDAP server: AttacktiveDirectory.spookysec.local
+INFO: Found 18 users
+INFO: Found 54 groups
+INFO: Found 2 gpos
+INFO: Found 3 ous
+INFO: Found 19 containers
+INFO: Found 0 trusts
+INFO: Starting computer enumeration with 10 workers
+INFO: Querying computer: AttacktiveDirectory.spookysec.local
+INFO: Ignoring host AttacktiveDirectory.spookysec.local since its reported name ATTACKTIVEDIREC does not match
+INFO: Done in 00M 05S
+```
 ### Problemsolving
 
 ##### Error - Outdated Postgres
@@ -160,6 +187,10 @@ psql (17.5 (Debian 17.5-1))
 Type "help" for help.
 
 postgres=# ALTER DATABASE postgres REFRESH COLLATION VERSION;
+NOTICE:  changing version from 2.40 to 2.41
+ALTER DATABASE
+
+postgres=# ALTER DATABASE template1 REFRESH COLLATION VERSION;
 NOTICE:  changing version from 2.40 to 2.41
 ALTER DATABASE
 ```
@@ -265,8 +296,6 @@ Starting Neo4j.
 
 ```
 
-Password set to: monster-chaos-mike-distant-action-9068
-bloodhound: *:hi7hdka&~.$ZH
 
 ```sh
 ┌──(kali㉿kali)-[~/ad-temp]
@@ -294,3 +323,18 @@ Setting up bloodhound (4.3.1-0kali2) ...
 Processing triggers for kali-menu (2025.1.1) ...
 ```
 
+##### Default credentials
+
+neo4j:
+username: neo4j
+password: neo4j
+
+bloodhound:
+e-mail: admin
+password: admin
+
+
+##### My used creds
+
+Password set to: monster-chaos-mike-distant-action-9068
+bloodhound: `*:hi7hdka&~.$ZH`

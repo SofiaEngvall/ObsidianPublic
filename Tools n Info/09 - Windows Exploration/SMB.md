@@ -1,3 +1,3 @@
 
-[[../9.5 - netexec -/smb|smb]]
+[[../9.5 - netexec -/nxc smb 2|nxc smb 2]]
 

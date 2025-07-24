@@ -13,4 +13,5 @@ domain sid:  used sid minus the last bit
 krbtgt hash:   (requires dc sync or similar permissions to get)
 
 The krbtgt account is always disabled as it's not used for login.
-Getting the krbtgt hash through mimikatz or impacket-secretsdump for example
+Getting the krbtgt hash through [[mimikatz]] `lsadump::dcsync` or [[impacket-secretsdump]] for example
+

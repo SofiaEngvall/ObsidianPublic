@@ -1,5 +1,5 @@
 
-We have a list of possible user names and a possible pasword (from OSINT)
+We have a list of possible user names and a possible password (from OSINT)
 
 
 script to password spray

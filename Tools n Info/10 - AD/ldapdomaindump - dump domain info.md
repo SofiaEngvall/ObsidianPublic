@@ -1,4 +1,6 @@
 
+`ldapdomaindump ldap://10.10.10.10 -u domain.com\\myuser -p mypassword`
+
 ```sh
 ┌──(kali㉿proxli)-[~/boxes/thm/attacktive]
 └─$ ldapdomaindump ldap://10.10.106.240 -u spookysec.local\\svc-admin -p management2005
@@ -36,5 +38,5 @@ drwxr-xr-x 45 kali kali   4096 Jul  3 00:03 ..
 -rw-r--r--  1 kali kali 540470 Jul  3 00:04 userlist.txt
 ```
 
-![[Images/Pasted image 20250703011149.png]]
+![[../../Boxes/TryHackMe/Attacktive Directory (Done)/Images/Pasted image 20250703011149.png]]
 

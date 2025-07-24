@@ -2,7 +2,7 @@
 Get specific .ovpn-file from https://tryhackme.com/access, click Network to see "breachingad" and update DNS settings in Kali
 ### DNS settings Kali
 
-Settings - Settings Manager - Advanced Network Configuration - your network connection - IPv4 Settings
+Usual Applications - Settings - Settings Manager - Advanced Network Configuration - your network connection - IPv4 Settings
 ![[Images/Pasted image 20250221161352.png]]
 
 ### DNS in AD
@@ -20,7 +20,7 @@ THMDC 10.200.80.101
 THM-IIS 10.200.80.201
 ntlmauth.za.tryhackme.com
 
-#### On Windown
+#### On Windows
 
 ```powershell
 $dnsip = "<DC IP>"

