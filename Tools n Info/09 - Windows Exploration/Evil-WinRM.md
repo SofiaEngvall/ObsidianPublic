@@ -1,6 +1,6 @@
 
 
-default ports: 5895 and 5896
+default ports: 5895 and 5896 (and 47001)
 
 `evil-winrm -i 192.168.1.10 -u administrator -p password123`
 

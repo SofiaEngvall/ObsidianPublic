@@ -5,10 +5,10 @@ Enumeration examples: https://github.com/CravateRouge/bloodyAD/wiki/Enumeration
 
 The bloodyAD commands consists of two parts:
 - the information - domain, host, username and password
-  like `bloodyAD --host 10.10.232.197 -d spookysec.local -u svc-admin -p 'management2005'`
+  like `bloodyAD --host 10.10.232.197 -d spookysec.local -u backup -p 'backup2517860'`
 - the qurey - get/set/add/remove something
   like `add user newuser Password123!`
-making the full command: `bloodyAD --host 10.10.232.197 -d spookysec.local -u svc-admin -p 'management2005' add user newuser Password123!`
+making the full command: `bloodyAD --host 10.10.55.131 -d spookysec.local -u backup -p 'backup2517860' add user newuser Password123!`
 
 below I will only write out the second part for readability (except for the examples)
 
@@ -26,7 +26,6 @@ create computer account
 
 setting other users password
 `set password john.doe 'Password123!'`
-
 
 get members of the Domain Admins group
 `get object 'Domain Admins' --attr member`

@@ -13,6 +13,9 @@ enum usernames
 `nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --rid-brute`
 (rid is the end of the sid)
 
+get password policy
+`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --pass-pol`
+
 The same but using Kerberos - Kerberos traffic is more common on the network (the default is NTLM)
 `nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1'`
 `nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' -k`
