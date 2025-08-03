@@ -1,20 +1,18 @@
 
+### Set file permissions
+
+one command version
 ```powershell
 
 get-acl | fl
 
-set-acl -AclObject get-acl.AddAccessRule((new-object System.Security.AccessControl.FileSystemAccessRule 'Administrator','FullControl','ContainerInherit,ObjectInherit','None','Allow'))
-
-
-
-
 Set-Acl "C:\users\Administrator\desktop" (Get-Acl "C:\users\Administrator\desktop" | %{$_.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule("Everyone","FullControl","ContainerInherit,ObjectInherit","None","Allow")));$_})
-
 
 get-acl | fl
 
 ```
 
+script version
 ```powershell
 get-acl $path | fl
 
@@ -27,3 +25,5 @@ set-acl $path -AclObject $acl
 
 get-acl $path | fl
 ```
+
+

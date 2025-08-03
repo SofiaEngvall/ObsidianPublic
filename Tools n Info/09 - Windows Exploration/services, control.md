@@ -202,3 +202,27 @@ sc queryex group= ""    - Enumerates active services not in a group
 sc query type= interact - Enumerates all interactive services
 sc query type= driver group= NDIS     - Enumerates all NDIS drivers
 ```
+
+```sh
+*Evil-WinRM* PS C:\users\svc-printer\desktop> sc.exe config
+DESCRIPTION:
+        Modifies a service entry in the registry and Service Database.
+USAGE:
+        sc <server> config [service name] <option1> <option2>...
+
+OPTIONS:
+NOTE: The option name includes the equal sign.
+      A space is required between the equal sign and the value.
+      To remove the dependency, use a single / as dependency value.
+ type= <own|share|interact|kernel|filesys|rec|adapt|userown|usershare>
+ start= <boot|system|auto|demand|disabled|delayed-auto>
+ error= <normal|severe|critical|ignore>
+ binPath= <BinaryPathName to the .exe file>
+ group= <LoadOrderGroup>
+ tag= <yes|no>
+ depend= <Dependencies(separated by / (forward slash))>
+ obj= <AccountName|ObjectName>
+ DisplayName= <display name>
+ password= <password>
+```
+

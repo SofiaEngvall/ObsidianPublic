@@ -38,5 +38,5 @@ drwxr-xr-x 45 kali kali   4096 Jul  3 00:03 ..
 -rw-r--r--  1 kali kali 540470 Jul  3 00:04 userlist.txt
 ```
 
-![[../../Boxes/TryHackMe/Attacktive Directory (Done)/Images/Pasted image 20250703011149.png]]
+![[../../../Boxes/TryHackMe/Attacktive Directory (Done)/Images/Pasted image 20250703011149.png]]
 

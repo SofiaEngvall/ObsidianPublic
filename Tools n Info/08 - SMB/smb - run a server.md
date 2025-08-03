@@ -15,6 +15,7 @@ Can easily be user to access files from both Windows and Linux:
 #### Windows
 [[net use - connect from windows]]
 `net use v: \\192.168.220.129\share /USER:user password`
+`net use v: \\10.10.15.2\share /USER:user password`
 or `net use \\10.10.10.10\share /USER:user password` and connect in gui
 
 `dir` to list files

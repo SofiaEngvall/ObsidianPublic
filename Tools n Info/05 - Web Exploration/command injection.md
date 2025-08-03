@@ -1,4 +1,9 @@
 
+$( command here )
+\` command here \`
+
+`${IFS%??}` = space as in `which${IFS%??}bash`
+
 ### Examples
 
 hash the file:

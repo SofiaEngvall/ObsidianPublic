@@ -1,5 +1,5 @@
 
-running [[../../../Tools n Info/10 - AD/kerbrute|kerbrute]] just to test it:
+running [[../../../Tools n Info/10 - AD/Tools/kerbrute|kerbrute]] just to test it:
 
 ```sh
 ┌──(kali㉿proxli)-[~/boxes/thm/attacktive]

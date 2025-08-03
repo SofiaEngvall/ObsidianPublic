@@ -1,11 +1,12 @@
 
+nullsession
+`smbclient -U '' -N -L //10.10.10.10` (-N = no pass)
 
 ### Connect to smb share
 
 `smbclient //10.10.138.39/Anonymous`
 
 `smbclient //10.10.97.172/profiles -U Anonymous`
-`smbclient //10.10.97.172/profiles -U krktgt`
 
 `dir` to list files
 `get <filename>` to get a file

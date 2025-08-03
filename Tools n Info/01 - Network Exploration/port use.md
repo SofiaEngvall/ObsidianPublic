@@ -31,3 +31,18 @@ dhcp server listens on 67
 dhcp client sends on 68
 tftp 69
 snmp 161
+
+
+##### common ports on a dc
+
+53 dns
+88 kerberos
+
+139+445 smb
+
+389 ldap
+636 ldap ssl
+3268 global ldap
+3269 global ldap ssl
+
+5985 rdp - winrm
