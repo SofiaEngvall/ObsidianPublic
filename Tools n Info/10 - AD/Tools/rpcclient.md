@@ -400,16 +400,6 @@ GENERAL OPTIONS
         timeout         Set timeout (in milliseconds) for RPC operations
       transport         Choose ncacn transport for RPC operations
            none         Force RPC pipe connections to have no special properties
-rpcclient $> fss_is_path_sup
-do_cmd: Could not initialise FileServerVssAgent. Error was NT_STATUS_ACCESS_DENIED
-rpcclient $> exit
-                                                                                                                              
-┌──(fixit42㉿kali)-[~/shells]
-└─$ rpcclient -U 'return\svc-printer' --password '1edFg43012!!' 10.129.170.211                  
-rpcclient $> fss_is_path_sup
-do_cmd: Could not initialise FileServerVssAgent. Error was NT_STATUS_OBJECT_NAME_NOT_FOUND
-rpcclient $> 
-
 ```
 
 TODO! test this later on htb return (we replaced the vss service, oupsie!)

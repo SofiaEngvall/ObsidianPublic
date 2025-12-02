@@ -14,7 +14,6 @@ LastPass
 - Limited to one device in free tier
 - breaches
 - increasing prices
--
 
 ProtonPass
 - no 2fa for free?
@@ -43,7 +42,7 @@ heylogin
 
 ---
 
-## 🔐 Top Password Managers Comparison
+## 🔐 Top Password Managers Comparison (chat gpt)
 
 |Password Manager|Free Tier & Limitations|Cloud Storage|Setup & Daily Use|Emergency Access|Platforms & Browser Support|Security Model|
 |---|---|---|---|---|---|---|

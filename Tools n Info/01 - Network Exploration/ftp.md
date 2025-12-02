@@ -4,6 +4,9 @@ and by using ssh = sftp
 Download all files
 `wget ftp:// 10.10.10.10:12345/* --ftp-user=ourname --ftp-pass=ourpass`
 
+get all files from the ftp server using mirror `-m`
+`wget -m --ftp-user=Benjamin --ftp-password='Password123!' ftp://10.129.229.8/`
+
 ### Basic FTP commands
 
 Can be used with telnet/nc

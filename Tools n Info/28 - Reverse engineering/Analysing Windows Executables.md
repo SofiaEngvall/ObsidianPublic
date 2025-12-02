@@ -1,5 +1,8 @@
 
 PE Studio file analyser
 
-ILSpy .NET decompiler
+##### .NET decompilers
+ILSpy
+jetbrains dotPeek
+dnSpy
 

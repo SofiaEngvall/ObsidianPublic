@@ -23,7 +23,16 @@ If nothing is marked, grab a multimeter and beep/meassure:
 Read on chips to identify their function, measure to confirm voltages like ground, vcc. For voltage converters we will have vin and vout.
 
 
-Can we find the rom/firmware chip?
+##### Can we find the rom/firmware chip?
+
+By connection to the chip on the board or by de-soldering it
+
+ex using spi on tigard - asking for id - not mine
+sudo flashrom -p ft2232_spi:type=2232H,port=B,divisor=128 -V
+
+
+
+Download firmware
 
 ### Connecting via UART
 
@@ -51,7 +60,7 @@ try to abort boot / can we type commands
 
 check available commands
 - is busybox available?
-	- limitid?
+	- limited?
 		- https://busybox.net/downloads/binaries/
 		- upgrade busybox using tftp (if available) and on kali atftpd (/etc/ /srv/tftp is dir?)
 		- atpftd --startdaemon

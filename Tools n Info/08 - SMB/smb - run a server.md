@@ -2,7 +2,7 @@
 create share for upload to our machine
 `sudo impacket-smbserver -smb2support -username <user> -password <password> myshare <../dirname>`
 
-`sudo impacket-smbserver -smb2support -username user -password password share share`
+`sudo impacket-smbserver -smb2support -username user -password password share .`
 where the subdirectory `share` is shared under the share name `share`
 
 

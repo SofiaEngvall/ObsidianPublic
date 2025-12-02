@@ -1,3 +1,4 @@
+
 Quick check:
 	is there a login?
 		try admin, administrator..
@@ -10,6 +11,9 @@ Quick check:
 `gobuster dir -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -t 20 -u http://10.10.10.95`
 
 `gobuster vhost -r -u http://10.10.10.10 --domain server.com -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain -t 30`
+
+
+
 
 
 
@@ -37,6 +41,8 @@ list possible users and usernames
 	validate?
 		login form
 		registation form
+		password reset form
+how the application responds during login or password resets - time delays too, not just text
 
 login
 	second step of mfa can sometimes be bypassed by just going to a page requiring the access
@@ -97,6 +103,8 @@ iis? way to put a aspx shell?
 
 webshell or revshell upload
 	use what the system is built on; php, python django, vbscript node.js... perl might also work
+
+search for domain name in the code - might find sub domains!
 
 Run scanners:
 	`nikto -h http://whatever.thm`

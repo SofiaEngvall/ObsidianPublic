@@ -66,6 +66,11 @@ What's scheduled
 	`cat /etc/crontab` list system wide jobs
 	[[cron - crontab]]
 	...
+Things run by root can often be exploited
+	- commands run with * files might make file names be read as arguments to a command
+	- * files copied by root? then we might be able to add a suid bash in the base directory
+	- database backups may be included in the above - like postgres sql taking the directory too
+	- check gtfobins on run commands for ideas
 
 Permission info
 	`sudo -l` list all commands your user can run using `sudo`
