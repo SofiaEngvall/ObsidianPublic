@@ -4,6 +4,11 @@
 `/usr/bin/mysql -u root -p '' 2>&1` (also show err on a basic shell)
 
 
+### mysql>
+
+show databases;
+show tables;
+...
 
 ### Help
 
