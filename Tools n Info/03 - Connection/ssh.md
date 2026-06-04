@@ -47,3 +47,11 @@ usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
 
 ```
 
+
+
+##### postgres
+
+/var/run/postgresql/.s.PGSQL.5432
+ssh -L 5432:10.129.1.73:5432 christine@10.129.1.73
+
+ssh -L 12345:localhost:5432 christine@10.129.1.73

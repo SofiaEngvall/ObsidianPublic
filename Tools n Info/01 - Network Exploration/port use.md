@@ -21,6 +21,7 @@ TCP - Three way handshake “Syn” > “Syn Ack” > “Ack” - Can be used to
 990 ftps (ftp using tls)
 993 imaps
 995 pop3s
+5432 Postgres
 50051     gRPC            [[../15 - APIs/grpcui]]
 
 ### UDP 
