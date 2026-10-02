@@ -20,12 +20,14 @@ I'm going to try running kali as a dual-boot daily driver. Why?
 
 #### Tools for streaming
 
-	- OBS, native `sudo apt install obs-studio`
-	- Streamer.bot, wine
-	- Speaker.bot, wine
-	- SAMMI, wine
-	- Iriun, native (https://iriun.com/)
-	- Chrome or Chromium from the repo for http://tts.bot
+- OBS, native `sudo apt install obs-studio`, flatpak or from source
+  since I don't want uncontrolled updates I'll do from source
+  https://github.com/obsproject/obs-studio/wiki/Build-Instructions-For-Linux
+- Streamer.bot, wine
+- Speaker.bot, wine
+- SAMMI, wine
+- Iriun, native (https://iriun.com/)
+- Chrome or Chromium from the repo for http://tts.bot
 
 
 #### Other tools
@@ -34,6 +36,24 @@ I'm going to try running kali as a dual-boot daily driver. Why?
 - Obsidian, preinstalled
 - 3d printing - https://www.reddit.com/r/AnycubicKobraS1/comments/1izhcfm/linux_options/
 - inkscape - sudo apt install inkscape
+- Gimp, Pinta or some other gfx tools, Paint.net doesn't have a linux ver
+- yt-dlp, to dl yt vids
+
+#### Problems?
+
+- DaVinci Resolve, only supported for Rocky Linux (red hat) + even if you get it running it will lack codecs -> Dual boot win? vm with pass through gfx?
+
+#### Other stuff
+
+- bluetooth
+  `sudo apt install bluetooth bluez blueman`
+  `rfkill list` check for software and hardware blocks
+  `sudo rfkill unblock bluetooth` remove software block
+  `systemctl status bluetooth` ("Active: inactive (dead)" means the service is installed but not active)
+  `sudo systemctl enable bluetooth`
+  `sudo systemctl start bluetooth`
+  in the gui, search for devices
+- screenshots - [[../../Obsidian/Grab shreenshots in Kali Linux|Grab shreenshots in Kali Linux]]
 
 #### Play games with the kids
 
@@ -74,6 +94,30 @@ To run Roblox
   `sudo apt install libgl1-nvidia-glx:i386 libglx-nvidia0:i386 nvidia-vulkan-icd:i386`
 
 sudo apt install nvidia-driver nvidia-vulkan-icd nvidia-vulkan-icd:i386
+
+
+### Detailed installations
+
+#### Obs
+
+build system
+`sudo apt install cmake extra-cmake-modules ninja-build pkg-config clang clang-format build-essential curl ccache git zsh`
+
+obs code dependencies
+`sudo apt install libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libavutil-dev libswresample-dev libswscale-dev libx264-dev libcurl4-openssl-dev libmbedtls-dev libgl1-mesa-dev libjansson-dev libluajit-5.1-dev python3-dev libx11-dev libxcb-randr0-dev libxcb-shm0-dev libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev swig libcmocka-dev libxss-dev libglvnd-dev libgles2-mesa-dev libwayland-dev librist-dev libsrt-openssl-dev libpci-dev libpipewire-0.3-dev libqrcodegencpp-dev uthash-dev libsimde-dev`
+
+ui deps
+`sudo apt install qt6-base-dev qt6-base-private-dev qt6-svg-dev qt6-wayland qt6-image-formats-plugins`
+
+plugin deps
+`sudo apt install libasound2-dev libfdk-aac-dev libfontconfig-dev libfreetype6-dev libjack-jackd2-dev libpulse-dev libsndio-dev libspeexdsp-dev libudev-dev libv4l-dev libva-dev libvlc-dev libvpl-dev libdrm-dev nlohmann-json3-dev libwebsocketpp-dev libasio-dev`
+
+download the pre-built obs-browser CEF framework - https://cdn-fastly.obsproject.com/downloads/cef_binary_6533_linux_x86_64_v6.tar.xz
+
+grab the files
+`git clone --recursive https://github.com/obsproject/obs-studio.git`
+
+
 
 
 ### Debugging

@@ -54,5 +54,31 @@ rm "$tmpimg"
 
 ```
 
+
+
 bash -c 'maim /tmp/frozen.png && sleep 0.5 && maim -i /tmp/frozen.png -s | xclip -selection clipboard -t image/png -i && rm /tmp/frozen.png'
+
+sudo apt install slop feh
+
+works 2026-10-01
+```sh
+#!/bin/bash
+tmpimg="/tmp/maim_frozen.png"
+
+# 1. Grab a full screen snapshot instantly to freeze the state
+/usr/bin/maim "$tmpimg"
+
+# 2. Open the image in a borderless fullscreen window on top of your video
+/usr/bin/feh -F -N -Y "$tmpimg" & display_pid=$!
+/usr/bin/sleep 0.1
+
+# 3. Run your exact working selection line over the static image window
+/usr/bin/maim -s | /usr/bin/xclip -selection clipboard -t image/png -i
+
+# 4. Tear down the freeze window and clean up the temporary snapshot file
+kill "$display_pid"
+rm "$tmpimg"
+```
+
+
 
