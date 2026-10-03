@@ -25,7 +25,7 @@ I'm going to try running kali as a dual-boot daily driver. Why?
   https://github.com/obsproject/obs-studio/wiki/Build-Instructions-For-Linux
 - Streamer.bot, wine
 - Speaker.bot, wine
-- SAMMI, wine
+- SAMMI, wine? is there a linux version
 - Iriun, native (https://iriun.com/)
 - Chrome or Chromium from the repo for http://tts.bot
 
