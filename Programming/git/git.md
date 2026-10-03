@@ -34,10 +34,12 @@ To install Git run:
 `git --version`
 
 Add used info:  
-`git config --global user.name "Sofia Engvall"`
-`git config --global user.email "sofia@fixit42.com"`
-`git config --list`
-`nano ~/.gitconfig`
+```sh
+git config --global user.name "Sofia Engvall"
+git config --global user.email "sofia@fixit42.com"
+git config --list
+nano ~/.gitconfig
+```
 
 
 Go to your new project directory and run `git init` to start a new repository = start syncing the directory. This creates a hidden .git subdir where info about the repository is stored.
