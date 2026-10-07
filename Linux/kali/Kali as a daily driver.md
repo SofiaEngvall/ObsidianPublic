@@ -27,9 +27,22 @@ I'm going to try running kali as a dual-boot daily driver. Why?
 - Streamer.bot, wine
 - Speaker.bot, wine
 - SAMMI, wine? is there a linux version
-- Iriun, native (https://iriun.com/) sudo apt install v4l2loopback-dkms
+- Iriun, native (https://iriun.com/)
+  `sudo apt install v4l2loopback-dkms`
+ 7028  sudo apt install ./iriunwebcam-2.9.3.deb
+ 7031  sudo apt --fix-broken install
+ 7044  sudo rm /var/lib/dpkg/info/iriunwebcam.postinst
+ 7045  sudo dpkg --configure -a
+ 7046  sudo apt upgrade
+ 7047  sudo apt update\nsudo apt install linux-headers-$(uname -r) v4l2loopback-dkms v4l2loopback-utils
+
+┌──(fixit42㉿x1)-[~]
+└─$ uname -r   
+7.1.5+kali-amd64
 
 - Chrome for http://tts.bot
+  download from https://www.google.com/chrome/
+  `sudo dpkg -i google-chrome-stable_current_amd64.deb `
 
 #### Other tools
 
