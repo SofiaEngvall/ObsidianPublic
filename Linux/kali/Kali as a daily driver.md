@@ -13,10 +13,11 @@ I'm going to try running kali as a dual-boot daily driver. Why?
 
 ### What do I need?
 
-- Kali tools
-- Firefox and Thunderbird - what I use now on Win10
-- LibreOffice - what I use now on Win10
-- vlc  `sudo apt install vlc`
+✓ Kali tools
+- Firefox - what I use now on Win 10
+- Thunderbird - what I use now on Win 10
+- LibreOffice - what I use now on Win 10
+- vlc
 
 #### Tools for streaming
 
@@ -26,15 +27,16 @@ I'm going to try running kali as a dual-boot daily driver. Why?
 - Streamer.bot, wine
 - Speaker.bot, wine
 - SAMMI, wine? is there a linux version
-- Iriun, native (https://iriun.com/)
+- Iriun, native (https://iriun.com/) sudo apt install v4l2loopback-dkms
+
 - Chrome for http://tts.bot
 
 #### Other tools
 
 - Balena etcher - https://github.com/balena-io/etcher#debian-and-ubuntu-based-package-repository-gnulinux-x86x64
-- Obsidian, preinstalled
+✓  Obsidian, preinstalled
 - 3d printing - https://www.reddit.com/r/AnycubicKobraS1/comments/1izhcfm/linux_options/
-- inkscape - sudo apt install inkscape
+✓  inkscape - `sudo apt install inkscape`
 - Gimp, Pinta, krita or some other gfx tools, Paint.net doesn't have a linux ver
 - yt-dlp, to dl yt vids
 
@@ -45,7 +47,7 @@ I'm going to try running kali as a dual-boot daily driver. Why?
 
 #### Other stuff
 
-- bluetooth
+✓ bluetooth
   `sudo apt install bluetooth bluez blueman`
   `rfkill list` check for software and hardware blocks
   `sudo rfkill unblock bluetooth` remove software block

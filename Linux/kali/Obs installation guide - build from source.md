@@ -10,6 +10,15 @@ ui deps
 plugin deps
 `sudo apt install libasound2-dev libfdk-aac-dev libfontconfig-dev libfreetype6-dev libjack-jackd2-dev libpulse-dev libsndio-dev libspeexdsp-dev libudev-dev libv4l-dev libva-dev libvlc-dev libvpl-dev libdrm-dev nlohmann-json3-dev libwebsocketpp-dev libasio-dev`
 
+For nvidia builds you also need the dependency:
+`sudo apt install libffmpeg-nvenc-dev`
+
+---
+
+make a dir and move there
+`mkdir ~/Downloads/obs-build`
+`cd ~/Downloads/obs-build`
+
 download the pre-built obs-browser CEF framework - https://cdn-fastly.obsproject.com/downloads/cef_binary_6533_linux_x86_64_v6.tar.xz
 extract it
 `tar -xf cef_binary_6533_linux_x86_64_v6.tar.xz`
@@ -39,8 +48,8 @@ make a preset file - calling it /home/fixit42/Downloads/obs-build/obs-studio/CMa
 
         "OBS_COMPILE_DEPRECATION_AS_WARNING": true,
 
-        "ENABLE_NVENC": false,
-        "ENABLE_FFMPEG_NVENC": false,
+        "ENABLE_NVENC": true,
+        "ENABLE_FFMPEG_NVENC": true,
 
         "ENABLE_AJA": false
       }
@@ -48,11 +57,11 @@ make a preset file - calling it /home/fixit42/Downloads/obs-build/obs-studio/CMa
   ]
 }
 ```
-change both NVENC lines to true for use with a nvidia card
+change both NVENC lines to true for use with a nvidia card and false for other cards
 
 I found a missing dependency while running the config - let's add it:
 ```sh
-sudo apt install libxcb-xinput-dev libdatachannel-dev
+sudo apt install libxcb-xinput-dev
 
 git clone --recursive https://github.com/paullouisageneau/libdatachannel.git /home/fixit42/Downloads/obs-build/libdatachannel
 cmake -S /home/fixit42/Downloads/obs-build/libdatachannel -B /home/fixit42/Downloads/obs-build/libdatachannel/build -DUSE_GNUTLS=0 -DUSE_NICE=0 -DCMAKE_BUILD_TYPE=Release
@@ -60,6 +69,8 @@ cmake --build /home/fixit42/Downloads/obs-build/libdatachannel/build --parallel 
 sudo cmake --install /home/fixit42/Downloads/obs-build/libdatachannel/build
 ```
 TODO! Change the version of libdatachannel
+
+---
 
 configure the build project using our file with
 ```sh
@@ -76,8 +87,16 @@ install it with
 sudo cmake --install /home/fixit42/Downloads/obs-build/build
 ```
 
+give ourselves permissions
+
+
 launch obs with
 ```sh
 cd /opt/obs/bin && ./obs -p
 ```
 
+
+
+if you get:
+
+![[Images/Pasted image 20261007112454.png]]
