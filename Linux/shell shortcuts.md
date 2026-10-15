@@ -1,5 +1,5 @@
 
-Ctrl+L  Clear screen
+Ctrl+L  Clear screen (but not as good as "clear")
 
 Crtl+E  Go to end of line
 Ctrl+A  Go to start of line
