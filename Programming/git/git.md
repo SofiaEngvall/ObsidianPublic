@@ -1,13 +1,16 @@
 
 ### Quick ref
 
-echo "# logPublicIP" >> README.md
+
+```sh
+echo "# compy" >> README.md
 git init
 git add README.md
-git commit -m "first commit"
+git commit -m "initial commit"
 git branch -M main
-git remote add origin https://github.com/SofiaEngvall/logPublicIP.git
+git remote add origin git@github.com:SofiaEngvall/compy.git
 git push -u origin main
+```
 
 …or push an existing repository from the command line
 
