@@ -428,3 +428,22 @@ Oct 14 00:25:51 x1 systemd[1457]: Started pipewire-pulse.service - PipeWire Puls
 
 Oct 14 00:25:51 x1 systemd[1457]: Listening on pipewire-pulse.socket - PipeWire PulseAudio.
 ```
+
+
+### Made a desktop run thingy to work around for now
+
+`nano ~/Desktop/restart-audio.desktop`
+
+```sh
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Restart Audio
+Comment=Restarts PipeWire Pulse Audio
+Exec=systemctl --user restart pipewire-pulse
+Icon=audio-volume-high
+Terminal=false
+Categories=Utility;
+```
+
+`chmod +x ~/Desktop/restart-audio.desktop`

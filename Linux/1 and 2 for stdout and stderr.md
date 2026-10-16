@@ -10,3 +10,9 @@ In Unix-like operating systems, file descriptors are used to manage input and ou
 - `&1`: This is a bit of shorthand. The `&` here indicates that what follows is not a filename but rather another file descriptor. `1` refers to file descriptor 1, which corresponds to the standard output (stdout) stream. Combining `&1` essentially means "redirect file descriptor 2 to the same place as file descriptor 1."
 
 So, `2>&1` means "redirect stderr (file descriptor 2) to the same location as stdout (file descriptor 1)." This is commonly used to ensure that both regular output and error messages are sent to the same destination when using redirection. In the context of the provided command, it ensures that any error messages produced by the shell are also sent to the FIFO along with regular output.
+
+## 2>/dev/null
+
+Sends the errors from the output of the command before it to dev null = to nowhere
+
+

@@ -34,7 +34,8 @@ I'm going to try running kali as a dual-boot daily driver. Why?
  7044  sudo rm /var/lib/dpkg/info/iriunwebcam.postinst
  7045  sudo dpkg --configure -a
  7046  sudo apt upgrade
- 7047  sudo apt update\nsudo apt install linux-headers-$(uname -r) v4l2loopback-dkms v4l2loopback-utils
+ 7047  sudo apt update
+ sudo apt install linux-headers-$(uname -r) v4l2loopback-dkms v4l2loopback-utils
 
 ┌──(fixit42㉿x1)-[~]
 └─$ uname -r   
